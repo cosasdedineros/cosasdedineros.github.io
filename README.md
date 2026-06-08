@@ -1,2 +1,2 @@
-# cosasdedineros.github.io
-Finanzas, economía y calculadoras para jubilarse cuanto antes.
+# Cosasdedineros
+Trucos y calculadoras para jubilarte lo antes posible. 

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artículos – Cosas de Dineros</title>
+<meta name="description" content="Artículos de finanzas personales, inversión y economía escritos por Alonso Orellana de @cosasdedineros.">
+<meta property="og:title" content="Artículos – Cosas de Dineros">
+<meta property="og:description" content="Artículos de finanzas personales, inversión y economía escritos por Alonso Orellana de @cosasdedineros.">
+<meta property="og:url" content="https://cosasdedineros.github.io/Cosasdedineros/Substack.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://cosasdedineros.github.io/Cosasdedineros/Substack.html">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCX74R28X0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SCX74R28X0');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"DM Sans";background:var(--crema);color:var(--texto);}
+.topbar{
+  position:sticky;top:0;z-index:1000;
+  background:var(--verde);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 20px;
+}
+
+nav{
+  position:sticky;
+  top:45px;
+  z-index:999;
+  background:#122a1f;
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:12px;
+}
+
+  
+nav a{color:white;text-decoration:none;font-size:14px;}
+nav a:hover{color:var(--dorado);}
+nav a.active{color:var(--dorado);}
+.hero{
+  padding:50px 20px;text-align:center;
+  background:var(--verde);color:white;
+}
+.hero h1{font-size:36px;font-family:"Playfair Display";}
+.articulos{
+  max-width:860px;margin:60px auto;padding:0 20px;
+  display:flex;flex-direction:column;gap:32px;
+}
+
+/* ── CARD CON IMAGEN OPCIONAL ── */
+.articulo-card{
+  background:white;border-radius:10px;
+  border-left:4px solid var(--dorado);
+  transition:box-shadow 0.2s;
+  overflow:hidden;
+  display:flex;flex-direction:row;
+}
+.articulo-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.card-imagen{
+  width:180px;min-width:180px;
+  background:#e8f0e8;
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;
+  overflow:hidden;
+}
+.card-imagen img{
+  width:100%;height:100%;object-fit:cover;
+}
+.card-contenido{
+  padding:28px 32px;flex:1;
+}
+.articulo-card a{text-decoration:none;color:inherit;}
+.articulo-card h2{
+  font-family:"Playfair Display";font-size:22px;
+  color:var(--verde);margin-bottom:8px;transition:color 0.2s;
+}
+.articulo-card:hover h2{color:var(--dorado);}
+.articulo-card time{font-size:12px;color:#888;display:block;margin-bottom:10px;}
+.articulo-card p{line-height:1.7;color:#444;font-size:15px;}
+.leer-mas{
+  display:inline-block;margin-top:14px;font-size:13px;
+  font-weight:500;color:var(--dorado);letter-spacing:0.03em;
+}
+@media(max-width:600px){
+  .articulo-card{flex-direction:column;}
+  .card-imagen{width:100%;height:160px;min-width:unset;}
+}
+/* ── FIN CARD ── */
+
+footer{
+  background:var(--verde);color:white;
+  padding:40px;margin-top:60px;text-align:center;
+}
+footer a{color:var(--dorado);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Artículos – Cosas de Dineros",
+  "description": "Artículos de finanzas personales, inversión y economía",
+  "url": "https://cosasdedineros.github.io/Cosasdedineros/Substack.html",
+  "author": {"@type":"Person","name":"Alonso Orellana"}
+}
+</script>
+</head>
+
+<!-- cookies -->
+
+
+<style>
+#cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 800px;
+  background: #1b1b1b;
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  z-index: 99999;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+#cookie-banner p {
+  margin: 0;
+  flex: 1;
+  line-height: 1.3;
+}
+
+#cookie-buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+#cookie-banner button {
+  border: none;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#accept {
+  background: #4caf50;
+  color: white;
+}
+
+#reject {
+  background: #e53935;
+  color: white;
+}
+
+#cookie-settings {
+  background: #555;
+  color: white;
+}
+</style>
+
+<div id="cookie-banner">
+  <p>
+    Usamos cookies para mejorar la experiencia, analizar tráfico y mostrar anuncios personalizados.
+  </p>
+
+  <div id="cookie-buttons">
+    <button id="reject" onclick="setCookies('no')">Rechazar</button>
+    <button id="cookie-settings" onclick="alert('Aquí puedes ampliar opciones si quieres')">Configurar</button>
+    <button id="accept" onclick="setCookies('yes')">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function setCookies(value) {
+  localStorage.setItem("cookies_consent", value);
+  document.getElementById("cookie-banner").style.display = "none";
+
+  // 🔥 Aquí puedes activar scripts SOLO si acepta
+  if (value === "yes") {
+    console.log("Cookies aceptadas → activar Analytics/AdSense");
+    // ejemplo:
+    // loadAnalytics();
+    // loadAds();
+  } else {
+    console.log("Cookies rechazadas → no tracking");
+  }
+}
+
+function shouldShowBanner() {
+  return !localStorage.getItem("cookies_consent");
+}
+
+window.addEventListener("load", () => {
+  if (shouldShowBanner()) {
+    document.getElementById("cookie-banner").style.display = "flex";
+  }
+});
+</script>
+
+
+  
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span></span>
+  <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+     target="_blank"
+     style="text-decoration:none;background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;">
+    📩 Mensaje directo
+  </a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html" class="active">Artículos</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+  <a href="Libros.html">Libros</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Artículos</h1>
+</div>
+
+<!-- LISTA -->
+<!-- 
+  CÓMO AÑADIR IMAGEN A UN ARTÍCULO:
+  Añade data-imagen="tunombre.jpg" a la div.articulo-card
+  Sube la imagen a la raíz del repositorio con ese mismo nombre
+  Si no pones data-imagen, se muestra el emoji de fondo
+-->
+<section class="articulos">
+
+  <div class="articulo-card" data-imagen="corea.jpg">
+    <div class="card-imagen">📈</div>
+    <div class="card-contenido">
+      <a href="corea.html">
+        <h2>La bolsa coreana explota con un +200% en 1 año</h2>
+        <time datetime="2026-06-06">6 junio 2026</time>
+        <p>Goldman Sachs estima que este año las empresas cotizadas coreanas aumentarán sus beneficios un 300%</p>
+        <span class="leer-mas">Leer artículo →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="articulo-card" data-imagen="saga.jpg">
+    <div class="card-imagen">💼</div>
+    <div class="card-contenido">
+      <a href="saga.html">
+        <h2>Una saga más de "tu compañero de trabajo, el gran enemigo"</h2>
+        <time datetime="2026-06-06">6 junio 2026</time>
+        <p>A ver, no soy un anarquista quema fábricas, pero señores, que os están meando encima. Que el de enfrente, el de Mercadona cobra 200€ menos que vosotros y vive como un rey sin estrés y trabajando sus 8 horas de reloj.</p>
+        <span class="leer-mas">Leer artículo →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="articulo-card" data-imagen="cfa.jpg">
+    <div class="card-imagen">🎓</div>
+    <div class="card-contenido">
+      <a href="CFA.html">
+        <h2>¿Merece la pena sacarse el CFA?</h2>
+        <time datetime="2026-06-03">3 junio 2026</time>
+        <p>¿Lo volvería a estudiar? Seguramente sí, pero a mi hijo le apuntaría a clases de otra cosa...</p>
+        <span class="leer-mas">Leer artículo →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="articulo-card" data-imagen="cobro.jpg">
+    <div class="card-imagen">💶</div>
+    <div class="card-contenido">
+      <a href="cobro.html">
+        <h2>¿Por qué cobro tan poco?</h2>
+        <time datetime="2026-04-12">12 abril 2026</time>
+        <p>Un suizo, por ejemplo, cobra más y no tiene por qué ser más listo, lo que sí tiene es mejores máquinas, infraestructuras y unas regulaciones de mayor calidad que permiten que el mismo trabajador allí produzca un 30% más que aquí.</p>
+        <span class="leer-mas">Leer artículo →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="articulo-card" data-imagen="desgracia.jpg">
+    <div class="card-imagen">⚡</div>
+    <div class="card-contenido">
+      <a href="desgracia.html">
+        <h2>Sacar dinero de una desgracia</h2>
+        <time datetime="2026-01-19">19 enero 2026</time>
+        <p>La subida de precios hará que las compañías de alquiler de coches lleven más coches a las provincias afectadas y que las compañías aéreas quiten vuelos de unas ciudades para destinarlos también a las ciudades afectadas.</p>
+        <span class="leer-mas">Leer artículo →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="articulo-card" data-imagen="china.jpg">
+    <div class="card-imagen">🇨🇳</div>
+    <div class="card-contenido">
+      <a href="china.html">
+        <h2>Viaje a China</h2>
+        <time datetime="2026-05-31">31 mayo 2026</time>
+        <p>"Ves ganas de trabajar, están motivados claro. Te puedes comprar una casa en esta ciudad equivalente a un Madrid, de 80m2 por 120k. Vives mejor que tus padres y que tus abuelos y trabajas 12h para que tu hijo viva mejor."</p>
+        <span class="leer-mas">Leer artículo →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="articulo-card" data-imagen="gestora.jpg">
+    <div class="card-imagen">🏦</div>
+    <div class="card-contenido">
+      <a href="Contragestoras.html">
+        <h2>Artículo en contra de los principales fondos y gestoras</h2>
+        <time datetime="2026-06-01">1 junio 2026</time>
+        <p>Conclusión: bebe toda coca cola que quieras, pero recuerda que tiene mucha azúcar.</p>
+        <span class="leer-mas">Leer artículo →</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="articulo-card" data-imagen="Mercadona.jpg">
+    <div class="card-imagen">🛒</div>
+    <div class="card-contenido">
+      <a href="Mercadona.html">
+        <h2>Por qué Mercadona no puede cobrarte lo que quiera</h2>
+        <time datetime="2025-12-10">10 diciembre 2025</time>
+        <p>Principio de imputación de Menger. El empresario puede poner el precio que quiera pero es el cliente el que marca el precio al decir si lo compra o no.</p>
+        <span class="leer-mas">Leer artículo →</span>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<!-- footer -->
+
+<footer>
+  <p><strong>Cosas de Dineros</strong></p>
+
+  <p>
+    Escrito por Alonso Orellana ·
+    <a href="https://instagram.com/cosasdedineros" target="_blank">
+      @cosasdedineros
+    </a>
+  </p>
+
+  <p>
+    <a href="legal.html" style="color:#4caf50; text-decoration:none;">
+      Aviso legal
+    </a>
+  </p>
+</footer>
+
+
+<script>
+document.querySelectorAll('.articulo-card').forEach(card => {
+  const img = card.getAttribute('data-imagen');
+  const imgDiv = card.querySelector('.card-imagen');
+  if (img && img.trim() !== '') {
+    imgDiv.innerHTML = `<img src="${img}" alt="">`;
+  }
+});
+</script>
+
+</body>
+</html>

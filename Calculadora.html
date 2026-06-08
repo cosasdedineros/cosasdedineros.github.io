@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Pensión – Cosas de Dineros</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── SITE NAV ────────────────────────────────────────────── */
+:root{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+}
+.topbar{
+  position:sticky;top:0;z-index:1000;
+  background:var(--verde);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 20px;
+}
+.site-nav{
+  background:#122a1f;
+  display:flex;justify-content:center;gap:25px;padding:12px;
+}
+.site-nav a{color:white;text-decoration:none;font-size:14px;}
+.site-nav a:hover{color:var(--dorado);}
+.site-nav a.active{color:var(--dorado);}
+.page-hero{
+  padding:40px 20px;text-align:center;
+  background:var(--verde);color:white;
+}
+.page-hero h1{
+  font-family:"Playfair Display";
+  font-size:clamp(22px,3vw,32px);
+  max-width:700px;margin:0 auto;
+  line-height:1.3;
+}
+.volver-link{
+  display:inline-block;
+  margin:24px 20px 0;
+  font-size:13px;font-weight:500;
+  color:var(--dorado);text-decoration:none;
+  font-family:"DM Sans";
+}
+.volver-link:hover{text-decoration:underline;}
+
+/* ── CALCULADORA ─────────────────────────────────────────── */
+  :root {
+    --bg: #f0ece4;
+    --surface: #ffffff;
+    --surface2: #f7f4ef;
+    --border: #ddd8ce;
+    --gold: #a07828;
+    --gold-dim: #c49a40;
+    --green: #2a7d55;
+    --red: #c0392b;
+    --text: #1a1a1a;
+    --text-dim: #6b6560;
+    --accent: #2c5fa8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(160,120,40,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 90%, rgba(44,95,168,0.05) 0%, transparent 50%);
+    pointer-events:none;
+  }
+  .calc-wrap { padding: 32px 20px; }
+  .container { max-width:1260px; margin:0 auto; position:relative; }
+  .eyebrow { font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .grid-main { display:grid; grid-template-columns:360px 1fr; gap:24px; align-items:start; }
+  @media(max-width:900px){ .grid-main { grid-template-columns:1fr; } }
+  .panel {
+    background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:26px; box-shadow:0 2px 10px rgba(0,0,0,0.05); animation:fadeUp 0.5s ease both;
+  }
+  .panel-title {
+    font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--gold);
+    margin-bottom:18px; display:flex; align-items:center; gap:8px;
+  }
+  .panel-title::after { content:''; flex:1; height:1px; background:var(--border); }
+  .field { margin-bottom:16px; }
+  .field label { display:block; font-size:11px; letter-spacing:1px; color:var(--text-dim); margin-bottom:6px; }
+  .field input[type="number"], .field input[type="date"] {
+    width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:8px;
+    padding:10px 13px; color:var(--text); font-family:'DM Mono',monospace; font-size:14px;
+    outline:none; transition:border-color 0.2s, box-shadow 0.2s;
+  }
+  .field input:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(160,120,40,0.1); }
+  .hint { font-size:10px; color:var(--text-dim); margin-top:5px; }
+  .toggle-tabs {
+    display:flex; background:var(--surface2); border:1px solid var(--border);
+    border-radius:8px; padding:3px; gap:3px; margin-bottom:10px;
+  }
+  .toggle-tab {
+    flex:1; padding:7px 8px; font-family:'DM Mono',monospace; font-size:11px;
+    border:none; border-radius:6px; cursor:pointer; background:transparent;
+    color:var(--text-dim); transition:all 0.18s;
+  }
+  .toggle-tab.active { background:var(--gold); color:#fff; }
+  .slider-wrap { display:flex; align-items:center; gap:12px; margin-top:4px; }
+  input[type="range"] {
+    flex:1; -webkit-appearance:none; height:4px; border-radius:2px;
+    background:var(--border); outline:none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance:none; width:16px; height:16px; border-radius:50%;
+    background:var(--gold); cursor:pointer;
+    box-shadow:0 0 6px rgba(160,120,40,0.35); transition:transform 0.1s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform:scale(1.2); }
+  .slider-val { font-size:13px; color:var(--gold); min-width:52px; text-align:right; font-weight:500; }
+  .results-panel { animation:fadeUp 0.5s ease 0.1s both; }
+  .metrics-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
+  .metric { background:var(--surface2); border:1px solid var(--border); border-radius:11px; padding:15px 13px; }
+  .metric.highlight { border-color:var(--gold-dim); background:rgba(160,120,40,0.06); }
+  .m-label { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-dim); margin-bottom:6px; }
+  .m-value { font-family:'DM Serif Display',serif; font-size:20px; color:var(--text); }
+  .metric.highlight .m-value { color:var(--gold); }
+  .m-sub { font-size:10px; color:var(--text-dim); margin-top:3px; }
+  .tables-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:720px){ .tables-grid { grid-template-columns:1fr; } }
+  .table-section {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:11px; overflow:hidden; box-shadow:0 1px 5px rgba(0,0,0,0.04);
+  }
+  .table-header {
+    padding:11px 15px; display:flex; align-items:center; gap:8px;
+    border-bottom:1px solid var(--border); background:var(--surface2);
+  }
+  .dot { width:8px; height:8px; border-radius:50%; }
+  .dot-green { background:var(--green); }
+  .dot-accent { background:var(--accent); }
+  .table-header span { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); }
+  .table-scroll { max-height:400px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  thead th {
+    padding:8px 12px; text-align:right; font-size:10px; letter-spacing:1px;
+    color:var(--text-dim); background:var(--surface2); position:sticky; top:0; z-index:2;
+    border-bottom:1px solid var(--border);
+  }
+  thead th:first-child { text-align:left; }
+  tbody tr { border-top:1px solid rgba(200,195,185,0.45); transition:background 0.1s; }
+  tbody tr:hover { background:rgba(160,120,40,0.04); }
+  tbody tr.retire-yr { background:rgba(42,125,85,0.06); border-top:2px solid rgba(42,125,85,0.4); }
+  tbody td { padding:8px 12px; text-align:right; color:var(--text-dim); }
+  tbody td:first-child { text-align:left; color:var(--text); }
+  .pos { color:var(--green) !important; font-weight:500; }
+  .gld { color:var(--gold) !important; font-weight:500; }
+  .neg { color:var(--red) !important; }
+  .age-badge { font-size:10px; color:var(--text-dim); margin-left:4px; }
+  .tag { font-size:9px; padding:1px 5px; border-radius:3px; background:rgba(42,125,85,0.15); color:var(--green); margin-left:4px; }
+  .divider { height:1px; background:var(--border); margin:16px 0; }
+  .note {
+    font-size:11px; color:var(--text-dim); background:var(--surface2);
+    border-left:3px solid var(--gold-dim); padding:10px 13px;
+    border-radius:0 8px 8px 0; margin-top:16px; line-height:1.7;
+  }
+  .rf-explain {
+    margin-top:14px; background:var(--surface2); border:1px solid var(--border);
+    border-radius:11px; padding:16px 18px; font-size:11px; color:var(--text-dim); line-height:1.8;
+  }
+  .rf-explain strong { color:var(--text); }
+  .rf-explain .rf-row {
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:5px 0; border-bottom:1px solid var(--border);
+  }
+  .rf-explain .rf-row:last-child { border-bottom:none; }
+  .rf-explain .rf-label { color:var(--text-dim); }
+  .rf-explain .rf-val-fix { color:var(--accent); font-weight:500; }
+  .rf-explain .rf-val-var { color:var(--green); font-weight:500; }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(14px)}  to{opacity:1;transform:translateY(0)} }
+
+  footer{
+    background:var(--verde);color:white;
+    padding:40px;margin-top:60px;text-align:center;
+    font-family:"DM Sans";
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span></span>
+  <a href="mailto:cosasdedinerosresponde@gmail.com?subject=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+     style="color:var(--verde);text-decoration:none;background:var(--dorado);font-weight:600;padding:8px 16px;border-radius:6px;font-family:'DM Sans';">
+    📩 Mensaje directo
+  </a>
+</div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="Calculadoras.html" class="active">Calculadoras</a>
+  <a href="Libros.html">Libros</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <h1>Calcula cuándo y con cuánto te puedes jubilar solo con tus rentas (sin pensión de la SS)</h1>
+</div>
+
+<a class="volver-link" href="Calculadoras.html">← Volver a calculadoras</a>
+
+<!-- CALCULADORA -->
+<div class="calc-wrap">
+<div class="container">
+  <div class="grid-main">
+    <!-- LEFT -->
+    <div class="panel">
+      <div class="panel-title">Personal</div>
+      <div class="field">
+        <label>Fecha de nacimiento</label>
+        <input type="date" id="birthDate" value="1985-03-05">
+      </div>
+      <div class="field">
+        <label>¿Cómo defines la jubilación?</label>
+        <div class="toggle-tabs">
+          <button class="toggle-tab active" id="tabDate"  onclick="setMode('date')">Fecha concreta</button>
+          <button class="toggle-tab"        id="tabYears" onclick="setMode('years')">En X años</button>
+        </div>
+        <div id="modeDate">
+          <input type="date" id="retireDate" value="2050-03-05">
+        </div>
+        <div id="modeYears" style="display:none">
+          <div class="slider-wrap">
+            <input type="range" id="yearsUntil" min="1" max="50" step="1" value="25">
+            <span class="slider-val" id="yearsUntilVal">25 años</span>
+          </div>
+        </div>
+        <div class="hint" id="retireHint"></div>
+      </div>
+      <div class="field">
+        <label>Ahorro mensual (€)</label>
+        <input type="number" id="monthlySaving" value="500" min="0" step="50">
+      </div>
+      <div class="field">
+        <label>Capital ya acumulado hoy (€)</label>
+        <input type="number" id="currentCapital" value="0" min="0" step="1000">
+      </div>
+      <div class="divider"></div>
+      <div class="panel-title">Mercado & Economía</div>
+      <div class="field">
+        <label>Retorno anual renta variable</label>
+        <div class="slider-wrap">
+          <input type="range" id="equityReturn" min="1" max="15" step="0.5" value="6">
+          <span class="slider-val" id="equityReturnVal">6,0%</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Inflación (= retorno renta fija)</label>
+        <div class="slider-wrap">
+          <input type="range" id="inflation" min="0.5" max="6" step="0.25" value="2.5">
+          <span class="slider-val" id="inflationVal">2,5%</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="panel-title">Jubilación</div>
+      <div class="field">
+        <label>Renta mensual deseada (€ hoy)</label>
+        <input type="number" id="desiredRent" value="1500" min="100" step="100">
+        <div class="hint">Se ajustará por inflación hasta la jubilación</div>
+      </div>
+      <input type="range" id="retireYears" min="60" max="110" step="1" value="90" style="display:none">
+      <div class="note">
+        💡 Durante la acumulación, la aportación mensual sube cada año con la inflación. En jubilación, todo el capital está invertido: una parte en renta fija (próximos 5 años de gasto) y el resto en renta variable.
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="results-panel">
+      <div class="panel">
+        <div class="panel-title">Resumen</div>
+        <div class="metrics-row">
+          <div class="metric highlight">
+            <div class="m-label">Capital al jubilar</div>
+            <div class="m-value" id="mCapital">—</div>
+            <div class="m-sub" id="mCapitalSub"></div>
+          </div>
+          <div class="metric">
+            <div class="m-label">Renta mensual ajustada a inflación</div>
+            <div class="m-value" id="mRent">—</div>
+            <div class="m-sub" id="mRentSub"></div>
+          </div>
+          <div class="metric">
+            <div class="m-label">Años acumulando</div>
+            <div class="m-value" id="mYears">—</div>
+            <div class="m-sub" id="mYearsSub"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tables-grid" style="margin-top:16px">
+        <div class="table-section">
+          <div class="table-header">
+            <div class="dot dot-green"></div>
+            <span>Acumulación</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Año / Edad</th>
+                  <th>Aportación anual</th>
+                  <th>Total aportado</th>
+                  <th>Capital</th>
+                </tr>
+              </thead>
+              <tbody id="accumBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <div class="table-section">
+            <div class="table-header">
+              <div class="dot dot-accent"></div>
+              <span>Jubilación</span>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Año / Edad</th>
+                    <th>Capital inicio</th>
+                    <th>Renta anual</th>
+                    <th>Capital fin</th>
+                  </tr>
+                </thead>
+                <tbody id="distBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="rf-explain">
+            <strong>Asignación de capital · primer año de jubilación</strong>
+            <div style="margin-top:10px">
+              <div class="rf-row">
+                <span class="rf-label">Capital total al jubilarse</span>
+                <span id="rfTotalCap" class="gld">—</span>
+              </div>
+              <div class="rf-row">
+                <span class="rf-label">→ Renta fija (próximos 5 años de gasto)</span>
+                <span id="rfFixAmt" class="rf-val-fix">—</span>
+              </div>
+              <div class="rf-row">
+                <span class="rf-label">→ Renta variable (resto)</span>
+                <span id="rfVarAmt" class="rf-val-var">—</span>
+              </div>
+              <div class="rf-row">
+                <span class="rf-label">% en renta fija</span>
+                <span id="rfPct" style="color:var(--accent);font-weight:500">—</span>
+              </div>
+              <div class="rf-row">
+                <span class="rf-label">% en renta variable</span>
+                <span id="rvPct" style="color:var(--green);font-weight:500">—</span>
+              </div>
+            </div>
+            <div style="margin-top:10px;font-size:10px;line-height:1.7">
+              Cada año se recalcula esta asignación: los próximos 5 años de gasto van a <span style="color:var(--accent)">renta fija</span> y el resto sigue en <span style="color:var(--green)">renta variable</span>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <p><strong>Cosas de Dineros</strong></p>
+
+  <p>
+    Escrito por Alonso Orellana ·
+    <a href="https://instagram.com/cosasdedineros" target="_blank">
+      @cosasdedineros
+    </a>
+  </p>
+
+  <p>
+    <a href="legal.html" style="color:#4caf50; text-decoration:none;">
+      Aviso legal
+    </a>
+  </p>
+</footer>
+
+
+<script>
+let retireMode = 'date';
+function setMode(m) {
+  retireMode = m;
+  document.getElementById('tabDate').classList.toggle('active', m === 'date');
+  document.getElementById('tabYears').classList.toggle('active', m === 'years');
+  document.getElementById('modeDate').style.display  = m === 'date'  ? '' : 'none';
+  document.getElementById('modeYears').style.display = m === 'years' ? '' : 'none';
+  calculate();
+}
+function fmt(n) {
+  if (!isFinite(n) || n < 0) return '0 €';
+  return Math.round(n).toLocaleString('es-ES') + ' €';
+}
+function fmtPct(v) {
+  return parseFloat(v).toFixed(1).replace('.', ',') + '%';
+}
+function getRetireYear() {
+  const now = new Date().getFullYear();
+  if (retireMode === 'date') {
+    const d = document.getElementById('retireDate').value;
+    return d ? new Date(d).getFullYear() : now + 25;
+  } else {
+    return now + (parseInt(document.getElementById('yearsUntil').value) || 25);
+  }
+}
+function calculate() {
+  const today      = new Date();
+  const yearNow    = today.getFullYear();
+  const birthYear  = new Date(document.getElementById('birthDate').value).getFullYear();
+  const monthly    = parseFloat(document.getElementById('monthlySaving').value)  || 0;
+  const capital0   = parseFloat(document.getElementById('currentCapital').value) || 0;
+  const equityR    = parseFloat(document.getElementById('equityReturn').value)   / 100;
+  const inflation  = parseFloat(document.getElementById('inflation').value)      / 100;
+  const desiredRent= parseFloat(document.getElementById('desiredRent').value)    || 1500;
+  const retireAgeTarget = parseInt(document.getElementById('retireYears').value);
+  const yearRetire = getRetireYear();
+  const yearsAccum = Math.max(0, yearRetire - yearNow);
+  const ageRetire  = yearRetire - birthYear;
+  const retireYrs  = Math.max(1, retireAgeTarget - ageRetire);
+
+  document.getElementById('retireHint').textContent =
+    yearsAccum > 0
+      ? `Faltan ${yearsAccum} año${yearsAccum !== 1 ? 's' : ''} · Tendrás ${ageRetire} años`
+      : 'Fecha ya pasada o igual al año actual';
+
+  // ── ACUMULACIÓN ── retorno fijo, sin incremento anual
+  let capRV = capital0, capRF = 0, totalContrib = 0;
+  const rMonthly   = Math.pow(1 + equityR, 1/12) - 1;
+  const rRFMonthly = Math.pow(1 + inflation, 1/12) - 1;
+  const accumRows = [];
+  for (let y = 0; y < yearsAccum; y++) {
+    const yr         = yearNow + y + 1;
+    const monthlyAdj = monthly * Math.pow(1 + inflation, y);
+    const isLastFour = (y >= yearsAccum - 4);
+    for (let m = 0; m < 12; m++) {
+      if (isLastFour) {
+        capRF = (capRF + monthlyAdj) * (1 + rRFMonthly);
+        capRV = capRV * (1 + rMonthly);
+      } else {
+        capRV = (capRV + monthlyAdj) * (1 + rMonthly);
+      }
+      totalContrib += monthlyAdj;
+    }
+    accumRows.push({ yr, age: yr - birthYear, annualContrib: monthlyAdj * 12, totalContrib, capital: capRV + capRF });
+  }
+
+  const capitalAtRetire = capRV + capRF;
+  const rentFuture      = desiredRent * Math.pow(1 + inflation, yearsAccum);
+  const annualSpendY0   = rentFuture * 12;
+
+  // ── JUBILACIÓN ── lógica correcta: primero retornos, luego gasto, luego reequilibrio
+  let capFix = capRF, capVar = capRV;
+  const distRows = [];
+  for (let y = 0; y < Math.max(retireYrs, 110); y++) {
+    const yr            = yearRetire + y;
+    const age           = yr - birthYear;
+    const spendThisYear = annualSpendY0 * Math.pow(1 + inflation, y);
+    const totalStart    = capFix + capVar;
+
+    // 1. Aplicar retornos
+    capFix = capFix * (1 + inflation);
+    capVar = capVar * (1 + equityR);
+
+    // 2. Consumir gasto del año (primero de RF, luego de RV si hace falta)
+    const consumed = Math.min(spendThisYear, capFix + capVar);
+    const fromFix  = Math.min(consumed, capFix);
+    const fromVar  = consumed - fromFix;
+    capFix -= fromFix;
+    capVar -= fromVar;
+
+    // 3. Reequilibrar: mantener siempre 5 años de gasto futuro en RF
+    const target5y = spendThisYear * Math.pow(1 + inflation, 2.5); // gasto medio próximos 5 años
+    if (capFix < target5y && capVar > 0) {
+      const needed = Math.min(target5y - capFix, capVar);
+      capVar -= needed;
+      capFix += needed;
+    }
+
+    const endCap = capFix + capVar;
+    if (y === 0) {
+      document.getElementById('rfTotalCap').textContent = fmt(totalStart);
+      document.getElementById('rfFixAmt').textContent   = fmt(capFix);
+      document.getElementById('rfVarAmt').textContent   = fmt(capVar);
+      document.getElementById('rfPct').textContent      = (totalStart > 0 ? (capFix/totalStart*100) : 0).toFixed(1).replace('.',',') + '%';
+      document.getElementById('rvPct').textContent      = (totalStart > 0 ? (capVar/totalStart*100) : 0).toFixed(1).replace('.',',') + '%';
+    }
+    distRows.push({ yr, age, startCap: totalStart, consumed, endCap, depleted: endCap <= 1 });
+    if (endCap <= 1) break;
+  }
+
+  document.getElementById('mCapital').textContent    = fmt(capitalAtRetire);
+  document.getElementById('mCapitalSub').textContent = `En ${yearRetire} · ${ageRetire} años`;
+  document.getElementById('mRent').textContent       = fmt(rentFuture).replace(' €','') + ' €/mes';
+  document.getElementById('mRentSub').textContent    = `(${fmt(desiredRent).replace(' €','')} €/mes hoy)`;
+  document.getElementById('mYears').textContent      = yearsAccum + ' años';
+  document.getElementById('mYearsSub').textContent   = `${yearNow} → ${yearRetire}`;
+
+  const ab = document.getElementById('accumBody');
+  ab.innerHTML = '';
+  accumRows.forEach(r => {
+    const isLast = r.yr === yearRetire;
+    const tr = document.createElement('tr');
+    if (isLast) tr.className = 'retire-yr';
+    tr.innerHTML =
+      `<td>${r.yr}<span class="age-badge">${r.age} a.</span>${isLast ? '<span class="tag">JUB.</span>' : ''}</td>` +
+      `<td>${fmt(r.annualContrib)}</td><td>${fmt(r.totalContrib)}</td><td class="pos">${fmt(r.capital)}</td>`;
+    ab.appendChild(tr);
+  });
+
+  const db = document.getElementById('distBody');
+  db.innerHTML = '';
+  distRows.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    if (i === 0) tr.className = 'retire-yr';
+    if (r.depleted) {
+      tr.innerHTML = `<td>${r.yr}<span class="age-badge">${r.age} a.</span></td><td colspan="3" class="neg" style="text-align:center">Capital agotado</td>`;
+    } else {
+      tr.innerHTML =
+        `<td>${r.yr}<span class="age-badge">${r.age} a.</span></td>` +
+        `<td class="gld">${fmt(r.startCap)}</td><td class="neg">−${fmt(r.consumed)}</td><td class="pos">${fmt(r.endCap)}</td>`;
+    }
+    db.appendChild(tr);
+  });
+}
+
+document.getElementById('birthDate').addEventListener('input', calculate);
+document.getElementById('retireDate').addEventListener('input', calculate);
+document.getElementById('monthlySaving').addEventListener('input', calculate);
+document.getElementById('currentCapital').addEventListener('input', calculate);
+document.getElementById('desiredRent').addEventListener('input', calculate);
+document.getElementById('yearsUntil').addEventListener('input', function() {
+  document.getElementById('yearsUntilVal').textContent = this.value + ' años';
+  calculate();
+});
+[['equityReturn','equityReturnVal'],['inflation','inflationVal']].forEach(([id,vid]) => {
+  document.getElementById(id).addEventListener('input', function() {
+    document.getElementById(vid).textContent = fmtPct(this.value);
+    calculate();
+  });
+});
+calculate();
+</script>
+
+  //cookies
+
+  <style>
+#cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 800px;
+  background: #1b1b1b;
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  z-index: 99999;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+#cookie-banner p {
+  margin: 0;
+  flex: 1;
+  line-height: 1.3;
+}
+
+#cookie-buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+#cookie-banner button {
+  border: none;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#accept {
+  background: #4caf50;
+  color: white;
+}
+
+#reject {
+  background: #e53935;
+  color: white;
+}
+
+#cookie-settings {
+  background: #555;
+  color: white;
+}
+</style>
+
+<div id="cookie-banner">
+  <p>
+    Usamos cookies para mejorar la experiencia, analizar tráfico y mostrar anuncios personalizados.
+  </p>
+
+  <div id="cookie-buttons">
+    <button id="reject" onclick="setCookies('no')">Rechazar</button>
+    <button id="cookie-settings" onclick="alert('Aquí puedes ampliar opciones si quieres')">Configurar</button>
+    <button id="accept" onclick="setCookies('yes')">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function setCookies(value) {
+  localStorage.setItem("cookies_consent", value);
+  document.getElementById("cookie-banner").style.display = "none";
+
+  // 🔥 Aquí puedes activar scripts SOLO si acepta
+  if (value === "yes") {
+    console.log("Cookies aceptadas → activar Analytics/AdSense");
+    // ejemplo:
+    // loadAnalytics();
+    // loadAds();
+  } else {
+    console.log("Cookies rechazadas → no tracking");
+  }
+}
+
+function shouldShowBanner() {
+  return !localStorage.getItem("cookies_consent");
+}
+
+window.addEventListener("load", () => {
+  if (shouldShowBanner()) {
+    document.getElementById("cookie-banner").style.display = "flex";
+  }
+});
+</script>
+
+
+
+  
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosas de Dineros - Educación financiera y económica</title>
+<meta name="description" content="Aprende finanzas personales de forma sencilla: ahorro, inversión, calculadoras y evitar estafas bancarias.">
+<meta property="og:title" content="Cosas de Dineros | Educación financiera para gente real">
+<meta property="og:description" content="Aprende finanzas personales de forma sencilla: ahorro, inversión, calculadoras y evitar estafas bancarias.">
+<meta property="og:image" content="https://tudominio.com/preview.jpg">
+<meta property="og:url" content="https://cosasdedineros.github.io/Cosasdedineros/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://cosasdedineros.github.io/Cosasdedineros/index.html">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCX74R28X0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SCX74R28X0');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"DM Sans";background:var(--crema);color:var(--texto);}
+
+.topbar{
+  position:sticky;top:0;z-index:1000;
+  background:var(--verde);color:white;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 20px;
+}
+
+nav{
+  position:sticky;top:45px;z-index:999;
+  background:#122a1f;
+  display:flex;justify-content:center;gap:25px;padding:12px;
+}
+
+  
+nav a{color:white;text-decoration:none;font-size:14px;}
+nav a:hover{color:var(--dorado);}
+
+.hero{
+  padding:70px 20px;text-align:center;
+  background:var(--verde);color:white;
+}
+.hero h1{font-size:40px;font-family:"Playfair Display";}
+.hero h2{font-size:22px;font-weight:300;margin-top:10px;opacity:0.85;}
+
+/* ── CARRUSEL ── */
+.carrusel-seccion{
+  max-width:960px;margin:40px auto 0;padding:0 20px;
+}
+.carrusel-seccion h2{
+  font-family:"Playfair Display";font-size:22px;
+  color:var(--verde);margin-bottom:16px;
+}
+.carrusel-wrapper{position:relative;}
+.carrusel{
+  display:flex;gap:16px;
+  overflow-x:auto;scroll-behavior:smooth;
+  padding-bottom:12px;scrollbar-width:none;
+}
+.carrusel::-webkit-scrollbar{display:none;}
+.c-card{
+  min-width:200px;max-width:200px;flex-shrink:0;
+  background:white;border-radius:10px;overflow:hidden;
+  border-top:3px solid var(--dorado);
+  text-decoration:none;color:inherit;
+  transition:box-shadow 0.2s;
+}
+.c-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.1);}
+.c-img{
+  width:100%;height:110px;
+  background:#e8f0e8;
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;overflow:hidden;
+}
+.c-img img{width:100%;height:100%;object-fit:cover;}
+.c-body{padding:12px;}
+.c-titulo{
+  font-size:13px;font-weight:500;line-height:1.4;
+  color:var(--verde);margin-bottom:6px;
+}
+.c-fecha{font-size:11px;color:#888;}
+.nav-btn{
+  position:absolute;top:50%;transform:translateY(-60%);
+  background:white;border:1px solid #ddd;border-radius:50%;
+  width:32px;height:32px;cursor:pointer;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--verde);z-index:2;
+}
+.nav-btn.izq{left:-14px;}
+.nav-btn.der{right:-14px;}
+.ver-todos{
+  display:block;text-align:right;margin-top:12px;
+  font-size:13px;color:var(--dorado);text-decoration:none;font-weight:500;
+}
+.ver-todos:hover{text-decoration:underline;}
+.c-cargando{color:#aaa;font-size:13px;padding:20px 0;}
+/* ── FIN CARRUSEL ── */
+
+.intro{
+  background:white;padding:40px;border-radius:8px;
+  max-width:900px;margin:40px auto;
+}
+.intro p{margin-bottom:1em;line-height:1.6;}
+.intro h2{margin-bottom:1.2em;}
+
+.destacados{
+  max-width:900px;margin:0 auto 60px;
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  padding:0 20px;
+}
+@media(max-width:600px){.destacados{grid-template-columns:1fr;}}
+.destacados h2{grid-column:1/-1;margin-bottom:8px;}
+.destacado-box{
+  background:white;border-radius:10px;padding:28px;
+  border-top:4px solid var(--dorado);
+}
+.destacado-box .etiqueta{
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--dorado);margin-bottom:14px;display:block;
+}
+.destacado-box h3{
+  font-family:"Playfair Display";font-size:20px;
+  color:var(--verde);margin-bottom:10px;line-height:1.3;
+}
+.destacado-box p{font-size:14px;color:#444;line-height:1.6;margin-bottom:16px;}
+.destacado-box a.ver-mas{
+  font-size:13px;font-weight:500;color:var(--dorado);
+  text-decoration:none;letter-spacing:0.03em;
+}
+.destacado-box a.ver-mas:hover{text-decoration:underline;}
+.ig-preview{width:100%;border-radius:8px;overflow:hidden;}
+
+footer{
+  background:var(--verde);color:white;
+  padding:40px;margin-top:60px;text-align:center;
+}
+footer a{color:var(--dorado);text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<!--COOKIES-->
+
+  <style>
+#cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 800px;
+  background: #1b1b1b;
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  z-index: 99999;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+#cookie-banner p {
+  margin: 0;
+  flex: 1;
+  line-height: 1.3;
+}
+
+#cookie-buttons {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+#cookie-banner button {
+  border: none;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#accept {
+  background: #4caf50;
+  color: white;
+}
+
+#reject {
+  background: #e53935;
+  color: white;
+}
+
+#cookie-settings {
+  background: #555;
+  color: white;
+}
+</style>
+
+<div id="cookie-banner">
+  <p>
+    Usamos cookies para mejorar la experiencia, analizar tráfico y mostrar anuncios personalizados.
+  </p>
+
+  <div id="cookie-buttons">
+    <button id="reject" onclick="setCookies('no')">Rechazar</button>
+    <button id="cookie-settings" onclick="alert('Aquí puedes ampliar opciones si quieres')">Configurar</button>
+    <button id="accept" onclick="setCookies('yes')">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function setCookies(value) {
+  localStorage.setItem("cookies_consent", value);
+  document.getElementById("cookie-banner").style.display = "none";
+
+  // 🔥 Aquí puedes activar scripts SOLO si acepta
+  if (value === "yes") {
+    console.log("Cookies aceptadas → activar Analytics/AdSense");
+    // ejemplo:
+    // loadAnalytics();
+    // loadAds();
+  } else {
+    console.log("Cookies rechazadas → no tracking");
+  }
+}
+
+function shouldShowBanner() {
+  return !localStorage.getItem("cookies_consent");
+}
+
+window.addEventListener("load", () => {
+  if (shouldShowBanner()) {
+    document.getElementById("cookie-banner").style.display = "flex";
+  }
+});
+</script>
+
+
+
+  
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span></span>
+  <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+     target="_blank"
+     style="text-decoration:none;background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;">
+    📩 Mensaje directo
+  </a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+   <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="Libros.html">Libros</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Finanzas para gente real</h1>
+  <h2>Educación financiera y económica</h2>
+</div>
+
+<!-- CARRUSEL — se construye automáticamente desde Substack.html -->
+<section class="carrusel-seccion">
+  <h2>Últimos artículos</h2>
+  <div class="carrusel-wrapper">
+    <button class="nav-btn izq" onclick="mover(-1)" aria-label="Anterior">&#8249;</button>
+    <div class="carrusel" id="carrusel">
+      <p class="c-cargando">Cargando artículos...</p>
+    </div>
+    <button class="nav-btn der" onclick="mover(1)" aria-label="Siguiente">&#8250;</button>
+  </div>
+  <a class="ver-todos" href="Substack.html">Ver todos los artículos →</a>
+</section>
+
+<!-- INTRO -->
+<section>
+<div class="intro">
+  <h2>¿Qué encontrarás aquí?</h2>
+  <p>En esta web vamos a hablar de finanzas para los que no saben: artículos de economía para que entiendas lo que pasa, calculadoras de todo tipo, libros recomendados y estrategias de ahorro.</p>
+  <p>Así que antes de contratar algún producto financiero o similar me puedes preguntar sin compromiso y sin coste.</p>
+  <p>Mi objetivo es que los bancos cada vez lo tengan más difícil para tomar el pelo a la gente.</p>
+  <br>
+  <h2>¿Quién escribe esto?</h2>
+  <p>Soy Alonso Orellana, y durante años he estado publicando en @cosasdedineros.</p>
+  <p>Trabajo para un fondo de inversión aunque mi camino laboral ha ido pasando por bancos, gestoras de inversión, departamentos de crédito y de mercados (en su día fui broker, que suena muy chulo). En total sumo más de 15 años en el mundo de la inversión.</p>
+  <p>Sigo dependiendo de mi sueldo y es por ello que firmo con un pseudónimo, para poder criticar a los bancos sin tener problemas.</p>
+  <p>¿Incoherencia? No del todo, trabajo para departamentos honestos y empresas decentes. Sin embargo, me gusta criticar lo que veo mal y poder hacerlo sin riesgo de irme al paro.</p>
+  <p>Quiero compartir principalmente con mi hermana lo que sé. Ella quiere ahorrar, invertir y jubilarse lo antes posible. El objetivo es reducir la edad de jubilación al mínimo.</p>
+  <p>Hay mucha estafa y cuento chino y eso es lo que trato de evitarte.</p>
+  <p>Alonso Orellana.</p>
+</div>
+</section>
+
+<!-- DESTACADOS -->
+<div class="destacados">
+  <h2>Últimos contenidos</h2>
+  <div class="destacado-box">
+    <span class="etiqueta">Último artículo</span>
+    <div id="ultimo-articulo">
+      <p style="color:#aaa;font-size:13px;">Cargando...</p>
+    </div>
+    <a class="ver-mas" href="Substack.html">Ver todos los artículos →</a>
+  </div>
+  <div class="destacado-box">
+    <span class="etiqueta">Último post</span>
+    <div id="ultimo-post" class="ig-preview">
+      <p style="color:#aaa;font-size:13px;">Cargando...</p>
+    </div>
+    <a class="ver-mas" href="instagram.html">Ver todos los posts →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer>
+  <p><strong>Cosas de Dineros</strong></p>
+
+  <p>
+    Escrito por Alonso Orellana ·
+    <a href="https://instagram.com/cosasdedineros" target="_blank">
+      @cosasdedineros
+    </a>
+  </p>
+
+  <p>
+    <a href="legal.html" style="color:#4caf50; text-decoration:none;">
+      Aviso legal
+    </a>
+  </p>
+</footer>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+
+<script>
+function mover(dir){
+  document.getElementById('carrusel').scrollLeft += dir * 230;
+}
+
+// Lee Substack.html y construye el carrusel automáticamente
+fetch('Substack.html')
+  .then(r => r.text())
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const cards = [...doc.querySelectorAll('.articulo-card')];
+    const carrusel = document.getElementById('carrusel');
+
+    if (!cards.length) {
+      carrusel.innerHTML = '<p class="c-cargando">No hay artículos todavía.</p>';
+      return;
+    }
+
+    const emojis = ['📈','💼','🎓','💶','⚡','🌍','🏦','🛒','📊','💡'];
+
+    carrusel.innerHTML = cards.map((card, i) => {
+      const enlace  = card.querySelector('a')?.getAttribute('href') || '#';
+      const titulo  = card.querySelector('h2')?.textContent?.trim() || '';
+      const fecha   = card.querySelector('time')?.textContent?.trim() || '';
+      const imagen  = card.getAttribute('data-imagen') || '';
+      const emoji   = emojis[i % emojis.length];
+
+      const imgHTML = imagen
+        ? `<img src="${imagen}" alt="${titulo}">`
+        : emoji;
+
+      return `
+        <a class="c-card" href="${enlace}">
+          <div class="c-img">${imgHTML}</div>
+          <div class="c-body">
+            <div class="c-titulo">${titulo}</div>
+            <div class="c-fecha">${fecha}</div>
+          </div>
+        </a>`;
+    }).join('');
+
+    // También rellena "Último artículo"
+    const primero = cards[0];
+    const t = primero.querySelector('h2')?.textContent?.trim() || '';
+    const p = primero.querySelector('p')?.textContent?.trim() || '';
+    const e = primero.querySelector('a')?.getAttribute('href') || '#';
+    document.getElementById('ultimo-articulo').innerHTML = `
+      <h3 style="font-family:'Playfair Display';font-size:18px;color:var(--verde);margin-bottom:8px;">${t}</h3>
+      <p style="font-size:14px;color:#444;line-height:1.6;margin-bottom:12px;">${p}</p>
+      <a class="ver-mas" href="${e}">Leer artículo →</a><br><br>
+    `;
+  })
+  .catch(() => {
+    document.getElementById('carrusel').innerHTML =
+      '<p class="c-cargando">No se pudieron cargar los artículos.</p>';
+  });
+
+// Último post de Instagram
+fetch('instagram.html')
+  .then(r => r.text())
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const bq = doc.querySelector('blockquote.instagram-media');
+    if (!bq) return;
+    const permalink = bq.getAttribute('data-instgrm-permalink');
+    document.getElementById('ultimo-post').innerHTML = `
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="${permalink}"
+        data-instgrm-version="14"
+        style="width:100%;">
+      </blockquote>
+    `;
+    if (window.instgrm) window.instgrm.Embeds.process();
+  })
+  .catch(() => {
+    document.getElementById('ultimo-post').innerHTML =
+      '<p style="color:#aaa;font-size:13px;">No se pudo cargar el post.</p>';
+  });
+</script>
+
+</body>
+</html>

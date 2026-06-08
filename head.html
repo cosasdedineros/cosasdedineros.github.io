@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cosas de Dineros</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"DM Sans";
+  background:var(--crema);
+  color:var(--texto);
+}
+
+/* TOPBAR */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:var(--verde);
+  display:flex;
+  justify-content:center;
+  padding:10px 20px;
+}
+
+.topbar a{
+  color:var(--verde);
+  background:var(--dorado);
+  padding:8px 16px;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* NAV */
+nav{
+  background:#122a1f;
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:12px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+
+nav a:hover{
+  color:var(--dorado);
+}
+
+/* HERO */
+.hero{
+  padding:70px 20px;
+  text-align:center;
+  background:var(--verde);
+  color:white;
+}
+
+.hero h1{
+  font-size:40px;
+  font-family:"Playfair Display";
+}
+
+/* CONTENIDO */
+.intro{
+  background:white;
+  padding:40px;
+  border-radius:8px;
+  max-width:900px;
+  margin:40px auto;
+}
+
+.intro p{
+  margin-bottom:1em;
+  line-height:1.6;
+}
+
+.intro h2{
+  margin-bottom:1.2em;
+  font-family:"Playfair Display";
+}
+
+/* FOOTER */
+footer{
+  background:var(--verde);
+  color:white;
+  padding:40px;
+  margin-top:60px;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+  
+<!-- NAV -->
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="calculadora.html">Calculadoras</a>
+  <a href="libros.html">Libros</a>
+</nav>
+
+
+<!-- CONTENIDO (AQUI CAMBIAS SEGÚN PÁGINA) -->
+<section>
+  <div class="intro">
+
+    <h2>Título de la página</h2>
+
+    <p>Aquí va el contenido específico de cada sección.</p>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>cosasdedineros</strong></p>
+
+</footer>
+
+</body>
+</html>
