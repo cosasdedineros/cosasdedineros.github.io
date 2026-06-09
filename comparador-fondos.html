@@ -414,38 +414,66 @@ function sufijoDeDivisa(ticker) {
 }
 
 function yahooSearch(isin) {
-  var yahooUrl = "https://query2.finance.yahoo.com/v1/finance/search?q=" + encodeURIComponent(isin) + "&quotesCount=8&newsCount=0";
+  var yahooUrl = "https://query2.finance.yahoo.com/v1/finance/search?q=" + encodeURIComponent(isin) + "&quotesCount=20&newsCount=0";
   var proxied  = PROXY_URL + "/?url=" + encodeURIComponent(yahooUrl);
   return fetch(proxied)
     .then(function(r) { if (!r.ok) throw new Error("Búsqueda fallida"); return r.json(); })
     .then(function(json) { return (json.quotes || []).map(function(q) { return q.symbol; }).filter(Boolean); });
 }
 
+// Sufijos a probar en paralelo para ETFs/fondos internacionales
+const SUFIJOS_EXTRA = ["", ".L", ".AS", ".DE", ".PA", ".MI", ".MC", ".SW", ".F", ".BC", ".VI", ".ST", ".CO", ".HE", ".LS"];
+
 // Recoge TODOS los tickers válidos para un ISIN
 async function resolveIsinAll(isin) {
   var candidatos = [];
+  var yaVistos = new Set();
 
-  if (isin.slice(0, 2) === "ES") {
-    for (var sfx of [".MC", ".BC"]) {
-      try {
-        st("Probando " + isin + sfx + "...", false, true);
-        var data = await yahoo(isin + sfx);
-        if (data.length) candidatos.push({ ticker: isin + sfx, data: data });
-      } catch(e) {}
-    }
-  }
-
+  // 1. Búsqueda por nombre en Yahoo (devuelve los tickers que conoce)
   st("Buscando tickers para " + isin + "...", false, true);
-  var tickers = await yahooSearch(isin);
+  var tickersYahoo = [];
+  try { tickersYahoo = await yahooSearch(isin); } catch(e) {}
 
-  for (var t of tickers) {
-    if (candidatos.some(function(c) { return c.ticker === t; })) continue;
-    try {
-      st("Probando " + t + "...", false, true);
-      var data = await yahoo(t);
-      if (data.length) candidatos.push({ ticker: t, data: data });
-    } catch(e) {}
+  // 2. Para ISINs españoles, probar sufijos directos además
+  var tickersCandidatos = [...tickersYahoo];
+  if (isin.slice(0, 2) === "ES") {
+    tickersCandidatos.push(isin + ".MC", isin + ".BC");
   }
+
+  // 3. Para cada ticker de Yahoo, probar también el mismo símbolo base con otros sufijos
+  //    (por si Yahoo solo devolvió la versión .MI pero existe .L, .AS, etc.)
+  var baseTickers = new Set();
+  tickersYahoo.forEach(function(t) {
+    var dot = t.lastIndexOf(".");
+    var base = dot >= 0 ? t.slice(0, dot) : t;
+    // Solo si el base parece un código de fondo (no un ticker normal de acción)
+    if (base.length >= 3 && base.length <= 8) baseTickers.add(base);
+  });
+  baseTickers.forEach(function(base) {
+    SUFIJOS_EXTRA.forEach(function(sfx) { tickersCandidatos.push(base + sfx); });
+  });
+
+  // 4. Probar todos en paralelo (con límite para no saturar)
+  var unicos = [...new Set(tickersCandidatos)].filter(function(t) { return t.length > 0; });
+  st("Probando " + unicos.length + " tickers posibles...", false, true);
+
+  var resultados = await Promise.allSettled(unicos.map(function(t) {
+    return yahoo(t).then(function(data) { return { ticker: t, data: data }; });
+  }));
+
+  resultados.forEach(function(r) {
+    if (r.status === "fulfilled" && r.value.data.length > 0) {
+      candidatos.push(r.value);
+    }
+  });
+
+  // Ordenar: USD primero, luego EUR, luego el resto
+  candidatos.sort(function(a, b) {
+    var order = { "USD": 0, "EUR": 1, "GBP": 2 };
+    var ca = order[a.data._currency] !== undefined ? order[a.data._currency] : 9;
+    var cb = order[b.data._currency] !== undefined ? order[b.data._currency] : 9;
+    return ca - cb;
+  });
 
   if (!candidatos.length) throw new Error("No se encontró ticker para " + isin);
   return candidatos;
