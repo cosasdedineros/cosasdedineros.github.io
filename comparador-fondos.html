@@ -641,7 +641,7 @@ async function run() {
 
   try {
     st("Buscando fondo...", false, true);
-    var resultados = await Promise.all([resolveIsinAll(isin), yahoo("^GSPC")]);
+    var resultados = await Promise.all([resolveIsinAll(isin), yahoo("SPY")]);
     var opciones = resultados[0], spData = resultados[1];
 
     if (opciones.length > 1) {
