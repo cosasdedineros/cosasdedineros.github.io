@@ -34,11 +34,16 @@ body { font-family: "DM Sans", sans-serif; background: var(--crema); color: var(
   display: flex; justify-content: space-between; align-items: center;
   padding: 10px 20px;
 }
-nav {
-  position: sticky; top: 41px; z-index: 999;
-  background: #122a1f;
-  display: flex; justify-content: center; gap: 25px; padding: 12px;
-  flex-wrap: wrap;
+
+  nav{
+  position:sticky;top:45px;z-index:999;
+  background:#122a1f;
+  display:flex;gap:20px;padding:12px 20px;
+overflow-x:auto;
+scrollbar-width:none;
+-webkit-overflow-scrolling:touch;
+white-space:nowrap;
+  justify-content: center;
 }
 
 .divisa-selector {
