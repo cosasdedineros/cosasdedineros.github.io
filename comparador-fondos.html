@@ -1,13 +1,6 @@
------------- EN CONSTRUCCIÓN Y PRUEBAS --------------
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-  <!-- Google ads verificación -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2646608092155910"
-     crossorigin="anonymous"></script>
-  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Comparador de fondos vs S&P 500 · Cosas de Dineros</title>
@@ -512,6 +505,9 @@ function renderGrafico() {
 
   var baseFondo = fondoMap.get(keys[0]);
   var baseSP    = spMap.get(keys[0]);
+  console.log("Primer punto común:", keys[0], "| baseFondo:", baseFondo, "| baseSP:", baseSP);
+  console.log("Último punto:", keys[keys.length-1], "| fondo:", fondoMap.get(keys[keys.length-1]), "| SP:", spMap.get(keys[keys.length-1]));
+  console.log("Total puntos fondo:", datosFondo.length, "| SP:", datosSP.length, "| comunes:", keysMax.length);
   var labels    = keys;
   var fv = keys.map(function(k) { return +(fondoMap.get(k) / baseFondo * 100).toFixed(2); });
   var sv = keys.map(function(k) { return +(spMap.get(k)    / baseSP    * 100).toFixed(2); });
