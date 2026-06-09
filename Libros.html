@@ -48,11 +48,15 @@ nav{
   position:sticky;top:45px;z-index:999;
   background:#122a1f;
   display:flex;gap:20px;padding:12px 20px;
-overflow-x:auto;
-scrollbar-width:none;
--webkit-overflow-scrolling:touch;
-white-space:nowrap;
-  justify-content: center;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  white-space:nowrap;
+  /* Sin justify-content en móvil → empieza desde la izquierda */
+}
+
+@media(min-width:700px){
+  nav{ justify-content:center; }
 }
 
   
