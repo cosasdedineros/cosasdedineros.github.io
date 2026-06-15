@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S&P 500 P/E Ratio – Cosas de Dineros</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+<style>
+:root {
+  --verde: #1a3a2a;
+  --dorado: #c9a84c;
+  --crema: #f8f5ee;
+  --texto: #1a1a1a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "DM Sans", sans-serif; background: var(--crema); color: var(--texto); }
+
+/* ── Tabs ── */
+.tabs-wrapper {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.tabs-nav {
+  display: flex;
+  border-bottom: 2px solid var(--verde);
+}
+
+.tab-btn {
+  padding: 10px 24px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn.active {
+  color: var(--verde);
+  border-bottom-color: var(--dorado);
+  font-weight: 600;
+}
+.tab-btn:hover { color: var(--verde); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Panel Datos ── */
+.datos-panel {
+  background: white;
+  border-radius: 0 0 10px 10px;
+  padding: 32px;
+  border: 0.5px solid #ddd;
+  border-top: none;
+}
+
+.datos-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.datos-controls label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--verde);
+  white-space: nowrap;
+}
+
+.datos-controls select {
+  padding: 8px 14px;
+  border: 1.5px solid var(--verde);
+  border-radius: 6px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: var(--verde);
+  background: white;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a3a2a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px;
+}
+.datos-controls select:focus {
+  outline: none;
+  border-color: var(--dorado);
+}
+
+/* ── Metric cards ── */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.metric-card {
+  background: var(--crema);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.metric-card .label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+.metric-card .value {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--verde);
+}
+.metric-card .sub {
+  font-size: 11px;
+  color: #999;
+  margin-top: 2px;
+}
+
+/* ── Leyenda ── */
+.chart-legend {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #555;
+}
+.chart-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.leg-box {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.leg-dash {
+  width: 22px; height: 2px;
+  display: inline-block;
+  background: #c0392b;
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 340px;
+}
+
+.chart-source {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 10px;
+}
+.chart-source a { color: var(--dorado); text-decoration: none; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .datos-panel { padding: 20px 16px; }
+  .metric-card .value { font-size: 18px; }
+  .chart-wrap { height: 260px; }
+}
+</style>
+</head>
+<body>
+
+<div class="tabs-wrapper">
+
+  <div class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('datos')">Datos</button>
+  </div>
+
+  <!-- Panel: Datos -->
+  <div id="tab-datos" class="tab-panel active">
+    <div class="datos-panel">
+
+      <div class="datos-controls">
+        <label for="periodo">Período:</label>
+        <select id="periodo" onchange="updateChart()">
+          <option value="all">Histórico completo (1871–2026)</option>
+          <option value="50">Últimos 50 años</option>
+          <option value="30">Últimos 30 años</option>
+          <option value="20">Últimos 20 años</option>
+          <option value="10">Últimos 10 años</option>
+          <option value="5">Últimos 5 años</option>
+        </select>
+      </div>
+
+      <!-- Métricas dinámicas -->
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="label">Valor actual</div>
+          <div class="value" id="m-actual">32.01</div>
+          <div class="sub">Jun 2026</div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Media del período</div>
+          <div class="value" id="m-media">–</div>
+          <div class="sub" id="m-media-sub"></div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Mínimo</div>
+          <div class="value" id="m-min">–</div>
+          <div class="sub" id="m-min-sub"></div>
+        </div>
+        <div class="metric-card">
+          <div class="label">Máximo</div>
+          <div class="value" id="m-max">–</div>
+          <div class="sub" id="m-max-sub"></div>
+        </div>
+      </div>
+
+      <!-- Leyenda -->
+      <div class="chart-legend">
+        <span><span class="leg-box" style="background:#1a6b3c;"></span>P/E ratio</span>
+        <span><span class="leg-dash"></span>Media del período</span>
+      </div>
+
+      <!-- Gráfica -->
+      <div class="chart-wrap">
+        <canvas id="peChart"
+          role="img"
+          aria-label="Gráfica histórica del P/E ratio del S&P 500">
+          P/E ratio del S&amp;P 500: valor actual 32.01 (junio 2026).
+        </canvas>
+      </div>
+
+      <p class="chart-source">
+        Fuente: Robert Shiller /
+        <a href="https://www.multpl.com/s-p-500-pe-ratio" target="_blank" rel="noopener">multpl.com</a>.
+        Datos anuales 1871–2026. Valor actual estimado.
+      </p>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ALL_DATA = [
+  [1871,11.10],[1872,12.07],[1873,11.82],[1874,10.13],[1875,10.05],[1876,12.62],[1877,12.60],[1878,10.80],[1879,11.34],[1880,13.13],
+  [1881,12.74],[1882,13.48],[1883,13.59],[1884,13.20],[1885,13.82],[1886,18.91],[1887,16.78],[1888,15.10],[1889,19.90],[1890,17.98],
+  [1891,16.45],[1892,16.09],[1893,15.55],[1894,17.16],[1895,25.37],[1896,17.31],[1897,19.33],[1898,15.58],[1899,16.85],[1900,12.71],
+  [1901,14.68],[1902,15.90],[1903,13.61],[1904,12.68],[1905,16.69],[1906,14.57],[1907,12.72],[1908,10.49],[1909,15.23],[1910,13.31],
+  [1911,12.91],[1912,15.22],[1913,13.40],[1914,13.48],[1915,13.60],[1916,9.99],[1917,6.34],[1918,5.74],[1919,7.97],[1920,9.61],
+  [1921,9.39],[1922,22.58],[1923,12.46],[1924,9.05],[1925,11.06],[1926,10.13],[1927,10.90],[1928,15.47],[1929,17.77],[1930,13.94],
+  [1931,17.00],[1932,13.99],[1933,17.19],[1934,23.73],[1935,16.25],[1936,17.87],[1937,16.75],[1938,10.50],[1939,18.84],[1940,13.23],
+  [1941,10.02],[1942,7.97],[1943,9.67],[1944,12.65],[1945,14.35],[1946,19.17],[1947,13.46],[1948,9.02],[1949,6.62],[1950,7.22],
+  [1951,7.48],[1952,9.97],[1953,10.86],[1954,10.09],[1955,12.56],[1956,12.12],[1957,13.34],[1958,12.49],[1959,18.77],[1960,17.12],
+  [1961,18.60],[1962,21.25],[1963,17.66],[1964,18.77],[1965,18.75],[1966,17.81],[1967,15.31],[1968,17.71],[1969,17.65],[1970,15.76],
+  [1971,18.12],[1972,18.01],[1973,18.09],[1974,11.68],[1975,8.30],[1976,11.82],[1977,10.41],[1978,8.28],[1979,7.88],[1980,7.39],
+  [1981,9.02],[1982,7.73],[1983,11.48],[1984,11.52],[1985,10.36],[1986,14.28],[1987,18.01],[1988,14.02],[1989,11.82],[1990,15.13],
+  [1991,15.35],[1992,25.93],[1993,22.50],[1994,21.34],[1995,14.89],[1996,18.08],[1997,19.53],[1998,24.29],[1999,32.92],[2000,29.04],
+  [2001,27.55],[2002,46.17],[2003,31.43],[2004,22.73],[2005,19.99],[2006,18.07],[2007,17.36],[2008,21.46],[2009,70.91],[2010,20.70],
+  [2011,16.30],[2012,14.87],[2013,17.03],[2014,18.15],[2015,20.02],[2016,22.18],[2017,23.59],[2018,24.97],[2019,19.60],[2020,24.88],
+  [2021,35.96],[2022,23.11],[2023,22.82],[2024,25.01],[2025,28.16],[2026,32.01]
+];
+
+let chart = null;
+
+function getFiltered(years) {
+  if (years === 'all') return ALL_DATA;
+  const cutoff = 2026 - parseInt(years);
+  return ALL_DATA.filter(d => d[0] >= cutoff);
+}
+
+function calcStats(data) {
+  const vals = data.map(d => d[1]);
+  const avg = vals.reduce((s, v) => s + v, 0) / vals.length;
+  const min = Math.min(...vals);
+  const max = Math.max(...vals);
+  const minYear = data.find(d => d[1] === min)[0];
+  const maxYear = data.find(d => d[1] === max)[0];
+  return { avg, min, max, minYear, maxYear };
+}
+
+function updateMetrics(data) {
+  const { avg, min, max, minYear, maxYear } = calcStats(data);
+  document.getElementById('m-media').textContent = avg.toFixed(2);
+  document.getElementById('m-media-sub').textContent = data[0][0] + '–' + data[data.length - 1][0];
+  document.getElementById('m-min').textContent = min.toFixed(2);
+  document.getElementById('m-min-sub').textContent = minYear;
+  document.getElementById('m-max').textContent = max.toFixed(2);
+  document.getElementById('m-max-sub').textContent = maxYear;
+}
+
+function updateChart() {
+  const sel = document.getElementById('periodo').value;
+  const data = getFiltered(sel);
+  const labels = data.map(d => d[0]);
+  const values = data.map(d => d[1]);
+  const { avg } = calcStats(data);
+
+  updateMetrics(data);
+
+  if (chart) {
+    chart.data.labels = labels;
+    chart.data.datasets[0].data = values;
+    chart.data.datasets[1].data = values.map(() => parseFloat(avg.toFixed(2)));
+    chart.update();
+    return;
+  }
+
+  chart = new Chart(document.getElementById('peChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'P/E ratio',
+          data: values,
+          borderColor: '#1a6b3c',
+          backgroundColor: 'rgba(26,106,60,0.07)',
+          borderWidth: 1.8,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          fill: true,
+          tension: 0.3
+        },
+        {
+          label: 'Media período',
+          data: values.map(() => parseFloat(avg.toFixed(2))),
+          borderColor: '#c0392b',
+          borderWidth: 1.5,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ' P/E: ' + ctx.parsed.y.toFixed(2)
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            maxTicksLimit: 14,
+            color: '#888',
+            font: { size: 11 }
+          },
+          grid: { color: 'rgba(0,0,0,0.05)' }
+        },
+        y: {
+          min: 0,
+          ticks: {
+            color: '#888',
+            font: { size: 11 },
+            callback: v => v.toFixed(0) + 'x'
+          },
+          grid: { color: 'rgba(0,0,0,0.05)' }
+        }
+      }
+    }
+  });
+}
+
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector('[onclick="switchTab(\'' + id + '\')"]').classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+window.addEventListener('load', updateChart);
+</script>
+
+</body>
+</html>
