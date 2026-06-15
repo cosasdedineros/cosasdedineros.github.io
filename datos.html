@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2646608092155910"
+     crossorigin="anonymous"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S&P 500 P/E Ratio – Cosas de Dineros</title>
+<title>Datos de mercado – Cosas de Dineros</title>
+<meta name="description" content="Datos históricos del mercado: P/E ratio del S&P 500 y más indicadores. Cosas de Dineros.">
+
+<meta property="og:title" content="Datos de mercado – Cosas de Dineros">
+<meta property="og:description" content="Datos históricos del mercado: P/E ratio del S&P 500 y más indicadores.">
+<meta property="og:url" content="https://cosasdedineros.github.io/Cosasdedineros/datos.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://cosasdedineros.github.io/Cosasdedineros/datos.html">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCX74R28X0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SCX74R28X0');
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -18,17 +37,52 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: "DM Sans", sans-serif; background: var(--crema); color: var(--texto); }
 
-/* ── Tabs ── */
-.tabs-wrapper {
-  max-width: 900px;
-  margin: 40px auto;
+/* ── Topbar ── */
+.topbar {
+  position: sticky; top: 0; z-index: 1000;
+  background: var(--verde);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 20px;
 }
 
+/* ── Nav ── */
+nav {
+  position: sticky; top: 45px; z-index: 999;
+  background: #122a1f;
+  display: flex; gap: 20px; padding: 12px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+}
+@media (min-width: 700px) { nav { justify-content: center; } }
+nav a { color: white; text-decoration: none; font-size: 14px; }
+nav a:hover { color: var(--dorado); }
+nav a.active { color: var(--dorado); }
+
+/* ── Hero ── */
+.hero {
+  padding: 50px 20px; text-align: center;
+  background: var(--verde); color: white;
+}
+.hero h1 { font-size: 36px; font-family: "Playfair Display"; }
+
+/* ── Container ── */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  line-height: 1.8;
+}
+
+/* ── Tabs ── */
 .tabs-nav {
   display: flex;
   border-bottom: 2px solid var(--verde);
+  margin-bottom: 0;
 }
-
 .tab-btn {
   padding: 10px 24px;
   background: none;
@@ -49,35 +103,25 @@ body { font-family: "DM Sans", sans-serif; background: var(--crema); color: var(
 }
 .tab-btn:hover { color: var(--verde); }
 
-.tab-panel { display: none; }
+.tab-panel { display: none; padding-top: 28px; }
 .tab-panel.active { display: block; }
 
-/* ── Panel Datos ── */
-.datos-panel {
-  background: white;
-  border-radius: 0 0 10px 10px;
-  padding: 32px;
-  border: 0.5px solid #ddd;
-  border-top: none;
-}
-
+/* ── Controles ── */
 .datos-controls {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
   margin-bottom: 24px;
 }
-
 .datos-controls label {
   font-size: 14px;
   font-weight: 500;
   color: var(--verde);
   white-space: nowrap;
 }
-
 .datos-controls select {
-  padding: 8px 14px;
+  padding: 8px 36px 8px 14px;
   border: 1.5px solid var(--verde);
   border-radius: 6px;
   font-family: "DM Sans", sans-serif;
@@ -89,14 +133,13 @@ body { font-family: "DM Sans", sans-serif; background: var(--crema); color: var(
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a3a2a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
-  padding-right: 32px;
 }
 .datos-controls select:focus {
   outline: none;
   border-color: var(--dorado);
 }
 
-/* ── Metric cards ── */
+/* ── Métricas ── */
 .metric-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -133,21 +176,9 @@ body { font-family: "DM Sans", sans-serif; background: var(--crema); color: var(
   font-size: 12px;
   color: #555;
 }
-.chart-legend span {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.leg-box {
-  width: 10px; height: 10px;
-  border-radius: 2px;
-  display: inline-block;
-}
-.leg-dash {
-  width: 22px; height: 2px;
-  display: inline-block;
-  background: #c0392b;
-}
+.chart-legend span { display: flex; align-items: center; gap: 5px; }
+.leg-box { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.leg-dash { width: 22px; height: 2px; display: inline-block; background: #c0392b; }
 
 .chart-wrap {
   position: relative;
@@ -162,87 +193,177 @@ body { font-family: "DM Sans", sans-serif; background: var(--crema); color: var(
 }
 .chart-source a { color: var(--dorado); text-decoration: none; }
 
-/* ── Responsive ── */
+/* ── Footer ── */
+footer {
+  background: var(--verde); color: white;
+  padding: 40px; margin-top: 60px; text-align: center;
+}
+footer a { color: var(--dorado); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ── Cookies ── */
+#cookie-banner {
+  position: fixed;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 800px;
+  background: #1b1b1b; color: #fff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  z-index: 99999;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+#cookie-banner p { margin: 0; flex: 1; line-height: 1.3; }
+#cookie-buttons { display: flex; gap: 8px; flex-shrink: 0; }
+#cookie-banner button { border: none; padding: 7px 10px; border-radius: 8px; cursor: pointer; font-size: 13px; }
+#accept { background: #4caf50; color: white; }
+#reject { background: #e53935; color: white; }
+#cookie-settings { background: #555; color: white; }
+
 @media (max-width: 600px) {
-  .datos-panel { padding: 20px 16px; }
+  .container { padding: 24px 16px; }
   .metric-card .value { font-size: 18px; }
   .chart-wrap { height: 260px; }
 }
 </style>
 </head>
+
 <body>
 
-<div class="tabs-wrapper">
+<!-- COOKIE BANNER -->
+<div id="cookie-banner">
+  <p>Usamos cookies para mejorar la experiencia, analizar tráfico y mostrar anuncios personalizados.</p>
+  <div id="cookie-buttons">
+    <button id="reject" onclick="setCookies('no')">Rechazar</button>
+    <button id="cookie-settings" onclick="alert('Aquí puedes ampliar opciones si quieres')">Configurar</button>
+    <button id="accept" onclick="setCookies('yes')">Aceptar</button>
+  </div>
+</div>
+
+<script>
+function setCookies(value) {
+  localStorage.setItem("cookies_consent", value);
+  document.getElementById("cookie-banner").style.display = "none";
+  if (value === "yes") { console.log("Cookies aceptadas"); }
+  else { console.log("Cookies rechazadas"); }
+}
+window.addEventListener("load", () => {
+  if (!localStorage.getItem("cookies_consent")) {
+    document.getElementById("cookie-banner").style.display = "flex";
+  }
+});
+</script>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span></span>
+  <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+     target="_blank"
+     style="text-decoration:none; background:var(--dorado); color:var(--verde); font-weight:600; padding:8px 16px; border-radius:6px;">
+    📩 Mensaje directo
+  </a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+  <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="Libros.html">Libros</a>
+  <a href="datos.html" class="active">Datos</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Datos de mercado</h1>
+</div>
+
+<!-- CONTENIDO -->
+<main class="container">
 
   <div class="tabs-nav">
-    <button class="tab-btn active" onclick="switchTab('datos')">Datos</button>
+    <button class="tab-btn active" onclick="switchTab('pe')">P/E ratio S&amp;P 500</button>
   </div>
 
-  <!-- Panel: Datos -->
-  <div id="tab-datos" class="tab-panel active">
-    <div class="datos-panel">
+  <!-- Tab: P/E ratio -->
+  <div id="tab-pe" class="tab-panel active">
 
-      <div class="datos-controls">
-        <label for="periodo">Período:</label>
-        <select id="periodo" onchange="updateChart()">
-          <option value="all">Histórico completo (1871–2026)</option>
-          <option value="50">Últimos 50 años</option>
-          <option value="30">Últimos 30 años</option>
-          <option value="20">Últimos 20 años</option>
-          <option value="10">Últimos 10 años</option>
-          <option value="5">Últimos 5 años</option>
-        </select>
-      </div>
-
-      <!-- Métricas dinámicas -->
-      <div class="metric-grid">
-        <div class="metric-card">
-          <div class="label">Valor actual</div>
-          <div class="value" id="m-actual">32.01</div>
-          <div class="sub">Jun 2026</div>
-        </div>
-        <div class="metric-card">
-          <div class="label">Media del período</div>
-          <div class="value" id="m-media">–</div>
-          <div class="sub" id="m-media-sub"></div>
-        </div>
-        <div class="metric-card">
-          <div class="label">Mínimo</div>
-          <div class="value" id="m-min">–</div>
-          <div class="sub" id="m-min-sub"></div>
-        </div>
-        <div class="metric-card">
-          <div class="label">Máximo</div>
-          <div class="value" id="m-max">–</div>
-          <div class="sub" id="m-max-sub"></div>
-        </div>
-      </div>
-
-      <!-- Leyenda -->
-      <div class="chart-legend">
-        <span><span class="leg-box" style="background:#1a6b3c;"></span>P/E ratio</span>
-        <span><span class="leg-dash"></span>Media del período</span>
-      </div>
-
-      <!-- Gráfica -->
-      <div class="chart-wrap">
-        <canvas id="peChart"
-          role="img"
-          aria-label="Gráfica histórica del P/E ratio del S&P 500">
-          P/E ratio del S&amp;P 500: valor actual 32.01 (junio 2026).
-        </canvas>
-      </div>
-
-      <p class="chart-source">
-        Fuente: Robert Shiller /
-        <a href="https://www.multpl.com/s-p-500-pe-ratio" target="_blank" rel="noopener">multpl.com</a>.
-        Datos anuales 1871–2026. Valor actual estimado.
-      </p>
-
+    <div class="datos-controls">
+      <label for="periodo">Período:</label>
+      <select id="periodo" onchange="updateChart()">
+        <option value="all">Histórico completo (1871–2026)</option>
+        <option value="50">Últimos 50 años</option>
+        <option value="30">Últimos 30 años</option>
+        <option value="20">Últimos 20 años</option>
+        <option value="10">Últimos 10 años</option>
+        <option value="5">Últimos 5 años</option>
+      </select>
     </div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="label">Valor actual</div>
+        <div class="value">32.01</div>
+        <div class="sub">Jun 2026 (estimado)</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Media del período</div>
+        <div class="value" id="m-media">–</div>
+        <div class="sub" id="m-media-sub"></div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Mínimo</div>
+        <div class="value" id="m-min">–</div>
+        <div class="sub" id="m-min-sub"></div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Máximo</div>
+        <div class="value" id="m-max">–</div>
+        <div class="sub" id="m-max-sub"></div>
+      </div>
+    </div>
+
+    <div class="chart-legend">
+      <span><span class="leg-box" style="background:#1a6b3c;"></span>P/E ratio</span>
+      <span><span class="leg-dash"></span>Media del período</span>
+    </div>
+
+    <div class="chart-wrap">
+      <canvas id="peChart" role="img" aria-label="Gráfica histórica del P/E ratio del S&P 500">
+        P/E ratio del S&P 500: valor actual 32.01 (junio 2026).
+      </canvas>
+    </div>
+
+    <p class="chart-source">
+      Fuente: Robert Shiller /
+      <a href="https://www.multpl.com/s-p-500-pe-ratio" target="_blank" rel="noopener">multpl.com</a>.
+      Datos anuales 1871–2026. Valor actual estimado.
+    </p>
+
   </div>
 
-</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Cosas de Dineros</strong></p>
+  <p>
+    Escrito por Alonso Orellana ·
+    <a href="https://instagram.com/cosasdedineros" target="_blank">@cosasdedineros</a>
+  </p>
+  <p>
+    <a href="legal.html" style="color:#4caf50; text-decoration:none;">Aviso legal</a>
+  </p>
+</footer>
 
 <script>
 const ALL_DATA = [
@@ -349,20 +470,12 @@ function updateChart() {
       },
       scales: {
         x: {
-          ticks: {
-            maxTicksLimit: 14,
-            color: '#888',
-            font: { size: 11 }
-          },
+          ticks: { maxTicksLimit: 14, color: '#888', font: { size: 11 } },
           grid: { color: 'rgba(0,0,0,0.05)' }
         },
         y: {
           min: 0,
-          ticks: {
-            color: '#888',
-            font: { size: 11 },
-            callback: v => v.toFixed(0) + 'x'
-          },
+          ticks: { color: '#888', font: { size: 11 }, callback: v => v.toFixed(0) + 'x' },
           grid: { color: 'rgba(0,0,0,0.05)' }
         }
       }
