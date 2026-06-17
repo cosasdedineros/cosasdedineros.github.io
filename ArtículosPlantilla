@@ -97,10 +97,12 @@ footer{
 
 <!-- NAV -->
 <nav>
-  <a href="index.html">Inicio</a>
+ <a href="index.html">Inicio</a>
   <a href="instagram.html">Posts</a>
-  <a href="Substack.html" class="active">Artículos</a>
-  <a href="Calculadora.html">Calculadoras</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+   <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="datos.html">Datos</a>
   <a href="Libros.html">Libros</a>
 </nav>
 
