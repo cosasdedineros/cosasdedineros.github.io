@@ -120,6 +120,8 @@ footer{
 
     <a class="volver" href="Substack.html">← Volver a artículos</a>
 
+  <br>
+
 <!-- COMENTARIOS (Cusdis) -->
 <div class="comentarios">
   <h2>Comentarios</h2>
