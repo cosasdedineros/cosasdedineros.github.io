@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Para que se lo enseñes a tu hijo y no estudie cosas innecesarias...  – Cosas de Dineros</title>
+<title> Para que se lo enseñes a tu hijo y no estudie cosas innecesarias... – Cosas de Dineros</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -27,6 +27,9 @@ body{font-family:"DM Sans";background:var(--crema);color:var(--texto);}
 }
 /* NAV */
 nav{
+  position:sticky;
+  top:41px;
+  z-index:999;
   background:#122a1f;
   display:flex;
   justify-content:center;
@@ -82,6 +85,11 @@ nav a.active{color:var(--dorado);}
   color:var(--verde);
   margin-bottom:18px;
 }
+#cusdis_thread iframe {
+  width: 100% !important;
+  height: 800px !important;
+  border: none;
+}
 /* FOOTER */
 footer{
   background:var(--verde);
@@ -103,18 +111,20 @@ footer{
 </div>
 <!-- NAV -->
 <nav>
- <a href="index.html">Inicio</a>
+  <a href="index.html">Inicio</a>
   <a href="instagram.html">Posts</a>
   <a href="Substack.html">Artículos</a>
   <a href="Calculadoras.html">Calculadoras</a>
-   <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="comparador-fondos.html">Comparador fondos</a>
   <a href="datos.html">Datos</a>
   <a href="Libros.html">Libros</a>
 </nav>
 <!-- ARTÍCULO -->
 <section style="padding:0 20px;">
   <div class="article">
-    <h1> Para que se lo enseñes a tu hijo y no estudie cosas innecesarias...  </h1>
+    <h1>Para que se lo enseñes a tu hijo y no estudie cosas innecesarias...</h1>
+
+ <h1> Para que se lo enseñes a tu hijo y no estudie cosas innecesarias...  </h1>
 
 <p>Más allá de estudiar lo que dé dinero o lo que te haga feliz, recomiendo estudiar en lo que uno sea bueno.</p>
 
@@ -142,36 +152,26 @@ footer{
     
 
 
-
     
-
+    <p></p>
     <a class="volver" href="Substack.html">← Volver a artículos</a>
-
-    <br>
-      <br>
-
-<!-- COMENTARIOS (Cusdis) -->
-<div class="comentarios">
-  <h2>Comentarios</h2>
-  <div id="cusdis_thread"
-    data-host="https://cusdis.com"
-    data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
-    data-theme="light"
-  ></div>
-  <script>
-    var cusdisDiv = document.getElementById('cusdis_thread');
-    var filename = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
-    cusdisDiv.setAttribute('data-page-id', filename);
-    cusdisDiv.setAttribute('data-page-url', window.location.href);
-    cusdisDiv.setAttribute('data-page-title', document.title);
-  </script>
-  <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-</div>
-
-
-
-    
-
+    <!-- COMENTARIOS (Cusdis) -->
+    <div class="comentarios">
+      <h2>Comentarios</h2>
+      <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
+        data-theme="light"
+      ></div>
+      <script>
+        var cusdisDiv = document.getElementById('cusdis_thread');
+        var filename = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
+        cusdisDiv.setAttribute('data-page-id', filename);
+        cusdisDiv.setAttribute('data-page-url', window.location.href);
+        cusdisDiv.setAttribute('data-page-title', document.title);
+      </script>
+      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    </div>
   </div>
 </section>
 <!-- FOOTER -->
