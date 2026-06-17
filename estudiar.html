@@ -147,25 +147,24 @@ footer{
 
     <a class="volver" href="Substack.html">← Volver a artículos</a>
 
-    <!-- COMENTARIOS (Cusdis) -->
-    <!-- Este bloque entero se copia igual en todos los artículos, sin cambiar nada -->
-    <div class="comentarios">
-      <h2>Comentarios</h2>
-      <div id="cusdis_thread"
-        data-host="https://cusdis.com"
-        data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
-        data-theme="light"
-      ></div>
-      <script>
-        // Rellena automáticamente page-id, page-url y page-title
-        // usando la URL y el <title> de esta misma página
-        var cusdisDiv = document.getElementById('cusdis_thread');
-        cusdisDiv.setAttribute('data-page-id', window.location.pathname);
-        cusdisDiv.setAttribute('data-page-url', window.location.href);
-        cusdisDiv.setAttribute('data-page-title', document.title);
-      </script>
-      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-    </div>
+<!-- COMENTARIOS (Cusdis) -->
+<div class="comentarios">
+  <h2>Comentarios</h2>
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
+    data-theme="light"
+  ></div>
+  <script>
+    var cusdisDiv = document.getElementById('cusdis_thread');
+    var filename = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
+    cusdisDiv.setAttribute('data-page-id', filename);
+    cusdisDiv.setAttribute('data-page-url', window.location.href);
+    cusdisDiv.setAttribute('data-page-title', document.title);
+  </script>
+  <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+</div>
+    
 
   </div>
 </section>
