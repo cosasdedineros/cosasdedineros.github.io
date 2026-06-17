@@ -14,7 +14,6 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:"DM Sans";background:var(--crema);color:var(--texto);}
-
 /* TOPBAR */
 .topbar{
   position:sticky;
@@ -26,7 +25,6 @@ body{font-family:"DM Sans";background:var(--crema);color:var(--texto);}
   align-items:center;
   padding:10px 20px;
 }
-
 /* NAV */
 nav{
   background:#122a1f;
@@ -42,7 +40,6 @@ nav a{
 }
 nav a:hover{color:var(--dorado);}
 nav a.active{color:var(--dorado);}
-
 /* ARTÍCULO */
 .article{
   max-width:860px;
@@ -73,7 +70,18 @@ nav a.active{color:var(--dorado);}
   letter-spacing:0.03em;
 }
 .volver:hover{text-decoration:underline;}
-
+/* COMENTARIOS */
+.comentarios{
+  margin-top:50px;
+  padding-top:35px;
+  border-top:1px solid #e8e4d8;
+}
+.comentarios h2{
+  font-family:"Playfair Display";
+  font-size:20px;
+  color:var(--verde);
+  margin-bottom:18px;
+}
 /* FOOTER */
 footer{
   background:var(--verde);
@@ -85,7 +93,6 @@ footer{
 </style>
 </head>
 <body>
-
 <!-- TOPBAR -->
 <div class="topbar">
   <span></span>
@@ -94,7 +101,6 @@ footer{
     📩 Mensaje directo
   </a>
 </div>
-
 <!-- NAV -->
 <nav>
  <a href="index.html">Inicio</a>
@@ -105,30 +111,41 @@ footer{
   <a href="datos.html">Datos</a>
   <a href="Libros.html">Libros</a>
 </nav>
-
 <!-- ARTÍCULO -->
 <section style="padding:0 20px;">
   <div class="article">
     <h1> TITULO </h1>
-
     <p>
-
-
-
-
 </p>
 
-
-    
     <a class="volver" href="Substack.html">← Volver a artículos</a>
+
+    <!-- COMENTARIOS (Cusdis) -->
+    <!-- Este bloque entero se copia igual en todos los artículos, sin cambiar nada -->
+    <div class="comentarios">
+      <h2>Comentarios</h2>
+      <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
+        data-theme="light"
+      ></div>
+      <script>
+        // Rellena automáticamente page-id, page-url y page-title
+        // usando la URL y el <title> de esta misma página
+        var cusdisDiv = document.getElementById('cusdis_thread');
+        cusdisDiv.setAttribute('data-page-id', window.location.pathname);
+        cusdisDiv.setAttribute('data-page-url', window.location.href);
+        cusdisDiv.setAttribute('data-page-title', document.title);
+      </script>
+      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    </div>
+
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer>
   <p><strong>cosasdedineros</strong></p>
   <p>Términos legales</p>
 </footer>
-
 </body>
 </html>
