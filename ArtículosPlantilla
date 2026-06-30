@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> TÍTULO – Cosas de Dineros</title>
+
+
+
+<title>  – Cosas de Dineros</title>
+
+
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -119,19 +125,18 @@ footer{
   <a href="datos.html">Datos</a>
   <a href="Libros.html">Libros</a>
 </nav>
-
-<!--                  ARTÍCULO          ARTÍCULO      ARTÍCULO  -->
-
+<!-- ARTÍCULO -->
 <section style="padding:0 20px;">
   <div class="article">
 
+ <h1>  </h1>
 
-    <h1>TITULO</h1>
+<p></p>
 
+
+
+    
     <p></p>
-
-
-
     <a class="volver" href="Substack.html">← Volver a artículos</a>
     <!-- COMENTARIOS (Cusdis) -->
     <div class="comentarios">
