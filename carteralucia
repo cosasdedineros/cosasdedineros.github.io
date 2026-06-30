@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<title> La cartera de Lucía – Cosas de Dineros</title>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"DM Sans";background:var(--crema);color:var(--texto);}
+/* TOPBAR */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:var(--verde);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+}
+/* NAV */
+nav{
+  position:sticky;
+  top:41px;
+  z-index:999;
+  background:#122a1f;
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:12px;
+}
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+nav a:hover{color:var(--dorado);}
+nav a.active{color:var(--dorado);}
+/* ARTÍCULO */
+.article{
+  max-width:860px;
+  margin:50px auto;
+  background:white;
+  padding:48px 52px;
+  border-radius:10px;
+}
+.article h1{
+  font-family:"Playfair Display";
+  font-size:36px;
+  margin-bottom:28px;
+  color:var(--verde);
+  line-height:1.3;
+}
+.article p{
+  line-height:1.8;
+  margin-bottom:16px;
+  font-size:16px;
+}
+.volver{
+  display:inline-block;
+  margin:30px 0 0;
+  font-size:13px;
+  font-weight:500;
+  color:var(--dorado);
+  text-decoration:none;
+  letter-spacing:0.03em;
+}
+.volver:hover{text-decoration:underline;}
+/* COMENTARIOS */
+.comentarios{
+  margin-top:50px;
+  padding-top:35px;
+  border-top:1px solid #e8e4d8;
+}
+.comentarios h2{
+  font-family:"Playfair Display";
+  font-size:20px;
+  color:var(--verde);
+  margin-bottom:18px;
+}
+#cusdis_thread iframe {
+  width: 100% !important;
+  height: 800px !important;
+  border: none;
+}
+/* FOOTER */
+footer{
+  background:var(--verde);
+  color:white;
+  padding:40px;
+  margin-top:60px;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+<!-- TOPBAR -->
+<div class="topbar">
+  <span></span>
+  <a href="mailto:cosasdedinerosresponde@gmail.com?subject=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+     style="color:var(--verde); text-decoration:none; background:var(--dorado); font-weight:600; padding:8px 16px; border-radius:6px; cursor:pointer;">
+    📩 Mensaje directo
+  </a>
+</div>
+<!-- NAV -->
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+  <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="datos.html">Datos</a>
+  <a href="Libros.html">Libros</a>
+</nav>
+<!-- ARTÍCULO -->
+<section style="padding:0 20px;">
+  <div class="article">
+
+<h1>La cartera de Lucía</h1>
+
+<p>
+Hoy analizamos la cartera de Lucía. No es para echarse a llorar, pero hay un poco de jaleo entre tanta inversión y hay que poner orden.
+</p>
+
+<p>
+Ella tiene 30 años, está trabajando y quiere comprar un piso. Como media España.
+</p>
+
+<p>
+Ha ido ahorrando e invirtiendo, aunque la mayoría de su dinero lo tiene en depósitos porque quiere mantenerlo disponible por si aparece una buena oportunidad para comprar una vivienda.
+</p>
+
+<p>
+Aquí encontramos el primer error. Lleva con esta mentalidad 5 años. Durante este tiempo podría haber invertido una parte de ese dinero en fondos de inversión en bolsa y haberse beneficiado de mayores retornos. Obviamente, no todo el capital, porque pueden venir malos tiempos, pero destinar una parte a bolsa en una situación así no es mala idea y, a largo plazo, el retorno suele ser positivo estadísticamente. Cada caso es diferente y el horizonte temporal es fundamental.
+</p>
+
+<p>
+Lucía va a comprar una casa dentro de aproximadamente un año, por lo que ya no tiene margen para asumir riesgo en bolsa. Si el mercado cae, no tendría tiempo suficiente para esperar una recuperación. Habría sido una buena estrategia hacerlo hace cinco años. Ahora es momento de mantener el dinero principalmente en fondos monetarios y depósitos.
+</p>
+
+<p>
+En caso de encontrar una vivienda, puede pignorar sus fondos de inversión y obtener financiación adicional. Es decir, deja los fondos como garantía y recibe dinero líquido para comprar la casa. Algunas personas prefieren vender los fondos, pagar impuestos sobre las ganancias y aportar más capital propio para reducir la cuota hipotecaria. Si esta decisión resulta acertada o no dependerá de la evolución futura de los mercados.
+</p>
+
+<p>
+Puedes hacer tus propias simulaciones con nuestra calculadora para descubrir cuánto necesitas ahorrar para la vivienda que deseas:
+</p>
+
+<p>
+<a href="https://cosasdedineros.github.io/CalculadoraVF.html" target="_blank" rel="noopener noreferrer">
+Calculadora de ahorro para vivienda
+</a>
+</p>
+
+<p>
+Lucía no tiene grandes conocimientos financieros y ha ido invirtiendo en acciones de empresas españolas que reparten dividendos y en varios fondos de inversión centrados en compañías energéticas, ya que trabaja en Repsol y conoce bien el sector.
+</p>
+
+<h2>Los problemas que encontramos</h2>
+
+<p>
+<strong>1. Invertir en empresas concretas.</strong><br>
+Invertir en acciones individuales supone asumir mucho más riesgo, ya que el resultado de tu inversión depende de lo que ocurra en unas pocas compañías y no del comportamiento de cientos de empresas diversificadas. Es una estrategia arriesgada y poco recomendable para la mayoría de los inversores.
+</p>
+
+<p>
+<strong>2. Invertir en el mismo sector en el que trabajas.</strong><br>
+Si llegan malos tiempos al sector energético, Lucía podría verse afectada doblemente: por un lado, en su empleo (despidos, reducción de bonus, etc.) y, por otro, en sus inversiones. Lo más prudente sería invertir en activos que no estén relacionados con el sector en el que desarrolla su carrera profesional.
+</p>
+
+<p>
+<strong>3. Cobrar dividendos.</strong><br>
+Cuando cobras dividendos, pagas impuestos inmediatamente sobre ellos. En muchos casos resulta más eficiente invertir a través de fondos que no distribuyen dividendos, ya que permiten diferir el pago de impuestos hasta el momento en que realmente necesites disponer del dinero. Mientras tanto, ese capital sigue invertido y beneficiándose del interés compuesto.
+</p>
+
+<h2>Conclusión</h2>
+
+<p>
+La combinación entre dinero invertido y efectivo permanece igual. Lucía tenía aproximadamente un 70% en efectivo y un 30% en bolsa.
+</p>
+
+<p>
+Mi recomendación ha sido mantener esa distribución, pero simplificando la cartera. En lugar de tener dos fondos del sector energético, un fondo de mercados emergentes y varias acciones individuales, le he sugerido traspasar los fondos, vender las acciones y concentrar la inversión en un fondo indexado al S&amp;P 500.
+</p>
+
+<p>
+Cuando encuentre vivienda dentro de unos meses, utilizará el efectivo disponible (ese 70%) para la entrada y los gastos asociados, y podrá pignorar el fondo del S&amp;P 500 para obtener liquidez adicional si fuese necesario.
+</p>
+
+<p>
+De esta manera pasará de tener una cartera compleja y difícil de gestionar a una solución mucho más simple, cómoda y con un historial de rentabilidad muy sólido a largo plazo.
+</p>
+
+<p>
+Cuéntanos tu caso en los comentarios o, si lo prefieres, contacta con nosotros de forma privada haciendo clic en la esquina superior derecha.
+</p>
+
+
+    
+    <p></p>
+    <a class="volver" href="Substack.html">← Volver a artículos</a>
+    <!-- COMENTARIOS (Cusdis) -->
+    <div class="comentarios">
+      <h2>Comentarios</h2>
+      <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
+        data-theme="light"
+      ></div>
+      <script>
+        var cusdisDiv = document.getElementById('cusdis_thread');
+        var filename = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
+        cusdisDiv.setAttribute('data-page-id', filename);
+        cusdisDiv.setAttribute('data-page-url', window.location.href);
+        cusdisDiv.setAttribute('data-page-title', document.title);
+      </script>
+      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <p><strong>cosasdedineros</strong></p>
+  <p>Términos legales</p>
+</footer>
+</body>
+</html>
