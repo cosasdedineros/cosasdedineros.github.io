@@ -2,81 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://cosasdedineros.github.io/</loc>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/Substack.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://cosasdedineros.github.io/Substack.html</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/corea.html</loc>
-    <lastmod>2026-06-06</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/saga.html</loc>
-    <lastmod>2026-06-06</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/CFA.html</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/cobro.html</loc>
-    <lastmod>2026-04-12</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/desgracia.html</loc>
-    <lastmod>2026-01-19</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/la-casa-de-pepe.html</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/Contragestoras.html</loc>
-    <lastmod>2026-06-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/Mercadona.html</loc>
-    <lastmod>2025-12-10</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/instagram.html</loc>
-    <lastmod>2026-06-06</lastmod>
+    <loc>https://cosasdedineros.github.io/instagram.html</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/Calculadoras.html</loc>
-    <lastmod>2026-06-06</lastmod>
-    <priority>0.7</priority>
+    <loc>https://cosasdedineros.github.io/Calculadoras.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://cosasdedineros.github.io/Cosasdedineros/Libros.html</loc>
-    <lastmod>2026-06-06</lastmod>
-    <priority>0.7</priority>
+    <loc>https://cosasdedineros.github.io/comparador-fondos.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://cosasdedineros.github.io/datos.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://cosasdedineros.github.io/Libros.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://cosasdedineros.github.io/legal.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://cosasdedineros.github.io/cookies.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+
+  <url>
+    <loc>https://cosasdedineros.github.io/privacidad.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
   </url>
 
 </urlset>
