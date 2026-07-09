@@ -484,7 +484,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -509,13 +510,16 @@ const usuarioBox = document.getElementById("usuarioBox");
 const usuarioNombre = document.getElementById("usuarioNombre");
 
 btnLogin.addEventListener("click", () => {
-  signInWithPopup(auth, provider).catch((error) => {
-    console.error("Error en login:", error.code, error.message);
-  });
+  signInWithRedirect(auth, provider);
 });
 
 btnLogout.addEventListener("click", () => {
   signOut(auth);
+});
+
+// Captura el resultado al volver de Google
+getRedirectResult(auth).catch((error) => {
+  console.error("Error en login:", error.code, error.message);
 });
 
 onAuthStateChanged(auth, (user) => {
