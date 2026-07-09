@@ -479,7 +479,9 @@ fetch('instagram.html')
   });
 </script>
 
-<script type="module">
+
+
+  <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getAuth,
@@ -491,13 +493,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBx0QGAG910ZQgevzgcowka7KwqxQ_R1a0",
-  authDomain: "cosasdedineros-bb13f.firebaseapp.com",
-  projectId: "cosasdedineros-bb13f",
-  storageBucket: "cosasdedineros-bb13f.firebasestorage.app",
-  messagingSenderId: "170727348733",
-  appId: "1:170727348733:web:b4199c096053c680dfa194",
-  measurementId: "G-M438C9WLHL"
+  apiKey: "AIzaSyCYwFgLTVliJXYcFX3mRQ8-XBu-Bw6M_z4",
+  authDomain: "cosasdedineros-7dfd9.firebaseapp.com",
+  projectId: "cosasdedineros-7dfd9",
+  storageBucket: "cosasdedineros-7dfd9.firebasestorage.app",
+  messagingSenderId: "573057231036",
+  appId: "1:573057231036:web:66b538098b3805d39608b9",
+  measurementId: "G-PJ54E4Y971"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -517,7 +519,6 @@ btnLogout.addEventListener("click", () => {
   signOut(auth);
 });
 
-// Captura el resultado al volver de Google
 getRedirectResult(auth).catch((error) => {
   console.error("Error en login:", error.code, error.message);
 });
