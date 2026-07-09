@@ -271,8 +271,20 @@ window.addEventListener("load", () => {
 <body>
 
 <!-- TOPBAR -->
+<!-- TOPBAR -->
 <div class="topbar">
   <span></span>
+  <div id="auth-zone" style="display:flex;align-items:center;gap:10px;">
+    <button id="btnLogin" style="background:transparent;border:1px solid white;color:white;padding:6px 12px;border-radius:6px;cursor:pointer;">
+      Iniciar sesión
+    </button>
+    <div id="usuarioBox" style="display:none;align-items:center;gap:8px;">
+      <span id="usuarioNombre" style="font-size:13px;"></span>
+      <button id="btnLogout" style="background:transparent;border:1px solid white;color:white;padding:6px 12px;border-radius:6px;cursor:pointer;">
+        Salir
+      </button>
+    </div>
+  </div>
   <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
      target="_blank"
      style="text-decoration:none;background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;">
@@ -462,5 +474,57 @@ fetch('instagram.html')
   });
 </script>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBx0QGAG910ZQgevzgcowka7KwqxQ_R1a0",
+  authDomain: "cosasdedineros-bb13f.firebaseapp.com",
+  projectId: "cosasdedineros-bb13f",
+  storageBucket: "cosasdedineros-bb13f.firebasestorage.app",
+  messagingSenderId: "170727348733",
+  appId: "1:170727348733:web:b4199c096053c680dfa194",
+  measurementId: "G-M438C9WLHL"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+const btnLogin = document.getElementById("btnLogin");
+const btnLogout = document.getElementById("btnLogout");
+const usuarioBox = document.getElementById("usuarioBox");
+const usuarioNombre = document.getElementById("usuarioNombre");
+
+btnLogin.addEventListener("click", () => {
+  signInWithPopup(auth, provider).catch((error) => {
+    console.error("Error en login:", error.code, error.message);
+  });
+});
+
+btnLogout.addEventListener("click", () => {
+  signOut(auth);
+});
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    btnLogin.style.display = "none";
+    usuarioBox.style.display = "flex";
+    usuarioNombre.textContent = user.displayName.split(" ")[0];
+  } else {
+    btnLogin.style.display = "inline-block";
+    usuarioBox.style.display = "none";
+  }
+});
+</script>
+
+  
 </body>
 </html>
