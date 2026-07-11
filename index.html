@@ -494,8 +494,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   signOut,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -521,23 +520,16 @@ const usuarioNombre = document.getElementById("usuarioNombre");
 const usuarioEmail = document.getElementById("usuarioEmail");
 
 btnLogin.addEventListener("click", () => {
-  signInWithRedirect(auth, provider);
+  signInWithPopup(auth, provider).catch((error) => {
+    console.error("Error en login:", error.code, error.message);
+  });
 });
 
 btnLogout.addEventListener("click", () => {
   signOut(auth);
 });
 
-getRedirectResult(auth)
-  .then((result) => {
-    console.log("getRedirectResult →", result);
-  })
-  .catch((error) => {
-    console.error("Error en login:", error.code, error.message);
-  });
-
 onAuthStateChanged(auth, (user) => {
-  console.log("onAuthStateChanged →", user);
   if (user) {
     btnLogin.style.display = "none";
     usuarioBox.style.display = "flex";
@@ -550,7 +542,6 @@ onAuthStateChanged(auth, (user) => {
     usuarioEmail.style.display = "none";
   }
 });
-    
 </script>
 
   
