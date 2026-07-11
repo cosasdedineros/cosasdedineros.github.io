@@ -187,8 +187,6 @@ footer a{color:var(--dorado);text-decoration:none;}
 
   <div id="appContent">
 
-    <p class="login-hint">Inicia sesión para guardar tus datos</p>
-
     <!-- FORMULARIO UNIFICADO -->
     <div class="panel">
       <div class="panel-title">Añadir gasto evitado</div>
@@ -271,10 +269,39 @@ footer a{color:var(--dorado);text-decoration:none;}
   <p>Escrito por Alonso Orellana · <a href="https://instagram.com/cosasdedineros" target="_blank">@cosasdedineros</a></p>
 </footer>
 
-<script>
-/* ====== VERSIÓN DEMO ======
-   Simulación local (sin Firebase real) para ver la app ya logueada.
-   No se guarda nada de verdad; la lista empieza vacía. */
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCYwFgLTVliJXYcFX3mRQ8-XBu-Bw6M_z4",
+  authDomain: "cosasdedineros-7dfd9.firebaseapp.com",
+  projectId: "cosasdedineros-7dfd9",
+  storageBucket: "cosasdedineros-7dfd9.firebasestorage.app",
+  messagingSenderId: "573057231036",
+  appId: "1:573057231036:web:66b538098b3805d39608b9",
+  measurementId: "G-PJ54E4Y971"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
 
 const btnLogin = document.getElementById("btnLogin");
 const btnLogout = document.getElementById("btnLogout");
@@ -284,23 +311,46 @@ const loginRequired = document.getElementById("loginRequired");
 const appContent = document.getElementById("appContent");
 
 let gastos = [];
+let unsubscribeGastos = null;
+let uidActual = null;
 
-function simularLogin(){
-  btnLogin.style.display = "none";
-  usuarioBox.style.display = "flex";
-  usuarioNombre.textContent = "";
-  loginRequired.style.display = "none";
-  appContent.style.display = "block";
-  document.getElementById("gFecha").value = new Date().toISOString().slice(0,10);
-  render();
-}
+btnLogin.addEventListener("click", () => {
+  signInWithPopup(auth, provider).catch((error) => {
+    console.error("Error en login:", error.code, error.message);
+  });
+});
 
-btnLogin.addEventListener("click", simularLogin);
 btnLogout.addEventListener("click", () => {
-  btnLogin.style.display = "inline-block";
-  usuarioBox.style.display = "none";
-  loginRequired.style.display = "block";
-  appContent.style.display = "none";
+  signOut(auth);
+});
+
+onAuthStateChanged(auth, (user) => {
+  if (unsubscribeGastos) { unsubscribeGastos(); unsubscribeGastos = null; }
+
+  if (user) {
+    uidActual = user.uid;
+    btnLogin.style.display = "none";
+    usuarioBox.style.display = "flex";
+    usuarioNombre.textContent = (user.displayName || user.email || "Usuario").split(" ")[0];
+    loginRequired.style.display = "none";
+    appContent.style.display = "block";
+    document.getElementById("gFecha").value = new Date().toISOString().slice(0,10);
+
+    const gastosRef = collection(db, "usuarios", uidActual, "gastos");
+    unsubscribeGastos = onSnapshot(query(gastosRef), (snapshot) => {
+      gastos = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      render();
+    }, (error) => {
+      console.error("Error leyendo gastos:", error.code, error.message);
+    });
+  } else {
+    uidActual = null;
+    gastos = [];
+    btnLogin.style.display = "inline-block";
+    usuarioBox.style.display = "none";
+    loginRequired.style.display = "block";
+    appContent.style.display = "none";
+  }
 });
 
 window.actualizarLabelFecha = function(){
@@ -308,21 +358,32 @@ window.actualizarLabelFecha = function(){
   document.getElementById("gFechaLabel").textContent = (frec === "una_vez") ? "Fecha" : "Desde";
 };
 
-window.addGasto = function(){
+window.addGasto = async function(){
+  if (!uidActual) return;
   const descripcion = document.getElementById("gDesc").value.trim();
   const cantidad = parseFloat(document.getElementById("gCant").value);
   const frecuencia = document.getElementById("gFrecuencia").value;
   const fecha = document.getElementById("gFecha").value;
   if (!descripcion || !cantidad || !fecha) { alert("Rellena todos los campos"); return; }
-  gastos.push({ id: String(Date.now()), descripcion, cantidad, frecuencia, fecha });
-  document.getElementById("gDesc").value = "";
-  document.getElementById("gCant").value = "";
-  render();
+  try {
+    const gastosRef = collection(db, "usuarios", uidActual, "gastos");
+    await addDoc(gastosRef, { descripcion, cantidad, frecuencia, fecha });
+    document.getElementById("gDesc").value = "";
+    document.getElementById("gCant").value = "";
+  } catch (error) {
+    console.error("Error guardando gasto:", error.code, error.message);
+    alert("No se pudo guardar el gasto. Inténtalo de nuevo.");
+  }
 };
 
-window.delGasto = function(id){
-  gastos = gastos.filter(g => g.id !== id);
-  render();
+window.delGasto = async function(id){
+  if (!uidActual) return;
+  try {
+    await deleteDoc(doc(db, "usuarios", uidActual, "gastos", id));
+  } catch (error) {
+    console.error("Error borrando gasto:", error.code, error.message);
+    alert("No se pudo borrar el gasto. Inténtalo de nuevo.");
+  }
 };
 
 const sliderRetorno = document.getElementById("sliderRetorno");
@@ -470,7 +531,6 @@ function render(){
   }
 }
 
-simularLogin();
 </script>
 
 </body>
