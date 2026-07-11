@@ -52,6 +52,10 @@ body{background:var(--bg);color:var(--text);font-family:"DM Sans";}
   font-weight:600;padding:10px 20px;border-radius:6px;text-decoration:none;
 }
 
+.login-hint{
+  text-align:center;color:var(--text-dim);font-size:13px;margin-bottom:14px;
+}
+
 .panel{
   background:var(--surface);border:1px solid var(--border);border-radius:14px;
   padding:24px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.04);
@@ -183,6 +187,8 @@ footer a{color:var(--dorado);text-decoration:none;}
 
   <div id="appContent">
 
+    <p class="login-hint">Inicia sesión para guardar tus datos</p>
+
     <!-- FORMULARIO UNIFICADO -->
     <div class="panel">
       <div class="panel-title">Añadir gasto evitado</div>
@@ -200,6 +206,7 @@ footer a{color:var(--dorado);text-decoration:none;}
           <select id="gFrecuencia" onchange="actualizarLabelFecha()">
             <option value="una_vez">Una vez</option>
             <option value="diario">Diario</option>
+            <option value="semanal">Semanal</option>
             <option value="mensual">Mensual</option>
             <option value="anual">Anual</option>
           </select>
@@ -226,9 +233,13 @@ footer a{color:var(--dorado);text-decoration:none;}
           <div class="m-value" id="mMensualActual">—</div>
         </div>
         <div class="metric highlight">
-          <div class="m-label">Proyección a 10 años</div>
+          <div class="m-label">Proyección a <span id="aniosLabel">10</span> años</div>
           <div class="m-value" id="mProyeccion">—</div>
           <div class="proyeccion-nota">en euros de hoy, invertido con estos supuestos:</div>
+          <div class="slider-row">
+            <label>Horizonte temporal <span id="aniosVal">10 años</span></label>
+            <input type="range" id="sliderAnios" min="0" max="50" step="1" value="10">
+          </div>
           <div class="slider-row">
             <label>Rentabilidad anual <span id="retornoVal">6,0%</span></label>
             <input type="range" id="sliderRetorno" min="0" max="15" step="0.5" value="6">
@@ -262,8 +273,8 @@ footer a{color:var(--dorado);text-decoration:none;}
 
 <script>
 /* ====== VERSIÓN DEMO ======
-   Simulación local (sin Firebase real) para ver la app ya logueada,
-   con datos de ejemplo de las 4 frecuencias. No se guarda nada de verdad. */
+   Simulación local (sin Firebase real) para ver la app ya logueada.
+   No se guarda nada de verdad; la lista empieza vacía. */
 
 const btnLogin = document.getElementById("btnLogin");
 const btnLogout = document.getElementById("btnLogout");
@@ -272,12 +283,7 @@ const usuarioNombre = document.getElementById("usuarioNombre");
 const loginRequired = document.getElementById("loginRequired");
 const appContent = document.getElementById("appContent");
 
-let gastos = [
-  { id: "1", descripcion: "Cena que no hice (delivery)", cantidad: 18, frecuencia: "una_vez", fecha: "2026-07-05" },
-  { id: "2", descripcion: "Café de máquina en vez de cafetería", cantidad: 2.5, frecuencia: "diario", fecha: "2026-06-01" },
-  { id: "3", descripcion: "Suscripción de streaming cancelada", cantidad: 13, frecuencia: "mensual", fecha: "2026-01-01" },
-  { id: "4", descripcion: "Seguro que renegocié", cantidad: 120, frecuencia: "anual", fecha: "2026-03-15" }
-];
+let gastos = [];
 
 function simularLogin(){
   btnLogin.style.display = "none";
@@ -321,15 +327,17 @@ window.delGasto = function(id){
 
 const sliderRetorno = document.getElementById("sliderRetorno");
 const sliderInflacion = document.getElementById("sliderInflacion");
+const sliderAnios = document.getElementById("sliderAnios");
 sliderRetorno.addEventListener("input", render);
 sliderInflacion.addEventListener("input", render);
+sliderAnios.addEventListener("input", render);
 
 function fmt(n){
   if (!isFinite(n)) return "0 €";
   return Math.round(n).toLocaleString("es-ES") + " €";
 }
 
-const ETIQUETAS = { una_vez: "Una vez", diario: "Diario", mensual: "Mensual", anual: "Anual" };
+const ETIQUETAS = { una_vez: "Una vez", diario: "Diario", semanal: "Semanal", mensual: "Mensual", anual: "Anual" };
 
 // Unidades transcurridas desde `fecha` hasta hoy, según frecuencia
 function unidadesTranscurridas(g, now){
@@ -338,6 +346,9 @@ function unidadesTranscurridas(g, now){
   if (g.frecuencia === "una_vez") return 1;
   if (g.frecuencia === "diario"){
     return Math.floor((now - fecha) / 86400000) + 1;
+  }
+  if (g.frecuencia === "semanal"){
+    return Math.floor((now - fecha) / (7 * 86400000)) + 1;
   }
   if (g.frecuencia === "mensual"){
     let meses = (now.getFullYear() - fecha.getFullYear()) * 12 + (now.getMonth() - fecha.getMonth()) + 1;
@@ -350,9 +361,10 @@ function unidadesTranscurridas(g, now){
   return 0;
 }
 
-// Equivalente mensual de un gasto recurrente (para la proyección a 10 años)
+// Equivalente mensual de un gasto recurrente (para la proyección)
 function equivalenteMensual(g){
   if (g.frecuencia === "diario") return Number(g.cantidad) * 30;
+  if (g.frecuencia === "semanal") return Number(g.cantidad) * (52 / 12);
   if (g.frecuencia === "mensual") return Number(g.cantidad);
   if (g.frecuencia === "anual") return Number(g.cantidad) / 12;
   return 0; // una_vez no proyecta
@@ -381,6 +393,17 @@ function aportacionEnMes(g, year, mIdx, now){
     const dias = Math.floor((finReal - inicioReal) / 86400000) + 1;
     return Number(g.cantidad) * dias;
   }
+  if (g.frecuencia === "semanal"){
+    const finReal = now < finMes ? now : finMes;
+    if (finReal < inicioMes || finReal < fecha) return 0;
+    let ocurrencias = 0;
+    let cursor = new Date(fecha);
+    while (cursor <= finReal){
+      if (cursor >= inicioMes) ocurrencias++;
+      cursor = new Date(cursor.getTime() + 7 * 86400000);
+    }
+    return Number(g.cantidad) * ocurrencias;
+  }
   return 0;
 }
 
@@ -390,7 +413,10 @@ function render(){
   gastos.slice().sort((a,b) => new Date(b.fecha) - new Date(a.fecha)).forEach(g => {
     const li = document.createElement("li");
     const etiquetaFecha = g.frecuencia === "una_vez" ? g.fecha : `desde ${g.fecha}`;
-    const sufijoCant = g.frecuencia === "una_vez" ? "" : (g.frecuencia === "diario" ? "/día" : g.frecuencia === "mensual" ? "/mes" : "/año");
+    const sufijoCant = g.frecuencia === "una_vez" ? "" :
+      g.frecuencia === "diario" ? "/día" :
+      g.frecuencia === "semanal" ? "/semana" :
+      g.frecuencia === "mensual" ? "/mes" : "/año";
     li.innerHTML = `<span><span class="desc">${g.descripcion}</span><span class="meta">${etiquetaFecha}</span><span class="tag">${ETIQUETAS[g.frecuencia] || g.frecuencia}</span></span>
       <span><span class="cant">+${fmt(g.cantidad)}${sufijoCant}</span><button class="btn-del" onclick="delGasto('${g.id}')">Borrar</button></span>`;
     lista.appendChild(li);
@@ -403,25 +429,30 @@ function render(){
 
   const retornoPct = parseFloat(sliderRetorno.value);
   const inflacionPct = parseFloat(sliderInflacion.value);
+  const anios = parseInt(sliderAnios.value, 10);
   document.getElementById("retornoVal").textContent = retornoPct.toLocaleString("es-ES", {minimumFractionDigits:1}) + "%";
   document.getElementById("inflacionVal").textContent = inflacionPct.toLocaleString("es-ES", {minimumFractionDigits:1}) + "%";
+  document.getElementById("aniosVal").textContent = anios + (anios === 1 ? " año" : " años");
+  document.getElementById("aniosLabel").textContent = anios;
 
   const retorno = retornoPct / 100;
   const inflacion = inflacionPct / 100;
   const tasaMensual = Math.pow(1 + retorno, 1/12) - 1;
-  const nMeses = 120;
+  const nMeses = anios * 12;
 
-  const fvExistente = totalHastaHoy * Math.pow(1 + retorno, 10);
-  const fvAportaciones = tasaMensual === 0
-    ? sumaMensualEquivalente * nMeses
-    : sumaMensualEquivalente * ((Math.pow(1 + tasaMensual, nMeses) - 1) / tasaMensual);
+  const fvExistente = totalHastaHoy * Math.pow(1 + retorno, anios);
+  const fvAportaciones = nMeses === 0
+    ? 0
+    : (tasaMensual === 0
+        ? sumaMensualEquivalente * nMeses
+        : sumaMensualEquivalente * ((Math.pow(1 + tasaMensual, nMeses) - 1) / tasaMensual));
 
   const proyeccionNominal = fvExistente + fvAportaciones;
-  const proyeccion10y = proyeccionNominal / Math.pow(1 + inflacion, 10);
+  const proyeccionXAnios = proyeccionNominal / Math.pow(1 + inflacion, anios);
 
   document.getElementById("mTotalHoy").textContent = fmt(totalHastaHoy);
   document.getElementById("mMensualActual").textContent = fmt(sumaMensualEquivalente) + "/mes";
-  document.getElementById("mProyeccion").textContent = fmt(proyeccion10y);
+  document.getElementById("mProyeccion").textContent = fmt(proyeccionXAnios);
 
   const year = now.getFullYear();
   document.getElementById("anioActual").textContent = year;
