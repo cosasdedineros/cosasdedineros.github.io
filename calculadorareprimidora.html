@@ -62,14 +62,15 @@ body{background:var(--bg);color:var(--text);font-family:"DM Sans";}
 }
 .panel-title::after{content:'';flex:1;height:1px;background:var(--border);}
 
-.form-row{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:10px;align-items:end;}
-@media(max-width:700px){.form-row{grid-template-columns:1fr;}}
+.form-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:10px;align-items:end;}
+@media(max-width:800px){.form-row{grid-template-columns:1fr;}}
 .form-row label{display:block;font-size:11px;color:var(--text-dim);margin-bottom:5px;}
-.form-row input{
+.form-row input,.form-row select{
   width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;
   padding:10px 12px;font-family:"DM Mono",monospace;font-size:14px;outline:none;
+  color:var(--text);
 }
-.form-row input:focus{border-color:var(--gold);}
+.form-row input:focus,.form-row select:focus{border-color:var(--gold);}
 .btn{
   background:var(--verde);color:white;border:none;border-radius:8px;
   padding:11px 18px;font-weight:600;cursor:pointer;font-size:13px;white-space:nowrap;
@@ -88,6 +89,11 @@ body{background:var(--bg);color:var(--text);font-family:"DM Sans";}
 }
 .lista .desc{color:var(--text);font-weight:500;}
 .lista .meta{color:var(--text-dim);font-size:11px;margin-left:6px;}
+.lista .tag{
+  display:inline-block;background:rgba(160,120,40,0.12);color:var(--gold);
+  font-size:10px;letter-spacing:0.5px;text-transform:uppercase;border-radius:5px;
+  padding:2px 7px;margin-left:8px;font-family:"DM Mono",monospace;
+}
 .lista .cant{color:var(--green);font-family:"DM Mono",monospace;font-weight:500;margin-right:14px;}
 .vacio{color:var(--text-dim);font-size:13px;padding:10px 0;}
 
@@ -101,6 +107,25 @@ body{background:var(--bg);color:var(--text);font-family:"DM Sans";}
 .m-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
 .m-value{font-family:"DM Serif Display",serif;font-size:22px;color:var(--text);}
 .metric.highlight .m-value{color:var(--gold);}
+
+.slider-row{margin-top:14px;}
+.slider-row:first-of-type{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
+.slider-row label{
+  display:flex;justify-content:space-between;font-size:11px;color:var(--text-dim);margin-bottom:6px;
+}
+.slider-row label span{color:var(--gold);font-family:"DM Mono",monospace;font-weight:600;}
+.slider-row input[type="range"]{
+  width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;
+  background:var(--border);outline:none;cursor:pointer;
+}
+.slider-row input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;width:15px;height:15px;border-radius:50%;
+  background:var(--dorado);border:2px solid var(--verde);cursor:pointer;
+}
+.slider-row input[type="range"]::-moz-range-thumb{
+  width:15px;height:15px;border-radius:50%;background:var(--dorado);border:2px solid var(--verde);cursor:pointer;
+}
+.proyeccion-nota{font-size:11px;color:var(--text-dim);margin-top:8px;}
 
 table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px;}
 thead th{
@@ -158,46 +183,34 @@ footer a{color:var(--dorado);text-decoration:none;}
 
   <div id="appContent">
 
-    <!-- FORMULARIO PUNTUAL -->
+    <!-- FORMULARIO UNIFICADO -->
     <div class="panel">
-      <div class="panel-title">Añadir gasto puntual evitado</div>
+      <div class="panel-title">Añadir gasto evitado</div>
       <div class="form-row">
         <div>
           <label>Descripción</label>
-          <input type="text" id="pDesc" placeholder="Ej: Cena que no hice">
+          <input type="text" id="gDesc" placeholder="Ej: Cena que no hice">
         </div>
         <div>
           <label>Importe (€)</label>
-          <input type="number" id="pCant" min="0" step="1">
+          <input type="number" id="gCant" min="0" step="1">
         </div>
         <div>
-          <label>Fecha</label>
-          <input type="date" id="pFecha">
+          <label>Frecuencia</label>
+          <select id="gFrecuencia" onchange="actualizarLabelFecha()">
+            <option value="una_vez">Una vez</option>
+            <option value="diario">Diario</option>
+            <option value="mensual">Mensual</option>
+            <option value="anual">Anual</option>
+          </select>
         </div>
-        <button class="btn" onclick="addPuntual()">Guardar</button>
+        <div>
+          <label id="gFechaLabel">Fecha</label>
+          <input type="date" id="gFecha">
+        </div>
+        <button class="btn" onclick="addGasto()">Guardar</button>
       </div>
-      <ul class="lista" id="listaPuntuales"></ul>
-    </div>
-
-    <!-- FORMULARIO MENSUAL -->
-    <div class="panel">
-      <div class="panel-title">Añadir gasto mensual evitado (se repite todos los meses)</div>
-      <div class="form-row">
-        <div>
-          <label>Descripción</label>
-          <input type="text" id="mDesc" placeholder="Ej: Suscripción que cancelé">
-        </div>
-        <div>
-          <label>Importe mensual (€)</label>
-          <input type="number" id="mCant" min="0" step="1">
-        </div>
-        <div>
-          <label>Desde</label>
-          <input type="date" id="mFecha">
-        </div>
-        <button class="btn" onclick="addMensual()">Guardar</button>
-      </div>
-      <ul class="lista" id="listaMensuales"></ul>
+      <ul class="lista" id="listaGastos"></ul>
     </div>
 
     <!-- RESUMEN -->
@@ -209,12 +222,21 @@ footer a{color:var(--dorado);text-decoration:none;}
           <div class="m-value" id="mTotalHoy">—</div>
         </div>
         <div class="metric">
-          <div class="m-label">Ahorro mensual actual</div>
+          <div class="m-label">Ahorro mensual equivalente</div>
           <div class="m-value" id="mMensualActual">—</div>
         </div>
         <div class="metric highlight">
           <div class="m-label">Proyección a 10 años</div>
           <div class="m-value" id="mProyeccion">—</div>
+          <div class="proyeccion-nota">en euros de hoy, invertido con estos supuestos:</div>
+          <div class="slider-row">
+            <label>Rentabilidad anual <span id="retornoVal">6,0%</span></label>
+            <input type="range" id="sliderRetorno" min="0" max="15" step="0.5" value="6">
+          </div>
+          <div class="slider-row">
+            <label>Inflación anual <span id="inflacionVal">2,5%</span></label>
+            <input type="range" id="sliderInflacion" min="0" max="10" step="0.1" value="2.5">
+          </div>
         </div>
       </div>
     </div>
@@ -238,29 +260,10 @@ footer a{color:var(--dorado);text-decoration:none;}
   <p>Escrito por Alonso Orellana · <a href="https://instagram.com/cosasdedineros" target="_blank">@cosasdedineros</a></p>
 </footer>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import {
-  getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import {
-  getFirestore, collection, addDoc, getDocs, deleteDoc, doc
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCYwFgLTVliJXYcFX3mRQ8-XBu-Bw6M_z4",
-  authDomain: "cosasdedineros-7dfd9.firebaseapp.com",
-  projectId: "cosasdedineros-7dfd9",
-  storageBucket: "cosasdedineros-7dfd9.firebasestorage.app",
-  messagingSenderId: "573057231036",
-  appId: "1:573057231036:web:66b538098b3805d39608b9",
-  measurementId: "G-PJ54E4Y971"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const provider = new GoogleAuthProvider();
+<script>
+/* ====== VERSIÓN DEMO ======
+   Simulación local (sin Firebase real) para ver la app ya logueada,
+   con datos de ejemplo de las 4 frecuencias. No se guarda nada de verdad. */
 
 const btnLogin = document.getElementById("btnLogin");
 const btnLogout = document.getElementById("btnLogout");
@@ -269,120 +272,157 @@ const usuarioNombre = document.getElementById("usuarioNombre");
 const loginRequired = document.getElementById("loginRequired");
 const appContent = document.getElementById("appContent");
 
-btnLogin.addEventListener("click", () => signInWithRedirect(auth, provider));
-btnLogout.addEventListener("click", () => signOut(auth));
-getRedirectResult(auth).catch((e) => console.error("Error en login:", e.code, e.message));
+let gastos = [
+  { id: "1", descripcion: "Cena que no hice (delivery)", cantidad: 18, frecuencia: "una_vez", fecha: "2026-07-05" },
+  { id: "2", descripcion: "Café de máquina en vez de cafetería", cantidad: 2.5, frecuencia: "diario", fecha: "2026-06-01" },
+  { id: "3", descripcion: "Suscripción de streaming cancelada", cantidad: 13, frecuencia: "mensual", fecha: "2026-01-01" },
+  { id: "4", descripcion: "Seguro que renegocié", cantidad: 120, frecuencia: "anual", fecha: "2026-03-15" }
+];
 
-let currentUser = null;
-let puntuales = [];
-let mensuales = [];
-
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    currentUser = user;
-    btnLogin.style.display = "none";
-    usuarioBox.style.display = "flex";
-    usuarioNombre.textContent = user.displayName.split(" ")[0];
-    loginRequired.style.display = "none";
-    appContent.style.display = "block";
-    document.getElementById("pFecha").value = new Date().toISOString().slice(0,10);
-    document.getElementById("mFecha").value = new Date().toISOString().slice(0,10);
-    await cargarDatos();
-  } else {
-    currentUser = null;
-    btnLogin.style.display = "inline-block";
-    usuarioBox.style.display = "none";
-    loginRequired.style.display = "block";
-    appContent.style.display = "none";
-  }
-});
-
-function refPuntuales(){ return collection(db, "usuarios", currentUser.uid, "puntuales"); }
-function refMensuales(){ return collection(db, "usuarios", currentUser.uid, "mensuales"); }
-
-async function cargarDatos(){
-  const ps = await getDocs(refPuntuales());
-  puntuales = ps.docs.map(d => ({ id: d.id, ...d.data() }));
-  const ms = await getDocs(refMensuales());
-  mensuales = ms.docs.map(d => ({ id: d.id, ...d.data() }));
+function simularLogin(){
+  btnLogin.style.display = "none";
+  usuarioBox.style.display = "flex";
+  usuarioNombre.textContent = "Claudio";
+  loginRequired.style.display = "none";
+  appContent.style.display = "block";
+  document.getElementById("gFecha").value = new Date().toISOString().slice(0,10);
   render();
 }
 
-window.addPuntual = async function(){
-  const descripcion = document.getElementById("pDesc").value.trim();
-  const cantidad = parseFloat(document.getElementById("pCant").value);
-  const fecha = document.getElementById("pFecha").value;
+btnLogin.addEventListener("click", simularLogin);
+btnLogout.addEventListener("click", () => {
+  btnLogin.style.display = "inline-block";
+  usuarioBox.style.display = "none";
+  loginRequired.style.display = "block";
+  appContent.style.display = "none";
+});
+
+window.actualizarLabelFecha = function(){
+  const frec = document.getElementById("gFrecuencia").value;
+  document.getElementById("gFechaLabel").textContent = (frec === "una_vez") ? "Fecha" : "Desde";
+};
+
+window.addGasto = function(){
+  const descripcion = document.getElementById("gDesc").value.trim();
+  const cantidad = parseFloat(document.getElementById("gCant").value);
+  const frecuencia = document.getElementById("gFrecuencia").value;
+  const fecha = document.getElementById("gFecha").value;
   if (!descripcion || !cantidad || !fecha) { alert("Rellena todos los campos"); return; }
-  await addDoc(refPuntuales(), { descripcion, cantidad, fecha });
-  document.getElementById("pDesc").value = "";
-  document.getElementById("pCant").value = "";
-  await cargarDatos();
+  gastos.push({ id: String(Date.now()), descripcion, cantidad, frecuencia, fecha });
+  document.getElementById("gDesc").value = "";
+  document.getElementById("gCant").value = "";
+  render();
 };
 
-window.addMensual = async function(){
-  const descripcion = document.getElementById("mDesc").value.trim();
-  const cantidad = parseFloat(document.getElementById("mCant").value);
-  const desde = document.getElementById("mFecha").value;
-  if (!descripcion || !cantidad || !desde) { alert("Rellena todos los campos"); return; }
-  await addDoc(refMensuales(), { descripcion, cantidad, desde });
-  document.getElementById("mDesc").value = "";
-  document.getElementById("mCant").value = "";
-  await cargarDatos();
+window.delGasto = function(id){
+  gastos = gastos.filter(g => g.id !== id);
+  render();
 };
 
-window.delPuntual = async function(id){
-  await deleteDoc(doc(db, "usuarios", currentUser.uid, "puntuales", id));
-  await cargarDatos();
-};
-
-window.delMensual = async function(id){
-  await deleteDoc(doc(db, "usuarios", currentUser.uid, "mensuales", id));
-  await cargarDatos();
-};
+const sliderRetorno = document.getElementById("sliderRetorno");
+const sliderInflacion = document.getElementById("sliderInflacion");
+sliderRetorno.addEventListener("input", render);
+sliderInflacion.addEventListener("input", render);
 
 function fmt(n){
   if (!isFinite(n)) return "0 €";
   return Math.round(n).toLocaleString("es-ES") + " €";
 }
 
+const ETIQUETAS = { una_vez: "Una vez", diario: "Diario", mensual: "Mensual", anual: "Anual" };
+
+// Unidades transcurridas desde `fecha` hasta hoy, según frecuencia
+function unidadesTranscurridas(g, now){
+  const fecha = new Date(g.fecha);
+  if (fecha > now) return 0;
+  if (g.frecuencia === "una_vez") return 1;
+  if (g.frecuencia === "diario"){
+    return Math.floor((now - fecha) / 86400000) + 1;
+  }
+  if (g.frecuencia === "mensual"){
+    let meses = (now.getFullYear() - fecha.getFullYear()) * 12 + (now.getMonth() - fecha.getMonth()) + 1;
+    return meses < 0 ? 0 : meses;
+  }
+  if (g.frecuencia === "anual"){
+    let anios = now.getFullYear() - fecha.getFullYear() + 1;
+    return anios < 0 ? 0 : anios;
+  }
+  return 0;
+}
+
+// Equivalente mensual de un gasto recurrente (para la proyección a 10 años)
+function equivalenteMensual(g){
+  if (g.frecuencia === "diario") return Number(g.cantidad) * 30;
+  if (g.frecuencia === "mensual") return Number(g.cantidad);
+  if (g.frecuencia === "anual") return Number(g.cantidad) / 12;
+  return 0; // una_vez no proyecta
+}
+
+// Cuánto aportó un gasto concreto dentro de un mes/año determinado (para la tabla)
+function aportacionEnMes(g, year, mIdx, now){
+  const fecha = new Date(g.fecha);
+  const inicioMes = new Date(year, mIdx, 1);
+  const finMes = new Date(year, mIdx + 1, 0);
+  if (fecha > finMes) return 0;
+
+  if (g.frecuencia === "una_vez"){
+    return (fecha.getFullYear() === year && fecha.getMonth() === mIdx) ? Number(g.cantidad) : 0;
+  }
+  if (g.frecuencia === "mensual"){
+    return Number(g.cantidad);
+  }
+  if (g.frecuencia === "anual"){
+    return (fecha.getMonth() === mIdx && year >= fecha.getFullYear()) ? Number(g.cantidad) : 0;
+  }
+  if (g.frecuencia === "diario"){
+    const inicioReal = fecha > inicioMes ? fecha : inicioMes;
+    const finReal = now < finMes ? now : finMes;
+    if (finReal < inicioReal) return 0;
+    const dias = Math.floor((finReal - inicioReal) / 86400000) + 1;
+    return Number(g.cantidad) * dias;
+  }
+  return 0;
+}
+
 function render(){
-  // Listas
-  const lp = document.getElementById("listaPuntuales");
-  lp.innerHTML = puntuales.length ? "" : '<p class="vacio">Todavía no has apuntado nada.</p>';
-  puntuales.sort((a,b) => new Date(b.fecha) - new Date(a.fecha)).forEach(p => {
+  const lista = document.getElementById("listaGastos");
+  lista.innerHTML = gastos.length ? "" : '<p class="vacio">Todavía no has apuntado nada.</p>';
+  gastos.slice().sort((a,b) => new Date(b.fecha) - new Date(a.fecha)).forEach(g => {
     const li = document.createElement("li");
-    li.innerHTML = `<span><span class="desc">${p.descripcion}</span><span class="meta">${p.fecha}</span></span>
-      <span><span class="cant">+${fmt(p.cantidad)}</span><button class="btn-del" onclick="delPuntual('${p.id}')">Borrar</button></span>`;
-    lp.appendChild(li);
+    const etiquetaFecha = g.frecuencia === "una_vez" ? g.fecha : `desde ${g.fecha}`;
+    const sufijoCant = g.frecuencia === "una_vez" ? "" : (g.frecuencia === "diario" ? "/día" : g.frecuencia === "mensual" ? "/mes" : "/año");
+    li.innerHTML = `<span><span class="desc">${g.descripcion}</span><span class="meta">${etiquetaFecha}</span><span class="tag">${ETIQUETAS[g.frecuencia] || g.frecuencia}</span></span>
+      <span><span class="cant">+${fmt(g.cantidad)}${sufijoCant}</span><button class="btn-del" onclick="delGasto('${g.id}')">Borrar</button></span>`;
+    lista.appendChild(li);
   });
 
-  const lm = document.getElementById("listaMensuales");
-  lm.innerHTML = mensuales.length ? "" : '<p class="vacio">Todavía no has apuntado nada.</p>';
-  mensuales.sort((a,b) => new Date(b.desde) - new Date(a.desde)).forEach(m => {
-    const li = document.createElement("li");
-    li.innerHTML = `<span><span class="desc">${m.descripcion}</span><span class="meta">desde ${m.desde}</span></span>
-      <span><span class="cant">+${fmt(m.cantidad)}/mes</span><button class="btn-del" onclick="delMensual('${m.id}')">Borrar</button></span>`;
-    lm.appendChild(li);
-  });
-
-  // Resumen
   const now = new Date();
-  let totalHastaHoy = puntuales.reduce((acc,p) => new Date(p.fecha) <= now ? acc + Number(p.cantidad) : acc, 0);
-  mensuales.forEach(m => {
-    const desde = new Date(m.desde);
-    if (desde > now) return;
-    let meses = (now.getFullYear() - desde.getFullYear()) * 12 + (now.getMonth() - desde.getMonth()) + 1;
-    if (meses < 0) meses = 0;
-    totalHastaHoy += meses * Number(m.cantidad);
-  });
-  const sumaMensualActual = mensuales.reduce((acc,m) => acc + Number(m.cantidad), 0);
-  const proyeccion10y = totalHastaHoy + sumaMensualActual * 12 * 10;
+
+  const totalHastaHoy = gastos.reduce((acc, g) => acc + Number(g.cantidad) * unidadesTranscurridas(g, now), 0);
+  const sumaMensualEquivalente = gastos.reduce((acc, g) => acc + equivalenteMensual(g), 0);
+
+  const retornoPct = parseFloat(sliderRetorno.value);
+  const inflacionPct = parseFloat(sliderInflacion.value);
+  document.getElementById("retornoVal").textContent = retornoPct.toLocaleString("es-ES", {minimumFractionDigits:1}) + "%";
+  document.getElementById("inflacionVal").textContent = inflacionPct.toLocaleString("es-ES", {minimumFractionDigits:1}) + "%";
+
+  const retorno = retornoPct / 100;
+  const inflacion = inflacionPct / 100;
+  const tasaMensual = Math.pow(1 + retorno, 1/12) - 1;
+  const nMeses = 120;
+
+  const fvExistente = totalHastaHoy * Math.pow(1 + retorno, 10);
+  const fvAportaciones = tasaMensual === 0
+    ? sumaMensualEquivalente * nMeses
+    : sumaMensualEquivalente * ((Math.pow(1 + tasaMensual, nMeses) - 1) / tasaMensual);
+
+  const proyeccionNominal = fvExistente + fvAportaciones;
+  const proyeccion10y = proyeccionNominal / Math.pow(1 + inflacion, 10);
 
   document.getElementById("mTotalHoy").textContent = fmt(totalHastaHoy);
-  document.getElementById("mMensualActual").textContent = fmt(sumaMensualActual) + "/mes";
+  document.getElementById("mMensualActual").textContent = fmt(sumaMensualEquivalente) + "/mes";
   document.getElementById("mProyeccion").textContent = fmt(proyeccion10y);
 
-  // Tabla de meses del año actual
   const year = now.getFullYear();
   document.getElementById("anioActual").textContent = year;
   const nombresMeses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
@@ -390,16 +430,7 @@ function render(){
   tbody.innerHTML = "";
   let acumuladoAnio = 0;
   for (let mIdx = 0; mIdx < 12; mIdx++){
-    const finMes = new Date(year, mIdx + 1, 0);
-    const sumMensual = mensuales.reduce((acc,m) => {
-      const desde = new Date(m.desde);
-      return desde <= finMes ? acc + Number(m.cantidad) : acc;
-    }, 0);
-    const sumPuntual = puntuales.reduce((acc,p) => {
-      const f = new Date(p.fecha);
-      return (f.getFullYear() === year && f.getMonth() === mIdx) ? acc + Number(p.cantidad) : acc;
-    }, 0);
-    const totalMes = sumMensual + sumPuntual;
+    const totalMes = gastos.reduce((acc, g) => acc + aportacionEnMes(g, year, mIdx, now), 0);
     acumuladoAnio += totalMes;
     const tr = document.createElement("tr");
     if (mIdx === now.getMonth()) tr.className = "mes-actual";
@@ -407,6 +438,8 @@ function render(){
     tbody.appendChild(tr);
   }
 }
+
+simularLogin();
 </script>
 
 </body>
