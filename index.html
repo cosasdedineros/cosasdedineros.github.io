@@ -528,11 +528,16 @@ btnLogout.addEventListener("click", () => {
   signOut(auth);
 });
 
-getRedirectResult(auth).catch((error) => {
-  console.error("Error en login:", error.code, error.message);
-});
+getRedirectResult(auth)
+  .then((result) => {
+    console.log("getRedirectResult →", result);
+  })
+  .catch((error) => {
+    console.error("Error en login:", error.code, error.message);
+  });
 
 onAuthStateChanged(auth, (user) => {
+  console.log("onAuthStateChanged →", user);
   if (user) {
     btnLogin.style.display = "none";
     usuarioBox.style.display = "flex";
