@@ -489,30 +489,10 @@ fetch('instagram.html')
 
 
 
-  <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
-  signOut,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCYwFgLTVliJXYcFX3mRQ8-XBu-Bw6M_z4",
-  authDomain: "cosasdedineros-7dfd9.firebaseapp.com",
-  projectId: "cosasdedineros-7dfd9",
-  storageBucket: "cosasdedineros-7dfd9.firebasestorage.app",
-  messagingSenderId: "573057231036",
-  appId: "1:573057231036:web:66b538098b3805d39608b9",
-  measurementId: "G-PJ54E4Y971"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+  <script>
+/* ====== VERSIÓN DEMO ======
+   Simulación local de login (sin Firebase real) solo para que veas
+   cómo se muestra "email conectado" arriba a la izquierda. */
 
 const btnLogin = document.getElementById("btnLogin");
 const btnLogout = document.getElementById("btnLogout");
@@ -521,29 +501,17 @@ const usuarioNombre = document.getElementById("usuarioNombre");
 const usuarioEmail = document.getElementById("usuarioEmail");
 
 btnLogin.addEventListener("click", () => {
-  signInWithRedirect(auth, provider);
+  btnLogin.style.display = "none";
+  usuarioBox.style.display = "flex";
+  usuarioNombre.textContent = "Claudio";
+  usuarioEmail.textContent = "claudio@gmail.com conectado";
+  usuarioEmail.style.display = "flex";
 });
 
 btnLogout.addEventListener("click", () => {
-  signOut(auth);
-});
-
-getRedirectResult(auth).catch((error) => {
-  console.error("Error en login:", error.code, error.message);
-});
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    btnLogin.style.display = "none";
-    usuarioBox.style.display = "flex";
-    usuarioNombre.textContent = user.displayName.split(" ")[0];
-    usuarioEmail.textContent = user.email + " conectado";
-    usuarioEmail.style.display = "flex";
-  } else {
-    btnLogin.style.display = "inline-block";
-    usuarioBox.style.display = "none";
-    usuarioEmail.style.display = "none";
-  }
+  btnLogin.style.display = "inline-block";
+  usuarioBox.style.display = "none";
+  usuarioEmail.style.display = "none";
 });
 </script>
 
