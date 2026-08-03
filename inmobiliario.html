@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<title>  – Cosas de Dineros</title>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"DM Sans";background:var(--crema);color:var(--texto);}
+/* TOPBAR */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:var(--verde);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+}
+/* NAV */
+nav{
+  position:sticky;
+  top:41px;
+  z-index:999;
+  background:#122a1f;
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  padding:12px;
+}
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+nav a:hover{color:var(--dorado);}
+nav a.active{color:var(--dorado);}
+/* ARTÍCULO */
+.article{
+  max-width:860px;
+  margin:50px auto;
+  background:white;
+  padding:48px 52px;
+  border-radius:10px;
+}
+.article h1{
+  font-family:"Playfair Display";
+  font-size:36px;
+  margin-bottom:28px;
+  color:var(--verde);
+  line-height:1.3;
+}
+.article p{
+  line-height:1.8;
+  margin-bottom:16px;
+  font-size:16px;
+}
+.volver{
+  display:inline-block;
+  margin:30px 0 0;
+  font-size:13px;
+  font-weight:500;
+  color:var(--dorado);
+  text-decoration:none;
+  letter-spacing:0.03em;
+}
+.volver:hover{text-decoration:underline;}
+/* COMENTARIOS */
+.comentarios{
+  margin-top:50px;
+  padding-top:35px;
+  border-top:1px solid #e8e4d8;
+}
+.comentarios h2{
+  font-family:"Playfair Display";
+  font-size:20px;
+  color:var(--verde);
+  margin-bottom:18px;
+}
+#cusdis_thread iframe {
+  width: 100% !important;
+  height: 800px !important;
+  border: none;
+}
+/* FOOTER */
+footer{
+  background:var(--verde);
+  color:white;
+  padding:40px;
+  margin-top:60px;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+<!-- TOPBAR -->
+<div class="topbar">
+  <span></span>
+  <a href="mailto:cosasdedinerosresponde@gmail.com?subject=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+     style="color:var(--verde); text-decoration:none; background:var(--dorado); font-weight:600; padding:8px 16px; border-radius:6px; cursor:pointer;">
+    📩 Mensaje directo
+  </a>
+</div>
+<!-- NAV -->
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+  <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="datos.html">Datos</a>
+  <a href="Libros.html">Libros</a>
+</nav>
+<!-- ARTÍCULO -->
+<section style="padding:0 20px;">
+  <div class="article">
+
+ <h1>  </h1>
+
+<p></p>
+
+
+
+    
+    <p></p>
+    <a class="volver" href="Substack.html">← Volver a artículos</a>
+    <!-- COMENTARIOS (Cusdis) -->
+    <div class="comentarios">
+      <h2>Comentarios</h2>
+      <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
+        data-theme="light"
+      ></div>
+      <script>
+        var cusdisDiv = document.getElementById('cusdis_thread');
+        var filename = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
+        cusdisDiv.setAttribute('data-page-id', filename);
+        cusdisDiv.setAttribute('data-page-url', window.location.href);
+        cusdisDiv.setAttribute('data-page-title', document.title);
+      </script>
+      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <p><strong>cosasdedineros</strong></p>
+  <p>Términos legales</p>
+</footer>
+</body>
+</html>
