@@ -14,7 +14,7 @@
   gtag('config', 'G-SCX74R28X0');
 </script>
 
-<title>11.56¿Qué hago con mi cartera? – Cosas de Dineros</title>
+<title>12¿Qué hago con mi cartera? – Cosas de Dineros</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -33,7 +33,7 @@
 }
 
 body{
-  font-family:"DM Sans";
+  font-family:"DM Sans", sans-serif;
   background:var(--crema);
   color:var(--texto);
 }
@@ -60,6 +60,7 @@ nav{
   justify-content:center;
   gap:25px;
   padding:12px;
+  flex-wrap:wrap;
 }
 
 nav a{
@@ -86,7 +87,7 @@ nav a.active{
 }
 
 .article h1{
-  font-family:"Playfair Display";
+  font-family:"Playfair Display", serif;
   font-size:36px;
   margin-bottom:28px;
   color:var(--verde);
@@ -122,7 +123,7 @@ nav a.active{
 }
 
 .comentarios h2{
-  font-family:"Playfair Display";
+  font-family:"Playfair Display", serif;
   font-size:20px;
   color:var(--verde);
   margin-bottom:18px;
@@ -130,7 +131,6 @@ nav a.active{
 
 #cusdis_thread iframe{
   width:100% !important;
-  height:800px !important;
   border:none;
 }
 
@@ -213,24 +213,18 @@ footer{
     <!-- VOLVER -->
     <a class="volver" href="Substack.html">← Volver a artículos</a>
 
-<!-- COMENTARIOS -->
-<div class="comentarios">
+    <!-- COMENTARIOS -->
+    <div class="comentarios">
 
-  <h2>Comentarios</h2>
+      <h2>Comentarios</h2>
 
-  <div id="cusdis_thread"
-       data-host="https://cusdis.com"
-       data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
-       data-page-id="que-hago-con-mi-cartera"
-       data-page-url="https://TU-DOMINIO.com/que-hago-con-mi-cartera.html"
-       data-page-title="¿Qué hago con mi cartera?"
-       data-theme="light">
-  </div>
+      <div id="cusdis_thread"
+           data-host="https://cusdis.com"
+           data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
+           data-theme="light">
+      </div>
 
-  <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
-</div>
-   
+    </div>
 
   </div>
 
@@ -242,23 +236,25 @@ footer{
   <p>Términos legales</p>
 </footer>
 
-<!-- CONFIGURACIÓN CUSdis -->
+<!-- 1) CONFIGURAR LOS DATOS DE LA PÁGINA -->
 <script>
-  var cusdisDiv = document.getElementById('cusdis_thread');
+  (function () {
+    var cusdisDiv = document.getElementById('cusdis_thread');
+    if (!cusdisDiv) return;
 
-  var filename = window.location.pathname
-    .split('/')
-    .pop()
-    .replace('.html', '') || 'home';
+    var filename = window.location.pathname
+      .split('/')
+      .pop()
+      .replace('.html', '') || 'home';
 
-  cusdisDiv.setAttribute('data-page-id', filename);
-  cusdisDiv.setAttribute('data-page-url', window.location.href);
-  cusdisDiv.setAttribute('data-page-title', document.title);
+    cusdisDiv.setAttribute('data-page-id', filename);
+    cusdisDiv.setAttribute('data-page-url', window.location.href);
+    cusdisDiv.setAttribute('data-page-title', document.title);
+  })();
 </script>
 
-<!-- CARGAR CUSdis UNA SOLA VEZ -->
+<!-- 2) CARGAR CUSDIS UNA SOLA VEZ (después de configurar los atributos) -->
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
 </body>
 </html>
-```
