@@ -99,11 +99,6 @@ nav a.active{color:var(--dorado);}
   color:var(--verde);
   margin-bottom:18px;
 }
-#cusdis_thread iframe {
-  width: 100% !important;
-  height: 800px !important;
-  border: none;
-}
 /* FOOTER */
 footer{
   background:var(--verde);
@@ -155,28 +150,19 @@ footer{
 
 <p style="text-align: justify;">Dirán que no es lo mismo, que no se ajusta eso a tu riesgo, a tu perfil y demás. Pero, señores, que aquí estamos invirtiendo a 30 o a 25 años vista. Nos da igual la volatilidad y la diversificación. Te están vendiendo un servicio que no necesitas.</p>
 
-
-
-
-    
-    <p></p>
     <a class="volver" href="Substack.html">← Volver a artículos</a>
+
     <!-- COMENTARIOS (Cusdis) -->
     <div class="comentarios">
       <h2>Comentarios</h2>
       <div id="cusdis_thread"
         data-host="https://cusdis.com"
         data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
+        data-page-id="indexa-capital"
+        data-page-title="¿Tienes tu dinero con Indexa Capital?"
         data-theme="light"
       ></div>
-      <script>
-        var cusdisDiv = document.getElementById('cusdis_thread');
-        var filename = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
-        cusdisDiv.setAttribute('data-page-id', filename);
-        cusdisDiv.setAttribute('data-page-url', window.location.href);
-        cusdisDiv.setAttribute('data-page-title', document.title);
-      </script>
-      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+      <script src="https://cusdis.com/js/cusdis.es.js"></script>
     </div>
   </div>
 </section>
