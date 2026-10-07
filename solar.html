@@ -99,11 +99,23 @@ nav a.active{color:var(--dorado);}
   color:var(--verde);
   margin-bottom:18px;
 }
-#cusdis_thread iframe {
-  width: 100% !important;
-  height: 800px !important;
-  border: none;
+#c-form{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+#c-form input,#c-form textarea{
+  font-family:inherit;font-size:15px;padding:10px 12px;
+  border:1px solid #d9d4c3;border-radius:6px;background:#fff;
 }
+#c-form textarea{min-height:90px;resize:vertical;}
+#c-form button{
+  align-self:flex-start;background:var(--verde);color:#fff;border:none;
+  padding:10px 20px;border-radius:6px;font-weight:500;cursor:pointer;
+}
+#c-form button:disabled{opacity:.5;cursor:default;}
+#c-msg{font-size:13px;color:#777;min-height:18px;}
+.c-item{padding:14px 0;border-bottom:1px solid #eee;}
+.c-item strong{color:var(--verde);}
+.c-item small{color:#999;margin-left:8px;}
+.c-item p{margin:6px 0 0 !important;white-space:pre-wrap;}
+.c-hp{position:absolute;left:-9999px;}
 /* FOOTER */
 footer{
   background:var(--verde);
@@ -137,7 +149,7 @@ footer{
 <section style="padding:0 20px;">
   <div class="article">
 
- <h1> ¿proyecto solar al 7%? </h1>
+<h1> ¿proyecto solar al 7%? </h1>
 
 <p style="text-align:center">Proyecto solar, 7% anual durante 3 años. ¿Meterías tu dinero ahí?</p>
 <p style="text-align:center"><img src="solar.jpg" alt="solar"></p>
@@ -154,26 +166,92 @@ y al final te devuelven el dinero</p>
 <p style="text-align:center">Así que ojo, leed todo, pasadle el filtro de la IA y si queda alguna consulta, aquí estamos.</p>
 
 
-    
-    <p></p>
     <a class="volver" href="Substack.html">← Volver a artículos</a>
-    <!-- COMENTARIOS (Cusdis) -->
+
+    <!-- COMENTARIOS (Firestore) -->
     <div class="comentarios">
       <h2>Comentarios</h2>
-      <div id="cusdis_thread"
-        data-host="https://cusdis.com"
-        data-app-id="e9535ee4-a573-4449-8dff-88f549cd97bb"
-        data-theme="light"
-      ></div>
-      <script>
-        var cusdisDiv = document.getElementById('cusdis_thread');
-        var filename = window.location.pathname.split('/').pop().replace('.html', '') || 'home';
-        cusdisDiv.setAttribute('data-page-id', filename);
-        cusdisDiv.setAttribute('data-page-url', window.location.href);
-        cusdisDiv.setAttribute('data-page-title', document.title);
-      </script>
-      <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+      <form id="c-form">
+        <input type="text" id="c-nombre" placeholder="Tu nombre" maxlength="50" required>
+        <textarea id="c-texto" placeholder="Escribe tu comentario..." maxlength="1000" required></textarea>
+        <input type="text" id="c-web" class="c-hp" tabindex="-1" autocomplete="off">
+        <button type="submit" id="c-btn">Publicar comentario</button>
+        <div id="c-msg"></div>
+      </form>
+      <div id="c-lista"></div>
     </div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getFirestore, collection, addDoc, getDocs, query, where, serverTimestamp }
+        from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBok-j5JN3mhsW3OrkETNdeJWlh1y_8J10",
+        authDomain: "comentarios-1189c.firebaseapp.com",
+        projectId: "comentarios-1189c",
+        storageBucket: "comentarios-1189c.firebasestorage.app",
+        messagingSenderId: "264244599698",
+        appId: "1:264244599698:web:bb56d35388cfdd7e23ff4b"
+      };
+
+      const db = getFirestore(initializeApp(firebaseConfig));
+      const pageId = (location.pathname.split('/').pop() || 'home').replace('.html', '');
+      const lista = document.getElementById('c-lista');
+      const msg = document.getElementById('c-msg');
+
+      async function cargar() {
+        try {
+          const snap = await getDocs(query(collection(db, 'comentarios'), where('pageId', '==', pageId)));
+          const items = snap.docs.map(d => d.data())
+            .sort((a, b) => (b.fecha?.seconds || 0) - (a.fecha?.seconds || 0));
+          lista.innerHTML = '';
+          if (!items.length) {
+            lista.innerHTML = '<p style="color:#888">Sé el primero en comentar.</p>';
+            return;
+          }
+          items.forEach(c => {
+            const div = document.createElement('div');
+            div.className = 'c-item';
+            const n = document.createElement('strong');
+            n.textContent = c.nombre;
+            const f = document.createElement('small');
+            f.textContent = c.fecha ? new Date(c.fecha.seconds * 1000).toLocaleDateString('es-ES') : '';
+            const p = document.createElement('p');
+            p.textContent = c.texto;
+            div.append(n, f, p);
+            lista.appendChild(div);
+          });
+        } catch (e) {
+          console.error(e);
+          lista.innerHTML = '<p style="color:#b00">No se pudieron cargar los comentarios.</p>';
+        }
+      }
+
+      document.getElementById('c-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (document.getElementById('c-web').value) return; // anti-bot
+        const nombre = document.getElementById('c-nombre').value.trim();
+        const texto = document.getElementById('c-texto').value.trim();
+        if (!nombre || !texto) return;
+        const last = Number(localStorage.getItem('c-last') || 0);
+        if (Date.now() - last < 30000) { msg.textContent = 'Espera unos segundos antes de volver a comentar.'; return; }
+        const btn = document.getElementById('c-btn');
+        btn.disabled = true; msg.textContent = 'Enviando...';
+        try {
+          await addDoc(collection(db, 'comentarios'), { pageId, nombre, texto, fecha: serverTimestamp() });
+          localStorage.setItem('c-last', Date.now());
+          document.getElementById('c-texto').value = '';
+          msg.textContent = '¡Gracias por tu comentario!';
+          await cargar();
+        } catch (err) {
+          console.error(err);
+          msg.textContent = 'Error al enviar. Inténtalo de nuevo.';
+        }
+        btn.disabled = false;
+      });
+
+      cargar();
+    </script>
   </div>
 </section>
 <!-- FOOTER -->
