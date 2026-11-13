@@ -1,0 +1,24 @@
+
+name: Probar extracción de noticias
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar bibliotecas
+        run: pip install requests trafilatura feedparser
+
+      - name: Extraer noticias
+        run: python probar_noticias.py
