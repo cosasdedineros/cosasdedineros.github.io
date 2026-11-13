@@ -66,7 +66,7 @@ FUENTES = [
         "requiere_html": False
     }
 
-        {
+    {
         "nombre": "Cinco Días",
         "grupo": "Cinco Días",
         "portada": "https://cincodias.elpais.com/",
