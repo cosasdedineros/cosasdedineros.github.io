@@ -7,7 +7,7 @@ FUENTES = {
     "Investing - Economía": "https://www.investing.com/rss/news_14.rss",
     "Investing - Mercados": "https://www.investing.com/rss/news_25.rss",
     "Estrategias de Inversión - José Luis Cava": "https://www.estrategiasdeinversion.com/especial/jose-luis-cava",
-    "Estrategias de Inversión - Portada": "https://www.estrategiasdeinversion.com"
+    "Estrategias de Inversión - Portada": "https://www.estrategiasdeinversion.com",
     "Benzinga España": "https://es.benzinga.com",
     "Rankia": "https://www.rankia.com",
     "Investing.com": "https://es.investing.com",
