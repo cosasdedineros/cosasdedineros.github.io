@@ -1,0 +1,531 @@
+
+import os
+import re
+import json
+import html
+import requests
+import trafilatura
+import unicodedata
+
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse, urldefrag
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+from google import genai
+from google.genai import types
+
+
+# =====================================================
+# CONFIGURACIÓN
+# =====================================================
+
+MODELO = "gemini-3.8-flash"
+
+ARCHIVO_HISTORIAL = "noticias_publicadas.json"
+ARCHIVO_SALIDA = "borrador_newsletter.html"
+
+MIN_CARACTERES = 900
+MIN_PALABRAS = 140
+MAX_NOTICIAS = 30
+
+FUENTES = [
+    {
+        "nombre": "Capital Bolsa",
+        "portada": "https://www.bolsamania.com/capitalbolsa/",
+        "dominio": "bolsamania.com",
+        "permitidas": ["/capitalbolsa/noticias/"]
+    },
+    {
+        "nombre": "Finanzas.com",
+        "portada": "https://www.finanzas.com/",
+        "dominio": "finanzas.com",
+        "permitidas": [
+            "/ibex-35/", "/mercados/", "/renta-fija/",
+            "/fondos/", "/economia/", "/bolsa/",
+            "/empresas/", "/divisas/"
+        ]
+    }
+]
+
+TITULARES_EXCLUIDOS = [
+    "las 10 acciones con mas impulso",
+    "las mejores acciones para",
+    "las acciones que debes comprar",
+    "cartera recomendada",
+    "valores favoritos",
+    "oportunidades de compra",
+    "compra esta accion",
+    "compre esta accion"
+]
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 Chrome/120.0 Safari/537.36"
+    )
+}
+
+
+# =====================================================
+# FUNCIONES AUXILIARES
+# =====================================================
+
+def normalizar(texto):
+    texto = texto.lower()
+    texto = unicodedata.normalize("NFD", texto)
+    texto = "".join(
+        c for c in texto
+        if unicodedata.category(c) != "Mn"
+    )
+    return re.sub(r"\s+", " ", texto).strip()
+
+
+def cargar_historial():
+    if not os.path.exists(ARCHIVO_HISTORIAL):
+        return {"publicadas": []}
+
+    with open(ARCHIVO_HISTORIAL, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def enlace_valido(url, fuente):
+    partes = urlparse(url)
+    dominio = partes.netloc.lower().split(":")[0]
+
+    if not (
+        dominio == fuente["dominio"]
+        or dominio.endswith("." + fuente["dominio"])
+    ):
+        return False
+
+    if not partes.path.endswith(".html"):
+        return False
+
+    if not any(ruta in partes.path for ruta in fuente["permitidas"]):
+        return False
+
+    return True
+
+
+def descubrir_noticias(fuente):
+    print(f"Buscando en {fuente['nombre']}...")
+
+    try:
+        respuesta = requests.get(
+            fuente["portada"],
+            headers=HEADERS,
+            timeout=25
+        )
+        respuesta.raise_for_status()
+
+        soup = BeautifulSoup(respuesta.text, "html.parser")
+
+        noticias = []
+        urls_vistas = set()
+
+        for enlace in soup.find_all("a", href=True):
+            url = urljoin(fuente["portada"], enlace["href"])
+            url = urldefrag(url)[0].rstrip("/")
+
+            if not enlace_valido(url, fuente):
+                continue
+
+            if url in urls_vistas:
+                continue
+
+            titulo = enlace.get_text(" ", strip=True)
+
+            if len(titulo) < 15:
+                continue
+
+            if any(
+                frase in normalizar(titulo)
+                for frase in TITULARES_EXCLUIDOS
+            ):
+                continue
+
+            urls_vistas.add(url)
+
+            noticias.append({
+                "fuente": fuente["nombre"],
+                "titulo": titulo,
+                "url": url
+            })
+
+            if len(noticias) >= MAX_NOTICIAS:
+                break
+
+        print(f"  Encontrados: {len(noticias)}")
+        return noticias
+
+    except Exception as error:
+        print(f"  Error: {error}")
+        return []
+
+
+def extraer_articulo(noticia, fecha_minima, hoy, urls_publicadas):
+    url = noticia["url"]
+
+    if url in urls_publicadas:
+        return None
+
+    try:
+        respuesta = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=25
+        )
+        respuesta.raise_for_status()
+
+        texto = trafilatura.extract(
+            respuesta.text,
+            include_comments=False,
+            include_tables=True
+        )
+
+        metadata = trafilatura.extract_metadata(respuesta.text)
+
+        if not metadata or not metadata.date or not texto:
+            return None
+
+        fecha = datetime.strptime(
+            metadata.date[:10], "%Y-%m-%d"
+        ).date()
+
+        if fecha < fecha_minima or fecha > hoy:
+            return None
+
+        palabras = len(texto.split())
+
+        if len(texto) < MIN_CARACTERES or palabras < MIN_PALABRAS:
+            return None
+
+        titulo = metadata.title or noticia["titulo"]
+
+        if any(
+            frase in normalizar(titulo)
+            for frase in TITULARES_EXCLUIDOS
+        ):
+            return None
+
+        return {
+            "id": str(abs(hash(url))),
+            "fuente": noticia["fuente"],
+            "titulo": titulo,
+            "url": url,
+            "fecha": fecha.isoformat(),
+            "contenido": texto[:4500]
+        }
+
+    except Exception as error:
+        print(f"  Error leyendo artículo: {error}")
+        return None
+
+
+# =====================================================
+# RECOPILACIÓN DE NOTICIAS
+# =====================================================
+
+hoy = datetime.now(ZoneInfo("Europe/Madrid")).date()
+fecha_minima = hoy - timedelta(days=2)
+
+historial = cargar_historial()
+
+urls_publicadas = {
+    noticia["url"].rstrip("/")
+    for noticia in historial.get("publicadas", [])
+    if noticia.get("url")
+}
+
+print(f"Fecha: {hoy}")
+print("Recopilando noticias...\n")
+
+enlaces = []
+
+for fuente in FUENTES:
+    enlaces.extend(descubrir_noticias(fuente))
+
+candidatas = []
+
+for noticia in enlaces:
+    articulo = extraer_articulo(
+        noticia,
+        fecha_minima,
+        hoy,
+        urls_publicadas
+    )
+
+    if articulo:
+        candidatas.append(articulo)
+        print(f"ACEPTADA: {articulo['titulo']}")
+
+print(f"\nTotal de candidatas: {len(candidatas)}")
+
+if len(candidatas) < 4:
+    raise RuntimeError(
+        "No hay cuatro noticias candidatas. No se generará la newsletter."
+    )
+
+
+# =====================================================
+# GENERACIÓN CON GEMINI
+# =====================================================
+
+api_key = os.environ.get("GEMINI_API_KEY")
+
+if not api_key:
+    raise RuntimeError("No se encuentra GEMINI_API_KEY.")
+
+cliente = genai.Client(api_key=api_key)
+
+noticias_texto = json.dumps(
+    candidatas,
+    ensure_ascii=False
+)
+
+instrucciones = """
+Eres el editor y redactor de CosasDeDineros.
+
+Tu trabajo consiste en seleccionar y redactar cuatro noticias financieras
+diferentes a partir de los artículos que recibirás.
+
+TEMAS:
+Bolsa, tipos de interés, inflación, empresas, bancos, deuda,
+renta fija, divisas y mercados financieros.
+
+SELECCIÓN:
+- Escoge exactamente cuatro noticias.
+- Deben tratar asuntos diferentes.
+- No selecciones varias noticias sobre el mismo acontecimiento.
+- Prioriza noticias con consecuencias financieras interesantes.
+- Descarta recomendaciones de compra y artículos promocionales.
+- No elijas noticias simplemente porque tengan titulares llamativos.
+
+VERIFICACIÓN:
+- Utiliza Google Search para contrastar los hechos principales.
+- Comprueba especialmente nombres, cargos, fechas, cifras y acontecimientos.
+- No des por cierto un dato solo porque aparezca en el artículo.
+- Si una noticia contiene una afirmación central falsa o que no puedes
+  confirmar con fuentes fiables, descártala.
+- No inventes información para completar una noticia.
+- Si no puedes encontrar cuatro noticias suficientemente fiables,
+  devuelve menos de cuatro. Nunca rellenes con noticias dudosas.
+
+ESTILO DE COSASDEDINEROS:
+
+Escribe como si explicaras la noticia a un amigo inteligente
+que no trabaja en finanzas.
+
+- Lenguaje cotidiano y frases naturales.
+- Explicaciones sencillas, sin jerga innecesaria.
+- Directo, entretenido y con ironía ligera cuando encaje.
+- Explica por qué importa financieramente lo que ha ocurrido.
+- Utiliza ejemplos cuando ayuden a entenderlo.
+- No escribas como un periódico económico ni como un banco.
+- No repitas ideas ni añadas conclusiones genéricas.
+- No conviertas las noticias en recomendaciones de inversión.
+
+ENFOQUE FINANCIERO:
+
+Explica los mecanismos económicos.
+Por ejemplo, cómo afectan los tipos a las empresas, la deuda,
+los bonos, las valoraciones y los beneficios futuros.
+
+EXTENSIÓN:
+Entre 200 y 300 palabras por noticia.
+
+DEVUELVE EXCLUSIVAMENTE JSON VÁLIDO con esta estructura:
+
+{
+  "fecha": "AAAA-MM-DD",
+  "articulos": [
+    {
+      "id": "identificador original",
+      "titular": "Titular redactado",
+      "texto": "Artículo completo en párrafos",
+      "fuentes_verificacion": [
+        {
+          "nombre": "Nombre de la fuente",
+          "url": "URL de la fuente"
+        }
+      ]
+    }
+  ]
+}
+
+No inventes identificadores. Utiliza los ID de los artículos originales.
+"""
+
+
+print("\nEnviando noticias a Gemini...")
+
+respuesta = cliente.models.generate_content(
+    model=MODELO,
+    contents=(
+        instrucciones
+        + "\n\nNOTICIAS CANDIDATAS:\n"
+        + noticias_texto
+    ),
+    config=types.GenerateContentConfig(
+        tools=[
+            types.Tool(
+                google_search=types.GoogleSearch()
+            )
+        ],
+        temperature=0.3,
+        max_output_tokens=12000
+    )
+)
+
+resultado = respuesta.text.strip()
+
+# Limpiar posibles bloques Markdown.
+resultado = re.sub(r"^```json\s*", "", resultado)
+resultado = re.sub(r"^```\s*", "", resultado)
+resultado = re.sub(r"\s*```$", "", resultado)
+
+datos = json.loads(resultado)
+
+articulos = datos.get("articulos", [])
+
+if not articulos:
+    raise RuntimeError("Gemini no ha devuelto artículos.")
+
+# Comprobar que los identificadores pertenecen a noticias originales.
+candidatas_por_id = {
+    noticia["id"]: noticia
+    for noticia in candidatas
+}
+
+articulos_validos = []
+
+for articulo in articulos[:4]:
+    original = candidatas_por_id.get(str(articulo.get("id")))
+
+    if not original:
+        continue
+
+    if not articulo.get("titular") or not articulo.get("texto"):
+        continue
+
+    articulo["url_original"] = original["url"]
+    articulo["fuente_original"] = original["fuente"]
+
+    articulos_validos.append(articulo)
+
+if not articulos_validos:
+    raise RuntimeError("No se han podido validar los artículos generados.")
+
+
+# =====================================================
+# GENERAR HTML
+# =====================================================
+
+fecha_texto = hoy.strftime("%d/%m/%Y")
+
+contenido_html = ""
+
+for i, articulo in enumerate(articulos_validos, 1):
+    verificaciones = ""
+
+    for fuente in articulo.get("fuentes_verificacion", []):
+        url = html.escape(fuente.get("url", ""), quote=True)
+        nombre = html.escape(fuente.get("nombre", "Fuente"))
+
+        if url.startswith("https://"):
+            verificaciones += (
+                f'<li><a href="{url}" target="_blank">{nombre}</a></li>'
+            )
+
+    parrafos = "".join(
+        f"<p>{html.escape(p.strip())}</p>"
+        for p in articulo["texto"].split("\n")
+        if p.strip()
+    )
+
+    titular = html.escape(articulo["titular"])
+    url_original = html.escape(
+        articulo["url_original"], quote=True
+    )
+
+    contenido_html += f"""
+    <article>
+        <h2>{i}. {titular}</h2>
+        {parrafos}
+        <p class="fuente">
+            <a href="{url_original}" target="_blank">
+                Leer noticia original en {html.escape(articulo['fuente_original'])}
+            </a>
+        </p>
+        <ul>{verificaciones}</ul>
+    </article>
+    <hr>
+    """
+
+
+documento = f"""<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CosasDeDineros - Noticias {fecha_texto}</title>
+<style>
+body {{
+    font-family: Arial, sans-serif;
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #26352c;
+    background: #f8f5ee;
+    line-height: 1.7;
+}}
+h1 {{
+    color: #1a3a2a;
+    font-size: 32px;
+}}
+h2 {{
+    color: #1a3a2a;
+    font-size: 23px;
+    line-height: 1.3;
+}}
+article {{
+    margin: 35px 0;
+}}
+.fuente {{
+    font-size: 14px;
+}}
+a {{
+    color: #876c27;
+}}
+hr {{
+    border: 0;
+    border-top: 1px solid #d8d2c4;
+    margin: 35px 0;
+}}
+</style>
+</head>
+<body>
+<header>
+    <h1>CosasDeDineros</h1>
+    <p>Las noticias financieras explicadas sin complicaciones.</p>
+    <p>{fecha_texto} · Lectura aproximada: 5 minutos</p>
+</header>
+{contenido_html}
+<footer>
+    <p>Un proyecto de CosasDeDineros.</p>
+</footer>
+</body>
+</html>
+"""
+
+with open(ARCHIVO_SALIDA, "w", encoding="utf-8") as archivo:
+    archivo.write(documento)
+
+with open("resultado_newsletter.json", "w", encoding="utf-8") as archivo:
+    json.dump(datos, archivo, ensure_ascii=False, indent=2)
+
+print("\n====================================")
+print("NEWSLETTER GENERADA")
+print(f"Artículos: {len(articulos_validos)}")
+print(f"Archivo: {ARCHIVO_SALIDA}")
+print("====================================")
