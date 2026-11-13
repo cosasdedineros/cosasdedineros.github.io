@@ -367,13 +367,7 @@ respuesta = cliente.models.generate_content(
         + noticias_texto
     ),
     config=types.GenerateContentConfig(
-        tools=[
-            types.Tool(
-                google_search=types.GoogleSearch()
-            )
-        ],
-        temperature=0.3,
-        max_output_tokens=12000
+    max_output_tokens=12000
     )
 )
 
