@@ -18,7 +18,7 @@ jobs:
           python-version: "3.12"
 
       - name: Instalar bibliotecas
-        run: pip install requests trafilatura feedparser
+        run: pip install requests trafilatura feedparser beautifulsoup4
 
       - name: Extraer noticias
         run: python probar_noticias.py
