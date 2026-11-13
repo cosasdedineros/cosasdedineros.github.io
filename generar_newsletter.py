@@ -31,6 +31,7 @@ MAX_NOTICIAS_POR_FUENTE = 30
 FUENTES = [
     {
         "nombre": "Capital Bolsa",
+        "grupo": "Capital Bolsa",
         "portada": "https://www.bolsamania.com/capitalbolsa/",
         "dominio": "bolsamania.com",
         "permitidas": ["/capitalbolsa/noticias/"],
@@ -38,6 +39,7 @@ FUENTES = [
     },
     {
         "nombre": "Finanzas.com",
+        "grupo": "Finanzas.com",
         "portada": "https://www.finanzas.com/",
         "dominio": "finanzas.com",
         "permitidas": [
@@ -49,6 +51,7 @@ FUENTES = [
     },
     {
         "nombre": "Estrategias de Inversión",
+        "grupo": "Estrategias de Inversión",
         "portada": "https://www.estrategiasdeinversion.com/",
         "dominio": "estrategiasdeinversion.com",
         "permitidas": ["/actualidad/", "/analisis/"],
@@ -56,12 +59,14 @@ FUENTES = [
     },
     {
         "nombre": "José Luis Cava - Estrategias de Inversión",
+        "grupo": "Estrategias de Inversión",
         "portada": "https://www.estrategiasdeinversion.com/especial/jose-luis-cava",
         "dominio": "estrategiasdeinversion.com",
         "permitidas": ["/analisis/"],
         "requiere_html": False
     }
 ]
+
 
 TITULARES_EXCLUIDOS = [
     "las 10 acciones con mas impulso",
@@ -164,6 +169,7 @@ def descubrir_noticias(fuente):
 
             noticias.append({
                 "fuente": fuente["nombre"],
+                "grupo": fuente["grupo"],
                 "titulo": titulo,
                 "url": url
             })
@@ -231,6 +237,7 @@ def extraer_articulo(noticia, fecha_minima, hoy, urls_publicadas):
         return {
             "id": identificador,
             "fuente": noticia["fuente"],
+            "grupo": noticia["grupo"],
             "titulo": titulo,
             "url": url,
             "fecha": fecha.isoformat(),
@@ -337,6 +344,12 @@ SELECCIÓN:
 - Los análisis de José Luis Cava pueden seleccionarse si aportan una
   explicación o interpretación económica relevante. Identifica claramente
   cuándo se trata de una opinión o previsión del analista, no de un hecho.
+- Distribuye las noticias entre los distintos medios disponibles.
+- Selecciona como máximo dos noticias de cada medio.
+- Intenta incluir noticias de al menos tres medios diferentes.
+- José Luis Cava y Estrategias de Inversión cuentan como un único medio.
+- No fuerces la inclusión de un medio si sus noticias no aportan suficiente
+  interés o calidad.
 
 VERIFICACIÓN:
 - Utiliza únicamente los datos y las fuentes incluidos en las noticias
@@ -396,14 +409,39 @@ TRADUCCIÓN DE JERGA FINANCIERA:
 
 ENFOQUE FINANCIERO:
 
-Explica los mecanismos económicos.
-Por ejemplo, cómo afectan los tipos a las empresas, la deuda,
-los bonos, las valoraciones y los beneficios futuros.
 
-No te limites a contar qué ha ocurrido. Explica por qué importa
-y qué consecuencias económicas o financieras puede tener.
-Diferencia claramente los hechos de las posibles consecuencias.
-No presentes una posibilidad como si fuera algo seguro.
+ENFOQUE FINANCIERO:
+
+Explica los mecanismos económicos y financieros. No te limites a
+contar qué ha ocurrido: explica cómo funciona y por qué importa.
+
+- Cada vez que aparezca un concepto económico o financiero relevante,
+  explica qué significa, cómo funciona y por qué produce ese efecto.
+- No te limites a mencionar una consecuencia: explica la relación
+  causa-efecto.
+- Utiliza ejemplos numéricos sencillos cuando ayuden a comprender
+  el mecanismo.
+- Diferencia entre una pérdida real de negocio y un efecto contable
+  provocado por los tipos de cambio.
+- Si una empresa obtiene ingresos en otra divisa, explica cómo afecta
+  la variación del tipo de cambio al convertir esos ingresos a la
+  moneda en la que presenta sus resultados.
+- No des por entendido que el lector conoce los conceptos financieros.
+  Explícalos sin infantilizar al lector.
+
+CONTEXTO DE CIFRAS Y VALORACIONES:
+
+- Nunca presentes una cifra financiera aislada sin explicar qué significa.
+- Cuando se mencione un precio objetivo de una acción, indica, si los datos están disponibles:
+  1. Cuál era el precio objetivo anterior.
+  2. Cuánto ha subido o bajado la valoración del analista, en porcentaje.
+  3. Qué potencial de subida o bajada supone respecto a la cotización en la fecha de la noticia.
+  4. Qué recomendación mantiene el analista.
+- Explica que un precio objetivo es una estimación del analista, no una predicción segura ni una garantía.
+- No califiques una valoración como alta, baja, atractiva o cara sin una referencia.
+- Si faltan datos, no inventes; indica qué información no está disponible.
+- Aplica el mismo criterio a porcentajes, beneficios, deuda, inflación, tipos de interés y otras cifras relevantes.
+- Compara con el periodo anterior, las previsiones o una referencia conocida cuando sea útil y esté disponible.
 
 EXTENSIÓN:
 Entre 200 y 300 palabras por noticia.
@@ -477,8 +515,12 @@ candidatas_por_id = {
 
 articulos_validos = []
 ids_utilizados = set()
+noticias_por_grupo = {}
 
-for articulo in articulos[:6]:
+for articulo in articulos:
+    if len(articulos_validos) >= 6:
+        break
+
     original = candidatas_por_id.get(str(articulo.get("id")))
 
     if not original:
@@ -490,11 +532,17 @@ for articulo in articulos[:6]:
     if not articulo.get("titular") or not articulo.get("texto"):
         continue
 
+    grupo = original["grupo"]
+
+    if noticias_por_grupo.get(grupo, 0) >= 2:
+        continue
+
     articulo["url_original"] = original["url"]
     articulo["fuente_original"] = original["fuente"]
 
     articulos_validos.append(articulo)
     ids_utilizados.add(original["id"])
+    noticias_por_grupo[grupo] = noticias_por_grupo.get(grupo, 0) + 1
 
 if not articulos_validos:
     raise RuntimeError("No se han podido validar los artículos generados.")
