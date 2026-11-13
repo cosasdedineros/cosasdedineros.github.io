@@ -380,24 +380,16 @@ Bolsa, tipos de interés, inflación, empresas, bancos, deuda,
 renta fija, divisas y mercados financieros.
 
 SELECCIÓN:
-- Escoge hasta seis noticias; intenta seleccionar seis si hay material
-  suficiente y fiable.
-- Deben tratar asuntos diferentes.
-- No selecciones varias noticias sobre el mismo acontecimiento.
-- Prioriza noticias con consecuencias financieras interesantes.
-- Descarta recomendaciones de compra y artículos promocionales.
-- No elijas noticias simplemente porque tengan titulares llamativos.
-- Busca variedad temática: no concentres las seis noticias en la bolsa
-  si existen noticias interesantes sobre tipos, inflación, empresas,
-  bancos, deuda o renta fija.
-- Los análisis de José Luis Cava pueden seleccionarse si aportan una
-  explicación o interpretación económica relevante. Identifica claramente
-  cuándo se trata de una opinión o previsión del analista, no de un hecho.
-- Distribuye las noticias entre los distintos medios disponibles.
-- Selecciona como máximo dos noticias de cada medio.
-- Intenta incluir noticias de al menos tres medios diferentes.
+- Distribuye las seis noticias entre el mayor número posible de medios.
+- Como criterio general, selecciona un máximo de dos noticias por medio.
+- Prioriza incluir noticias de al menos cuatro medios diferentes.
+- Solo si no hay suficientes noticias interesantes de otros medios,
+  puedes seleccionar una tercera noticia de un mismo medio para completar
+  las seis.
+- Nunca incluyas una tercera noticia si hay otra noticia de calidad
+  comparable procedente de un medio diferente.
 - José Luis Cava y Estrategias de Inversión cuentan como un único medio.
-- No fuerces la inclusión de un medio si sus noticias no aportan suficiente
+- No fuerces la inclusión de noticias de un medio si no aportan suficiente
   interés o calidad.
 
 VERIFICACIÓN:
@@ -414,8 +406,12 @@ VERIFICACIÓN:
 - En fuentes_verificacion incluye únicamente fuentes y URL que aparezcan
   en las noticias candidatas. Si no hay una fuente adicional, devuelve
   una lista vacía.
-- Si no encuentras seis noticias suficientemente interesantes y fiables,
-  devuelve menos de seis. Nunca rellenes con noticias dudosas.
+- Tu objetivo es seleccionar seis noticias.
+- Antes de devolver menos de seis, revisa todas las candidatas y busca
+  alternativas de otros medios o temas financieros.
+- Solo devuelve menos de seis cuando realmente no existan suficientes
+  noticias diferentes, relevantes y respaldadas por la información recibida.
+- Nunca rellenes con noticias dudosas, repetidas o de escaso interés.
 
 ESTILO DE COSASDEDINEROS:
 
@@ -562,10 +558,24 @@ candidatas_por_id = {
     for noticia in candidatas
 }
 
+print(f"\nArtículos devueltos por Gemini: {len(articulos)}")
+
+for articulo in articulos:
+    original = candidatas_por_id.get(str(articulo.get("id")))
+
+    if original:
+        print(
+            f"  GEMINI: {original['fuente']} | "
+            f"{articulo.get('titular', 'Sin titular')}"
+        )
+    else:
+        print(f"  ID NO RECONOCIDO: {articulo.get('id')}")
+
 articulos_validos = []
 ids_utilizados = set()
 noticias_por_grupo = {}
 
+# Primera pasada: máximo dos noticias por medio.
 for articulo in articulos:
     if len(articulos_validos) >= 6:
         break
@@ -592,6 +602,35 @@ for articulo in articulos:
     articulos_validos.append(articulo)
     ids_utilizados.add(original["id"])
     noticias_por_grupo[grupo] = noticias_por_grupo.get(grupo, 0) + 1
+
+# Segunda pasada: si faltan noticias, permitir una tercera por medio.
+if len(articulos_validos) < 6:
+    for articulo in articulos:
+        if len(articulos_validos) >= 6:
+            break
+
+        original = candidatas_por_id.get(str(articulo.get("id")))
+
+        if not original:
+            continue
+
+        if original["id"] in ids_utilizados:
+            continue
+
+        if not articulo.get("titular") or not articulo.get("texto"):
+            continue
+
+        grupo = original["grupo"]
+
+        if noticias_por_grupo.get(grupo, 0) >= 3:
+            continue
+
+        articulo["url_original"] = original["url"]
+        articulo["fuente_original"] = original["fuente"]
+
+        articulos_validos.append(articulo)
+        ids_utilizados.add(original["id"])
+        noticias_por_grupo[grupo] = noticias_por_grupo.get(grupo, 0) + 1
 
 if not articulos_validos:
     raise RuntimeError("No se han podido validar los artículos generados.")
