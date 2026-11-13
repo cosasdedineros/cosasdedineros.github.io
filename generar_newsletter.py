@@ -65,6 +65,55 @@ FUENTES = [
         "permitidas": ["/analisis/"],
         "requiere_html": False
     }
+
+        {
+        "nombre": "Cinco Días",
+        "grupo": "Cinco Días",
+        "portada": "https://cincodias.elpais.com/",
+        "dominio": "cincodias.elpais.com",
+        "permitidas": ["/mercados/", "/companias/", "/economia/"],
+        "requiere_html": True
+    },
+    {
+        "nombre": "Expansión",
+        "grupo": "Expansión",
+        "portada": "https://www.expansion.com/",
+        "dominio": "expansion.com",
+        "permitidas": ["/mercados/", "/empresas/", "/economia/"],
+        "requiere_html": True
+    },
+    {
+        "nombre": "elEconomista",
+        "grupo": "elEconomista",
+        "portada": "https://www.eleconomista.es/",
+        "dominio": "eleconomista.es",
+        "permitidas": ["/mercados-cotizaciones/", "/empresas-finanzas/", "/economia/"],
+        "requiere_html": True
+    },
+    {
+        "nombre": "El Confidencial",
+        "grupo": "El Confidencial",
+        "portada": "https://www.elconfidencial.com/",
+        "dominio": "elconfidencial.com",
+        "permitidas": ["/mercados/", "/empresas/", "/economia/"],
+        "requiere_html": True
+    },
+    {
+        "nombre": "Bolsamanía",
+        "grupo": "Capital Bolsa",
+        "portada": "https://www.bolsamania.com/",
+        "dominio": "bolsamania.com",
+        "permitidas": ["/noticias/"],
+        "requiere_html": True
+    },
+    {
+        "nombre": "Investing.com",
+        "grupo": "Investing.com",
+        "portada": "https://www.investing.com/",
+        "dominio": "investing.com",
+        "permitidas": ["/news/"],
+        "requiere_html": True
+    }
 ]
 
 
