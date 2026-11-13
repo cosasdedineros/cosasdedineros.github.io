@@ -1,8 +1,8 @@
-
 import os
 import re
 import json
 import html
+import hashlib
 import requests
 import trafilatura
 import unicodedata
@@ -26,14 +26,15 @@ ARCHIVO_SALIDA = "borrador_newsletter.html"
 
 MIN_CARACTERES = 900
 MIN_PALABRAS = 140
-MAX_NOTICIAS = 30
+MAX_NOTICIAS_POR_FUENTE = 30
 
 FUENTES = [
     {
         "nombre": "Capital Bolsa",
         "portada": "https://www.bolsamania.com/capitalbolsa/",
         "dominio": "bolsamania.com",
-        "permitidas": ["/capitalbolsa/noticias/"]
+        "permitidas": ["/capitalbolsa/noticias/"],
+        "requiere_html": True
     },
     {
         "nombre": "Finanzas.com",
@@ -43,7 +44,22 @@ FUENTES = [
             "/ibex-35/", "/mercados/", "/renta-fija/",
             "/fondos/", "/economia/", "/bolsa/",
             "/empresas/", "/divisas/"
-        ]
+        ],
+        "requiere_html": True
+    },
+    {
+        "nombre": "Estrategias de Inversión",
+        "portada": "https://www.estrategiasdeinversion.com/",
+        "dominio": "estrategiasdeinversion.com",
+        "permitidas": ["/actualidad/", "/analisis/"],
+        "requiere_html": False
+    },
+    {
+        "nombre": "José Luis Cava - Estrategias de Inversión",
+        "portada": "https://www.estrategiasdeinversion.com/especial/jose-luis-cava",
+        "dominio": "estrategiasdeinversion.com",
+        "permitidas": ["/analisis/"],
+        "requiere_html": False
     }
 ]
 
@@ -71,7 +87,7 @@ HEADERS = {
 # =====================================================
 
 def normalizar(texto):
-    texto = texto.lower()
+    texto = (texto or "").lower()
     texto = unicodedata.normalize("NFD", texto)
     texto = "".join(
         c for c in texto
@@ -98,7 +114,7 @@ def enlace_valido(url, fuente):
     ):
         return False
 
-    if not partes.path.endswith(".html"):
+    if fuente.get("requiere_html", True) and not partes.path.endswith(".html"):
         return False
 
     if not any(ruta in partes.path for ruta in fuente["permitidas"]):
@@ -152,7 +168,7 @@ def descubrir_noticias(fuente):
                 "url": url
             })
 
-            if len(noticias) >= MAX_NOTICIAS:
+            if len(noticias) >= MAX_NOTICIAS_POR_FUENTE:
                 break
 
         print(f"  Encontrados: {len(noticias)}")
@@ -164,7 +180,7 @@ def descubrir_noticias(fuente):
 
 
 def extraer_articulo(noticia, fecha_minima, hoy, urls_publicadas):
-    url = noticia["url"]
+    url = noticia["url"].rstrip("/")
 
     if url in urls_publicadas:
         return None
@@ -208,8 +224,12 @@ def extraer_articulo(noticia, fecha_minima, hoy, urls_publicadas):
         ):
             return None
 
+        identificador = hashlib.sha256(
+            url.encode("utf-8")
+        ).hexdigest()[:16]
+
         return {
-            "id": str(abs(hash(url))),
+            "id": identificador,
             "fuente": noticia["fuente"],
             "titulo": titulo,
             "url": url,
@@ -218,7 +238,7 @@ def extraer_articulo(noticia, fecha_minima, hoy, urls_publicadas):
         }
 
     except Exception as error:
-        print(f"  Error leyendo artículo: {error}")
+        print(f"  Error leyendo artículo {url}: {error}")
         return None
 
 
@@ -241,11 +261,19 @@ print(f"Fecha: {hoy}")
 print("Recopilando noticias...\n")
 
 enlaces = []
+urls_enlaces_vistas = set()
 
 for fuente in FUENTES:
-    enlaces.extend(descubrir_noticias(fuente))
+    enlaces_fuente = descubrir_noticias(fuente)
+
+    for noticia in enlaces_fuente:
+        url = noticia["url"].rstrip("/")
+        if url not in urls_enlaces_vistas:
+            urls_enlaces_vistas.add(url)
+            enlaces.append(noticia)
 
 candidatas = []
+urls_candidatas_vistas = set()
 
 for noticia in enlaces:
     articulo = extraer_articulo(
@@ -255,15 +283,17 @@ for noticia in enlaces:
         urls_publicadas
     )
 
-    if articulo:
+    if articulo and articulo["url"] not in urls_candidatas_vistas:
         candidatas.append(articulo)
+        urls_candidatas_vistas.add(articulo["url"])
         print(f"ACEPTADA: {articulo['titulo']}")
 
 print(f"\nTotal de candidatas: {len(candidatas)}")
 
 if len(candidatas) < 4:
     raise RuntimeError(
-        "No hay cuatro noticias candidatas. No se generará la newsletter."
+        "Hay menos de cuatro noticias candidatas. "
+        "No se generará la newsletter."
     )
 
 
@@ -284,8 +314,6 @@ noticias_texto = json.dumps(
 )
 
 instrucciones = """
-
-instrucciones = """
 Eres el editor y redactor de CosasDeDineros.
 
 Tu trabajo consiste en seleccionar y redactar seis noticias financieras
@@ -296,7 +324,8 @@ Bolsa, tipos de interés, inflación, empresas, bancos, deuda,
 renta fija, divisas y mercados financieros.
 
 SELECCIÓN:
-- Escoge exactamente seis noticias.
+- Escoge hasta seis noticias; intenta seleccionar seis si hay material
+  suficiente y fiable.
 - Deben tratar asuntos diferentes.
 - No selecciones varias noticias sobre el mismo acontecimiento.
 - Prioriza noticias con consecuencias financieras interesantes.
@@ -305,15 +334,25 @@ SELECCIÓN:
 - Busca variedad temática: no concentres las seis noticias en la bolsa
   si existen noticias interesantes sobre tipos, inflación, empresas,
   bancos, deuda o renta fija.
+- Los análisis de José Luis Cava pueden seleccionarse si aportan una
+  explicación o interpretación económica relevante. Identifica claramente
+  cuándo se trata de una opinión o previsión del analista, no de un hecho.
 
 VERIFICACIÓN:
-- Utiliza Google Search para contrastar los hechos principales.
-- Comprueba especialmente nombres, cargos, fechas, cifras y acontecimientos.
-- No des por cierto un dato solo porque aparezca en el artículo.
-- Si una noticia contiene una afirmación central falsa o que no puedes
-  confirmar con fuentes fiables, descártala.
+- Utiliza únicamente los datos y las fuentes incluidos en las noticias
+  candidatas. En esta versión no tienes habilitada una herramienta de
+  búsqueda externa, así que no afirmes que has realizado búsquedas en Google.
+- Comprueba la coherencia de nombres, fechas, cifras y acontecimientos
+  con el material recibido.
+- No des por cierto un dato solo porque aparezca en un titular.
+- Si una afirmación central no está suficientemente respaldada por el
+  material disponible, descarta esa noticia o explica la incertidumbre.
 - No inventes información para completar una noticia.
-- Si no puedes encontrar seis noticias suficientemente fiables,
+- No inventes nombres de fuentes ni direcciones URL.
+- En fuentes_verificacion incluye únicamente fuentes y URL que aparezcan
+  en las noticias candidatas. Si no hay una fuente adicional, devuelve
+  una lista vacía.
+- Si no encuentras seis noticias suficientemente interesantes y fiables,
   devuelve menos de seis. Nunca rellenes con noticias dudosas.
 
 ESTILO DE COSASDEDINEROS:
@@ -369,9 +408,8 @@ No presentes una posibilidad como si fuera algo seguro.
 EXTENSIÓN:
 Entre 200 y 300 palabras por noticia.
 
-DEVUELVE EXCLUSIVAMENTE JSON VÁLIDO con esta estructura:
-"""
-
+DEVUELVE EXCLUSIVAMENTE JSON VÁLIDO con esta estructura.
+No incluyas explicaciones, comentarios ni bloques Markdown fuera del JSON:
 
 {
   "fecha": "AAAA-MM-DD",
@@ -379,7 +417,7 @@ DEVUELVE EXCLUSIVAMENTE JSON VÁLIDO con esta estructura:
     {
       "id": "identificador original",
       "titular": "Titular redactado",
-      "texto": "Artículo completo en párrafos",
+      "texto": "Artículo completo en párrafos separados por saltos de línea",
       "fuentes_verificacion": [
         {
           "nombre": "Nombre de la fuente",
@@ -393,7 +431,6 @@ DEVUELVE EXCLUSIVAMENTE JSON VÁLIDO con esta estructura:
 No inventes identificadores. Utiliza los ID de los artículos originales.
 """
 
-
 print("\nEnviando noticias a Gemini...")
 
 respuesta = cliente.models.generate_content(
@@ -404,18 +441,28 @@ respuesta = cliente.models.generate_content(
         + noticias_texto
     ),
     config=types.GenerateContentConfig(
-    max_output_tokens=12000
+        max_output_tokens=12000
     )
 )
+
+if not respuesta.text:
+    raise RuntimeError("Gemini ha devuelto una respuesta vacía.")
 
 resultado = respuesta.text.strip()
 
 # Limpiar posibles bloques Markdown.
-resultado = re.sub(r"^```json\s*", "", resultado)
+resultado = re.sub(r"^```json\s*", "", resultado, flags=re.IGNORECASE)
 resultado = re.sub(r"^```\s*", "", resultado)
 resultado = re.sub(r"\s*```$", "", resultado)
 
-datos = json.loads(resultado)
+try:
+    datos = json.loads(resultado)
+except json.JSONDecodeError as error:
+    print("Respuesta recibida de Gemini:")
+    print(resultado)
+    raise RuntimeError(
+        f"Gemini no ha devuelto JSON válido: {error}"
+    )
 
 articulos = datos.get("articulos", [])
 
@@ -429,11 +476,15 @@ candidatas_por_id = {
 }
 
 articulos_validos = []
+ids_utilizados = set()
 
-for articulo in articulos[:4]:
+for articulo in articulos[:6]:
     original = candidatas_por_id.get(str(articulo.get("id")))
 
     if not original:
+        continue
+
+    if original["id"] in ids_utilizados:
         continue
 
     if not articulo.get("titular") or not articulo.get("texto"):
@@ -443,6 +494,7 @@ for articulo in articulos[:4]:
     articulo["fuente_original"] = original["fuente"]
 
     articulos_validos.append(articulo)
+    ids_utilizados.add(original["id"])
 
 if not articulos_validos:
     raise RuntimeError("No se han podido validar los artículos generados.")
@@ -465,7 +517,8 @@ for i, articulo in enumerate(articulos_validos, 1):
 
         if url.startswith("https://"):
             verificaciones += (
-                f'<li><a href="{url}" target="_blank">{nombre}</a></li>'
+                f'<li><a href="{url}" target="_blank" '
+                f'rel="noopener noreferrer">{nombre}</a></li>'
             )
 
     parrafos = "".join(
@@ -478,17 +531,19 @@ for i, articulo in enumerate(articulos_validos, 1):
     url_original = html.escape(
         articulo["url_original"], quote=True
     )
+    fuente_original = html.escape(articulo["fuente_original"])
 
     contenido_html += f"""
     <article>
         <h2>{i}. {titular}</h2>
         {parrafos}
         <p class="fuente">
-            <a href="{url_original}" target="_blank">
-                Leer noticia original en {html.escape(articulo['fuente_original'])}
+            <a href="{url_original}" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en {fuente_original}
             </a>
         </p>
-        <ul>{verificaciones}</ul>
+        {f"<ul>{verificaciones}</ul>" if verificaciones else ""}
     </article>
     <hr>
     """
