@@ -1,6 +1,12 @@
 
 import requests
 import trafilatura
+import json
+import os
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
+
+ARCHIVO_HISTORIAL = "noticias_publicadas.json"
 
 NOTICIAS = [
     ("Capital Bolsa", "Nvidia y sus resultados",
@@ -23,11 +29,30 @@ headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36"
 }
 
+# Cargar historial de noticias publicadas
+if os.path.exists(ARCHIVO_HISTORIAL):
+    with open(ARCHIVO_HISTORIAL, "r", encoding="utf-8") as archivo:
+        historial = json.load(archivo)
+else:
+    historial = {"publicadas": []}
+
+urls_publicadas = {
+    noticia["url"].rstrip("/")
+    for noticia in historial.get("publicadas", [])
+}
+
+print(f"Noticias ya publicadas: {len(urls_publicadas)}")
+
 for fuente, titulo, url in NOTICIAS:
 
     print("\n" + "=" * 80)
     print(f"FUENTE: {fuente}")
     print(f"NOTICIA: {titulo}")
+
+    if url.rstrip("/") in urls_publicadas:
+        print("DESCARTADA: esta noticia ya se publicó anteriormente.")
+        continue
+
     print(f"URL: {url}")
 
     try:
