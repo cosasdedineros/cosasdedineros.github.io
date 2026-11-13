@@ -6,6 +6,7 @@ import hashlib
 import requests
 import trafilatura
 import unicodedata
+import time
 
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, urldefrag
@@ -516,17 +517,35 @@ No inventes identificadores. Utiliza los ID de los artículos originales.
 
 print("\nEnviando noticias a Gemini...")
 
-respuesta = cliente.models.generate_content(
-    model=MODELO,
-    contents=(
-        instrucciones
-        + "\n\nNOTICIAS CANDIDATAS:\n"
-        + noticias_texto
-    ),
-    config=types.GenerateContentConfig(
-        max_output_tokens=12000
-    )
-)
+for intento in range(1, 6):
+    try:
+        respuesta = cliente.models.generate_content(
+            model=MODELO,
+            contents=(
+                instrucciones
+                + "\n\nNOTICIAS CANDIDATAS:\n"
+                + noticias_texto
+            ),
+            config=types.GenerateContentConfig(
+                max_output_tokens=12000
+            )
+        )
+
+        break
+
+    except Exception as e:
+        if intento == 5:
+            raise
+
+        espera = intento * 15
+
+        print(
+            f"Gemini no está disponible. "
+            f"Intento {intento}/5. "
+            f"Nuevo intento en {espera} segundos."
+        )
+
+        time.sleep(espera)
 
 if not respuesta.text:
     raise RuntimeError("Gemini ha devuelto una respuesta vacía.")
