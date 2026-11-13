@@ -19,7 +19,7 @@ from google.genai import types
 # CONFIGURACIÓN
 # =====================================================
 
-MODELO = "gemini-3.8-flash-lite"
+MODELO = "gemini-3.1-flash-lite"
 
 ARCHIVO_HISTORIAL = "noticias_publicadas.json"
 ARCHIVO_SALIDA = "borrador_newsletter.html"
