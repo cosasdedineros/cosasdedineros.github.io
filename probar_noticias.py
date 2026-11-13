@@ -54,3 +54,6 @@ for fuente, rss_url in FUENTES.items():
 
             except Exception as error:
                 print(f"\nERROR AL DESCARGAR: {error}")
+
+    except Exception as error:
+        print(f"ERROR EN LA FUENTE: {error}")
