@@ -113,7 +113,7 @@ FUENTES = [
         "dominio": "investing.com",
         "permitidas": ["/news/"],
         "requiere_html": True
-    }
+    },
 ]
 
 
