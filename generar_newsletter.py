@@ -64,7 +64,7 @@ FUENTES = [
         "dominio": "estrategiasdeinversion.com",
         "permitidas": ["/analisis/"],
         "requiere_html": False
-    }
+    },
 
     {
         "nombre": "Cinco Días",
