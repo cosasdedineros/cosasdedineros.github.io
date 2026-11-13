@@ -9,11 +9,14 @@ from bs4 import BeautifulSoup
 from difflib import SequenceMatcher
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, urldefrag
 
 ARCHIVO_HISTORIAL = "noticias_publicadas.json"
+
 UMBRAL_SIMILITUD = 0.70
 MAX_NOTICIAS_POR_FUENTE = 30
+MIN_CARACTERES = 900
+MIN_PALABRAS = 140
 
 FUENTES = [
     {
@@ -48,7 +51,48 @@ PALABRAS_EXCLUIDAS = [
     "podcasts",
     "formacion",
     "curso",
-    "publicidad"
+    "publicidad",
+    "premium",
+    "cartera-modelo"
+]
+
+# Contenido que suele indicar publicidad o promoción comercial.
+TITULARES_PROMOCIONALES = [
+    "compre esta accion",
+    "compra esta accion",
+    "las mejores acciones para",
+    "las acciones con mas impulso",
+    "las acciones que debes comprar",
+    "las acciones para comprar",
+    "oportunidades de compra",
+    "nuestros valores favoritos",
+    "cartera recomendada"
+]
+
+EXPRESIONES_PROMOCIONALES = [
+    "hazte premium",
+    "suscribete ahora",
+    "contrata nuestro servicio",
+    "acceso exclusivo para suscriptores",
+    "nuestro servicio premium",
+    "recibe nuestras recomendaciones",
+    "cartera modelo premium",
+    "aprovecha nuestra oferta"
+]
+
+# Frases que indican que se ha extraído un aviso de cookies
+# en lugar del contenido real de la noticia.
+FRASES_COOKIES = [
+    "utilizamos cookies propias y de terceros",
+    "aceptar todas las cookies",
+    "rechazar todas las cookies",
+    "configurar las cookies",
+    "consentimiento de cookies",
+    "politica de cookies",
+    "gestionar el consentimiento",
+    "guardar mis preferencias",
+    "este sitio utiliza cookies",
+    "cookies estrictamente necesarias"
 ]
 
 headers = {
@@ -79,8 +123,23 @@ def son_similares(titulo1, titulo2):
 
     similitud = SequenceMatcher(None, t1, t2).ratio()
 
-    palabras1 = set(t1.split())
-    palabras2 = set(t2.split())
+    palabras_vacias = {
+        "el", "la", "los", "las", "un", "una", "unos", "unas",
+        "de", "del", "en", "por", "para", "con", "sin", "y",
+        "o", "que", "se", "su", "sus", "al", "como", "tras",
+        "sobre", "entre", "ante", "mas", "menos", "ya"
+    }
+
+    palabras1 = {
+        p for p in t1.split()
+        if p not in palabras_vacias and len(p) > 2
+    }
+
+    palabras2 = {
+        p for p in t2.split()
+        if p not in palabras_vacias and len(p) > 2
+    }
+
     union = palabras1 | palabras2
     comunes = palabras1 & palabras2
 
@@ -102,8 +161,12 @@ def cargar_historial():
 
 def enlace_valido(url, fuente):
     partes = urlparse(url)
+    dominio = partes.netloc.lower().split(":")[0]
 
-    if fuente["dominio"] not in partes.netloc:
+    if not (
+        dominio == fuente["dominio"]
+        or dominio.endswith("." + fuente["dominio"])
+    ):
         return False
 
     if not partes.path.endswith(".html"):
@@ -124,6 +187,69 @@ def enlace_valido(url, fuente):
     return True
 
 
+def es_contenido_de_cookies(texto):
+    texto_normalizado = normalizar(texto)
+
+    coincidencias = sum(
+        1 for frase in FRASES_COOKIES
+        if normalizar(frase) in texto_normalizado
+    )
+
+    return coincidencias >= 2
+
+
+def es_promocional(titulo, texto):
+    titulo_normalizado = normalizar(titulo)
+    texto_normalizado = normalizar(texto)
+
+    # Descartar titulares claramente comerciales.
+    if any(
+        normalizar(frase) in titulo_normalizado
+        for frase in TITULARES_PROMOCIONALES
+    ):
+        return True
+
+    # Descartar artículos cuyo contenido parece una promoción.
+    coincidencias = sum(
+        1 for frase in EXPRESIONES_PROMOCIONALES
+        if normalizar(frase) in texto_normalizado
+    )
+
+    return coincidencias >= 2
+
+
+def contenido_incompleto(texto):
+    texto = texto.strip()
+
+    if not texto:
+        return True
+
+    # Si termina con una frase muy larga sin puntuación,
+    # puede haberse cortado durante la extracción.
+    ultimo_fragmento = re.split(r"[.!?]\s+", texto)[-1].strip()
+
+    if (
+        len(ultimo_fragmento) > 120
+        and not texto.endswith((".", "!", "?", "…", "»", '"', ")"))
+    ):
+        return True
+
+    # Evitar textos que terminan claramente en una palabra de enlace.
+    palabras_finales = normalizar(ultimo_fragmento).split()
+
+    if palabras_finales:
+        finales_sospechosos = {
+            "que", "porque", "aunque", "cuando", "mientras",
+            "pero", "si", "como", "donde", "cuyo", "cuya",
+            "y", "o", "de", "del", "con", "para"
+        }
+
+        if palabras_finales[-1] in finales_sospechosos:
+            return True
+
+    return False
+
+
 def descubrir_noticias(fuente):
     print(f"\nBuscando en {fuente['nombre']}...")
 
@@ -142,7 +268,7 @@ def descubrir_noticias(fuente):
 
         for enlace in soup.find_all("a", href=True):
             url = urljoin(fuente["portada"], enlace["href"])
-            url = url.split("#")[0].rstrip("/")
+            url = urldefrag(url)[0].rstrip("/")
 
             if not enlace_valido(url, fuente):
                 continue
@@ -174,11 +300,11 @@ def descubrir_noticias(fuente):
         return []
 
 
-# Fechas
+# Fechas: hoy y los dos días anteriores.
 hoy = datetime.now(ZoneInfo("Europe/Madrid")).date()
 fecha_minima = hoy - timedelta(days=2)
 
-# Historial
+# Historial de noticias realmente publicadas.
 historial = cargar_historial()
 publicadas = historial.get("publicadas", [])
 
@@ -198,7 +324,7 @@ print(f"Fecha de hoy: {hoy}")
 print(f"Se aceptan noticias desde: {fecha_minima}")
 print(f"Noticias publicadas anteriormente: {len(publicadas)}")
 
-# Descubrir artículos
+# Descubrir artículos.
 noticias_encontradas = []
 
 for fuente in FUENTES:
@@ -208,7 +334,7 @@ for fuente in FUENTES:
 
 print(f"\nTotal de enlaces encontrados: {len(noticias_encontradas)}")
 
-# Procesar artículos
+# Procesar artículos.
 titulares_candidatos = []
 urls_procesadas = set()
 aceptadas = 0
@@ -217,7 +343,7 @@ for noticia in noticias_encontradas:
 
     fuente = noticia["fuente"]
     titulo_portada = noticia["titulo_portada"]
-    url = noticia["url"]
+    url = noticia["url"].rstrip("/")
 
     print("\n" + "=" * 80)
     print(f"FUENTE: {fuente}")
@@ -270,10 +396,35 @@ for noticia in noticias_encontradas:
             print("DESCARTADA: fuera de los últimos tres días.")
             continue
 
-        if not texto or len(texto) < 900:
-            print("DESCARTADA: contenido insuficiente.")
+        if not texto:
+            print("DESCARTADA: no se ha podido extraer el contenido.")
             continue
 
+        # Filtro de cookies.
+        if es_contenido_de_cookies(texto):
+            print("DESCARTADA: parece un aviso de cookies.")
+            continue
+
+        # Filtro de extensión y calidad.
+        palabras = len(texto.split())
+
+        if len(texto) < MIN_CARACTERES or palabras < MIN_PALABRAS:
+            print(
+                f"DESCARTADA: contenido insuficiente "
+                f"({len(texto)} caracteres, {palabras} palabras)."
+            )
+            continue
+
+        if contenido_incompleto(texto):
+            print("DESCARTADA: posible extracción incompleta.")
+            continue
+
+        # Filtro de promociones.
+        if es_promocional(titulo_real, texto):
+            print("DESCARTADA: contenido promocional o comercial.")
+            continue
+
+        # Evitar titulares repetidos.
         repetida = False
 
         for anterior in titulares_publicados + titulares_candidatos:
@@ -291,6 +442,7 @@ for noticia in noticias_encontradas:
 
         print("ACEPTADA")
         print(f"CARACTERES: {len(texto)}")
+        print(f"PALABRAS: {palabras}")
         print(f"URL: {url}")
         print("\nCONTENIDO:")
         print(texto[:2500])
