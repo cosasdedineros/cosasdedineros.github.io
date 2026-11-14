@@ -3,6 +3,11 @@ name: Generar newsletter financiera
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * *"
+      timezone: "Europe/Madrid"
+    - cron: "0 15 * * *"
+      timezone: "Europe/Madrid"
 
 permissions:
   contents: write
