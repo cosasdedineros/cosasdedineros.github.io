@@ -1,3 +1,46 @@
 {
-  "publicadas": []
+  "publicadas": [
+    {
+      "fecha": "2026-11-14",
+      "titular": "Nvidia busca capitán: el reto de relevar a Jensen Huang",
+      "resumen": "La dimisión de Jensen Huang, tras más de tres décadas al frente de Nvidia, ha dejado a la tecnológica en un momento de incertidumbre histórica. Mientras el consejo de administración busca un sucesor definitivo, la directora financiera Colette Kress ha tomado las riendas como CEO interina. Su perfil, curtido en las finanzas y con una relación directa con Wall Street, es visto como un movimiento de estabilidad necesario para calmar a los inversores. El desafío para Nvidia es mayúsculo. No solo se trata de reemplazar a quien fue el arquitecto de su dominio en el mercado de chips para inteligencia",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/empresas/quien-puede-reemplazar-a-jensen-huang-como-ceo-de-nvidia-cuatro-nombres-para-ocupar-su-puesto--24163688.html"
+    },
+    {
+      "fecha": "2026-11-14",
+      "titular": "El desplome de Nvidia: ¿fin de una era o punto de compra?",
+      "resumen": "Nvidia está atravesando una tormenta perfecta. Tras la salida de su CEO, la acción ha sufrido un castigo superior al 30% respecto a sus máximos de octubre. Este episodio ha llevado al índice de fuerza relativa (RSI) a niveles de sobreventa no vistos desde 2019, una señal que, históricamente, ha precedido tanto a rebotes técnicos como a periodos de mayor sufrimiento bursátil. La pregunta que se hacen los inversores es si este ajuste es una oportunidad para comprar barato o un aviso de que el sector tecnológico tiene recorrido a la baja. Bernstein, por ejemplo, ha rebajado su recomendación a 'ne",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/empresas/nvidia-registra-su-mayor-sobreventa-desde-2019-oportunidad-de-compra-o-aviso-de-mas-caidas--24163400.html"
+    },
+    {
+      "fecha": "2026-11-14",
+      "titular": "Colonial: resultados sólidos que pasan desapercibidos en bolsa",
+      "resumen": "Colonial ha presentado sus resultados trimestrales con un beneficio recurrente que sube un 4% y confirma sus previsiones para 2026. A pesar de que los números son sólidos, la inmobiliaria cotiza con un llamativo descuento del 50% sobre el valor neto de sus activos (NAV). Esto significa que, básicamente, el mercado está valorando el patrimonio de la compañía a mitad de precio, una situación que los analistas consideran una oportunidad interesante. ¿Por qué importa esto financieramente? Porque el descuento suele indicar que el mercado es escéptico sobre la capacidad de la empresa para monetizar ",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/ibex-35/colonial-convence-resultados-cotiza-potencial-60.html"
+    },
+    {
+      "fecha": "2026-11-14",
+      "titular": "Santander eleva su apuesta por Brasil: la recompra de acciones como escudo",
+      "resumen": "Banco Santander ha decidido subir un 5% su oferta para adquirir el 10% restante de su filial brasileña. Es una operación estratégica diseñada para simplificar la estructura del grupo y evitar que, teniendo el 100% de los activos en balance, no pueda capturar la totalidad del beneficio neto que genera Brasil, que es su segundo mayor mercado. Desde el punto de vista del accionista, la gran preocupación ante una ampliación de capital es la 'dilución', es decir, que al repartir los beneficios entre más acciones, el valor individual de cada una caiga. Pero Santander ha preparado un escudo: sus prog",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/ibex-35/recompras-blindan-inversor-santander-mejora-canje-brasil.html"
+    },
+    {
+      "fecha": "2026-11-14",
+      "titular": "¿Primera fase del estallido de la burbuja de la IA?",
+      "resumen": "Eugenio Catone ha planteado una tesis inquietante: el mercado estaría atravesando la primera fase del posible estallido de una burbuja en la inteligencia artificial. Según este análisis, el proceso se divide en tres actos. Primero, el mercado de valores ajusta las expectativas y los semiconductores empiezan a sufrir, anticipando un frenazo en el gasto de los grandes operadores de centros de datos. La segunda fase afectaría al crédito, con un aumento en las tensiones de la deuda, mientras que la tercera, la más grave, implicaría una crisis de financiación real para los desarrolladores de modelo",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/bolsa/el-estallido-de-la-burbuja-de-la-ia-tiene-tres-fases-estamos-en-la-primera--24166524.html"
+    },
+    {
+      "fecha": "2026-11-14",
+      "titular": "Microsoft pierde 60.000 millones tras el apagón de Outlook",
+      "resumen": "Una interrupción de 18 horas en servicios clave como Outlook, Teams y Copilot ha costado a Microsoft cerca de 60.000 millones de dólares en capitalización bursátil. Aunque el precio de la acción reaccionó con una caída contenida del 1,5% tras la reapertura, el incidente es un recordatorio del riesgo reputacional y operativo de depender de unos pocos proveedores tecnológicos gigantescos. Para las empresas que utilizan estos servicios, el coste no es solo técnico; es económico. En algunos casos, instituciones financieras tuvieron que recurrir a métodos tan analógicos como el fax o el teléfono pa",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/mercados/microsoft-pierde-casi-60-000-m-apagon-mundial-outlook.html"
+    }
+  ]
 }
