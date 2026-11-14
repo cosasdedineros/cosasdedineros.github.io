@@ -748,6 +748,15 @@ for i, articulo in enumerate(articulos_validos, 1):
 
 documento = f"""<!DOCTYPE html>
 <html lang="es">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCX74R28X0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SCX74R28X0');
+</script>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
