@@ -314,6 +314,31 @@ urls_publicadas = {
     if noticia.get("url")
 }
 
+# Noticias publicadas durante los últimos 7 días.
+historial_reciente = []
+
+for noticia in historial.get("publicadas", []):
+    try:
+        fecha_publicada = datetime.strptime(
+            noticia.get("fecha", ""), "%Y-%m-%d"
+        ).date()
+
+        if hoy - timedelta(days=7) <= fecha_publicada <= hoy:
+            historial_reciente.append({
+                "fecha": noticia.get("fecha"),
+                "titular": noticia.get("titular"),
+                "resumen": noticia.get("resumen"),
+                "fuente": noticia.get("fuente")
+            })
+
+    except (ValueError, TypeError):
+        continue
+
+historial_texto = json.dumps(
+    historial_reciente,
+    ensure_ascii=False
+)
+
 print(f"Fecha: {hoy}")
 print("Recopilando noticias...\n")
 
@@ -392,6 +417,22 @@ SELECCIÓN:
 - José Luis Cava y Estrategias de Inversión cuentan como un único medio.
 - No fuerces la inclusión de noticias de un medio si no aportan suficiente
   interés o calidad.
+
+  CONTROL DE REPETICIONES Y SEGUIMIENTO:
+
+Recibirás un historial de las noticias publicadas durante los últimos
+siete días.
+
+- Compara cada noticia candidata con ese historial.
+- Detecta acontecimientos repetidos aunque cambien el titular o el medio.
+- No repitas una noticia si no aporta información sustancialmente nueva.
+- No descartes una empresa por haber aparecido anteriormente.
+- Puedes volver a seleccionar Nvidia, Santander o cualquier otra empresa
+  si existe un acontecimiento nuevo o información relevante.
+- Considera interesantes los seguimientos que aporten nuevas cifras,
+  decisiones empresariales, resultados o consecuencias económicas.
+- Explica qué ha cambiado respecto a la noticia anterior.
+- No repitas explicaciones anteriores salvo que sean necesarias.
 
 VERIFICACIÓN:
 - Utiliza únicamente los datos y las fuentes incluidos en las noticias
@@ -519,13 +560,13 @@ print("\nEnviando noticias a Gemini...")
 
 for intento in range(1, 6):
     try:
-        respuesta = cliente.models.generate_content(
-            model=MODELO,
-            contents=(
-                instrucciones
-                + "\n\nNOTICIAS CANDIDATAS:\n"
-                + noticias_texto
-            ),
+        contents=(
+            instrucciones
+            + "\n\nHISTORIAL DE NOTICIAS PUBLICADAS EN LOS ÚLTIMOS 7 DÍAS:\n"
+            + historial_texto
+            + "\n\nNOTICIAS CANDIDATAS:\n"
+            + noticias_texto
+        ),
             config=types.GenerateContentConfig(
                 max_output_tokens=12000
             )
