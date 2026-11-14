@@ -806,6 +806,33 @@ with open(ARCHIVO_SALIDA, "w", encoding="utf-8") as archivo:
 with open("resultado_newsletter.json", "w", encoding="utf-8") as archivo:
     json.dump(datos, archivo, ensure_ascii=False, indent=2)
 
+# Actualizar historial de noticias publicadas.
+urls_historial = {
+    noticia.get("url")
+    for noticia in historial.get("publicadas", [])
+}
+
+for articulo in articulos_validos:
+    url = articulo["url_original"]
+
+    if url in urls_historial:
+        continue
+
+    historial["publicadas"].append({
+        "fecha": hoy.isoformat(),
+        "titular": articulo["titular"],
+        "resumen": " ".join(articulo["texto"].split())[:600],
+        "fuente": articulo["fuente_original"],
+        "url": url
+    })
+
+    urls_historial.add(url)
+
+with open(ARCHIVO_HISTORIAL, "w", encoding="utf-8") as archivo:
+    json.dump(historial, archivo, ensure_ascii=False, indent=2)
+
+print(f"Historial actualizado: {len(historial['publicadas'])} noticias.")
+
 print("\n====================================")
 print("NEWSLETTER GENERADA")
 print(f"Artículos: {len(articulos_validos)}")
