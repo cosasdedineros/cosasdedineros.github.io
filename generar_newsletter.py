@@ -560,13 +560,15 @@ print("\nEnviando noticias a Gemini...")
 
 for intento in range(1, 6):
     try:
-        contents=(
-            instrucciones
-            + "\n\nHISTORIAL DE NOTICIAS PUBLICADAS EN LOS ÚLTIMOS 7 DÍAS:\n"
-            + historial_texto
-            + "\n\nNOTICIAS CANDIDATAS:\n"
-            + noticias_texto
-        ),
+        respuesta = cliente.models.generate_content(
+            model=MODELO,
+            contents=(
+                instrucciones
+                + "\n\nHISTORIAL DE NOTICIAS PUBLICADAS EN LOS ÚLTIMOS 7 DÍAS:\n"
+                + historial_texto
+                + "\n\nNOTICIAS CANDIDATAS:\n"
+                + noticias_texto
+            ),
             config=types.GenerateContentConfig(
                 max_output_tokens=12000
             )
@@ -587,7 +589,6 @@ for intento in range(1, 6):
         )
 
         time.sleep(espera)
-
 if not respuesta.text:
     raise RuntimeError("Gemini ha devuelto una respuesta vacía.")
 
