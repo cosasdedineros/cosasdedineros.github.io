@@ -5,7 +5,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
 
 jobs:
   generar:
@@ -27,6 +28,15 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python generar_newsletter.py
+
+      - name: Publicar newsletter en la web
+        run: |
+          cp borrador_newsletter.html newsletter.html
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add newsletter.html noticias_publicadas.json
+          git diff --cached --quiet || git commit -m "Actualizar newsletter"
+          git push
 
       - name: Guardar borrador
         uses: actions/upload-artifact@v4
