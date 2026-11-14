@@ -751,52 +751,244 @@ documento = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CosasDeDineros - Noticias {fecha_texto}</title>
+<title>Cosas de Dineros - Noticias financieras</title>
+<meta name="description" content="Noticias financieras explicadas de forma sencilla por Cosas de Dineros.">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
+:root {{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
+}}
+
+* {{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}}
+
 body {{
-    font-family: Arial, sans-serif;
-    max-width: 760px;
-    margin: 40px auto;
-    padding: 0 20px;
-    color: #26352c;
-    background: #f8f5ee;
-    line-height: 1.7;
+  font-family:"DM Sans",sans-serif;
+  background:var(--crema);
+  color:var(--texto);
+  line-height:1.7;
 }}
-h1 {{
-    color: #1a3a2a;
-    font-size: 32px;
+
+.topbar {{
+  background:var(--verde);
+  color:white;
+  display:flex;
+  align-items:center;
+  padding:10px 20px;
+  justify-content:flex-end;
 }}
-h2 {{
-    color: #1a3a2a;
-    font-size: 23px;
-    line-height: 1.3;
+
+.topbar a {{
+  text-decoration:none;
+  background:var(--dorado);
+  color:var(--verde);
+  font-weight:600;
+  padding:8px 16px;
+  border-radius:6px;
+  font-size:14px;
 }}
+
+nav {{
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:#122a1f;
+  display:flex;
+  gap:20px;
+  padding:12px 20px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  white-space:nowrap;
+}}
+
+nav::-webkit-scrollbar {{
+  display:none;
+}}
+
+@media(min-width:700px) {{
+  nav {{
+    justify-content:center;
+  }}
+}}
+
+nav a {{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  flex-shrink:0;
+}}
+
+nav a:hover {{
+  color:var(--dorado);
+}}
+
+.hero {{
+  padding:45px 20px;
+  text-align:center;
+  background:var(--verde);
+  color:white;
+}}
+
+.hero h1 {{
+  font-family:"Playfair Display",serif;
+  font-size:36px;
+}}
+
+.hero p {{
+  font-size:16px;
+  margin-top:8px;
+  opacity:0.85;
+}}
+
+.contenido {{
+  max-width:900px;
+  margin:35px auto;
+  padding:0 20px;
+}}
+
+.introduccion {{
+  background:white;
+  padding:25px;
+  border-radius:8px;
+  margin-bottom:30px;
+  border-top:3px solid var(--dorado);
+}}
+
+.introduccion p {{
+  margin-bottom:8px;
+}}
+
 article {{
-    margin: 35px 0;
+  background:white;
+  padding:30px;
+  border-radius:8px;
+  margin-bottom:25px;
+  border-top:3px solid var(--dorado);
 }}
+
+article h2 {{
+  font-family:"Playfair Display",serif;
+  color:var(--verde);
+  font-size:23px;
+  line-height:1.35;
+  margin-bottom:20px;
+}}
+
+article p {{
+  margin-bottom:15px;
+  line-height:1.8;
+  font-size:16px;
+}}
+
 .fuente {{
-    font-size: 14px;
+  margin-top:22px;
+  font-size:14px;
 }}
-a {{
-    color: #876c27;
+
+.fuente a,
+article ul a {{
+  color:#876c27;
+  text-decoration:none;
+  font-weight:600;
 }}
-hr {{
-    border: 0;
-    border-top: 1px solid #d8d2c4;
-    margin: 35px 0;
+
+.fuente a:hover,
+article ul a:hover {{
+  text-decoration:underline;
+}}
+
+article ul {{
+  margin:10px 0 0 20px;
+  font-size:13px;
+}}
+
+footer {{
+  background:var(--verde);
+  color:white;
+  padding:35px 20px;
+  margin-top:60px;
+  text-align:center;
+  font-size:14px;
+}}
+
+footer a {{
+  color:var(--dorado);
+  text-decoration:none;
+}}
+
+@media(max-width:600px) {{
+  .hero h1 {{
+    font-size:30px;
+  }}
+
+  article {{
+    padding:22px;
+  }}
+
+  article h2 {{
+    font-size:21px;
+  }}
 }}
 </style>
 </head>
+
 <body>
-<header>
-    <h1>CosasDeDineros</h1>
-    <p>Las noticias financieras explicadas sin complicaciones.</p>
+
+<div class="topbar">
+  <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web"
+     target="_blank" rel="noopener noreferrer">
+    Mensaje directo
+  </a>
+</div>
+
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="noticias.html">Noticias</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+  <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="datos.html">Datos</a>
+  <a href="Libros.html">Libros</a>
+</nav>
+
+<div class="hero">
+  <h1>Noticias financieras</h1>
+  <p>La actualidad económica explicada sin complicaciones</p>
+</div>
+
+<main class="contenido">
+
+  <div class="introduccion">
+    <p><strong>Las noticias financieras de hoy</strong></p>
     <p>{fecha_texto} · Lectura aproximada: 5 minutos</p>
-</header>
+    <p>Seis noticias para entender qué está pasando en los mercados, las empresas y la economía, y por qué puede afectar a tu dinero.</p>
+  </div>
+
 {contenido_html}
+
+</main>
+
 <footer>
-    <p>Un proyecto de CosasDeDineros.</p>
+  <p><strong>Cosas de Dineros</strong></p>
+  <p>Escrito por Alonso Orellana ·
+    <a href="https://instagram.com/cosasdedineros" target="_blank" rel="noopener noreferrer">@cosasdedineros</a>
+  </p>
+  <p style="margin-top:15px;">
+    <a href="legal.html">Aviso legal</a> |
+    <a href="cookies.html">Política de cookies</a> |
+    <a href="privacidad.html">Política de privacidad</a>
+  </p>
 </footer>
+
 </body>
 </html>
 """
