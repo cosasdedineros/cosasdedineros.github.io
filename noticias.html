@@ -3,129 +3,321 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CosasDeDineros - Noticias 14/11/2026</title>
+<title>Cosas de Dineros - Noticias financieras</title>
+<meta name="description" content="Noticias financieras explicadas de forma sencilla por Cosas de Dineros.">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
+:root {
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    max-width: 760px;
-    margin: 40px auto;
-    padding: 0 20px;
-    color: #26352c;
-    background: #f8f5ee;
-    line-height: 1.7;
+  font-family:"DM Sans",sans-serif;
+  background:var(--crema);
+  color:var(--texto);
+  line-height:1.7;
 }
-h1 {
-    color: #1a3a2a;
-    font-size: 32px;
+
+.topbar {
+  background:var(--verde);
+  color:white;
+  display:flex;
+  align-items:center;
+  padding:10px 20px;
+  justify-content:flex-end;
 }
-h2 {
-    color: #1a3a2a;
-    font-size: 23px;
-    line-height: 1.3;
+
+.topbar a {
+  text-decoration:none;
+  background:var(--dorado);
+  color:var(--verde);
+  font-weight:600;
+  padding:8px 16px;
+  border-radius:6px;
+  font-size:14px;
 }
+
+nav {
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:#122a1f;
+  display:flex;
+  gap:20px;
+  padding:12px 20px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  white-space:nowrap;
+}
+
+nav::-webkit-scrollbar {
+  display:none;
+}
+
+@media(min-width:700px) {
+  nav {
+    justify-content:center;
+  }
+}
+
+nav a {
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  flex-shrink:0;
+}
+
+nav a:hover {
+  color:var(--dorado);
+}
+
+.hero {
+  padding:45px 20px;
+  text-align:center;
+  background:var(--verde);
+  color:white;
+}
+
+.hero h1 {
+  font-family:"Playfair Display",serif;
+  font-size:36px;
+}
+
+.hero p {
+  font-size:16px;
+  margin-top:8px;
+  opacity:0.85;
+}
+
+.contenido {
+  max-width:900px;
+  margin:35px auto;
+  padding:0 20px;
+}
+
+.introduccion {
+  background:white;
+  padding:25px;
+  border-radius:8px;
+  margin-bottom:30px;
+  border-top:3px solid var(--dorado);
+}
+
+.introduccion p {
+  margin-bottom:8px;
+}
+
 article {
-    margin: 35px 0;
+  background:white;
+  padding:30px;
+  border-radius:8px;
+  margin-bottom:25px;
+  border-top:3px solid var(--dorado);
 }
+
+article h2 {
+  font-family:"Playfair Display",serif;
+  color:var(--verde);
+  font-size:23px;
+  line-height:1.35;
+  margin-bottom:20px;
+}
+
+article p {
+  margin-bottom:15px;
+  line-height:1.8;
+  font-size:16px;
+}
+
 .fuente {
-    font-size: 14px;
+  margin-top:22px;
+  font-size:14px;
 }
-a {
-    color: #876c27;
+
+.fuente a,
+article ul a {
+  color:#876c27;
+  text-decoration:none;
+  font-weight:600;
 }
-hr {
-    border: 0;
-    border-top: 1px solid #d8d2c4;
-    margin: 35px 0;
+
+.fuente a:hover,
+article ul a:hover {
+  text-decoration:underline;
+}
+
+article ul {
+  margin:10px 0 0 20px;
+  font-size:13px;
+}
+
+footer {
+  background:var(--verde);
+  color:white;
+  padding:35px 20px;
+  margin-top:60px;
+  text-align:center;
+  font-size:14px;
+}
+
+footer a {
+  color:var(--dorado);
+  text-decoration:none;
+}
+
+@media(max-width:600px) {
+  .hero h1 {
+    font-size:30px;
+  }
+
+  article {
+    padding:22px;
+  }
+
+  article h2 {
+    font-size:21px;
+  }
 }
 </style>
 </head>
+
 <body>
-<header>
-    <h1>CosasDeDineros</h1>
-    <p>Las noticias financieras explicadas sin complicaciones.</p>
+
+<div class="topbar">
+  <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web"
+     target="_blank" rel="noopener noreferrer">
+    Mensaje directo
+  </a>
+</div>
+
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="noticias.html">Noticias</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+  <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="datos.html">Datos</a>
+  <a href="Libros.html">Libros</a>
+</nav>
+
+<div class="hero">
+  <h1>Noticias financieras</h1>
+  <p>La actualidad económica explicada sin complicaciones</p>
+</div>
+
+<main class="contenido">
+
+  <div class="introduccion">
+    <p><strong>Las noticias financieras de hoy</strong></p>
     <p>14/11/2026 · Lectura aproximada: 5 minutos</p>
-</header>
+    <p>Seis noticias para entender qué está pasando en los mercados, las empresas y la economía, y por qué puede afectar a tu dinero.</p>
+  </div>
+
 
     <article>
-        <h2>1. Nvidia busca capitán: el reto de relevar a Jensen Huang</h2>
-        <p>La dimisión de Jensen Huang, tras más de tres décadas al frente de Nvidia, ha dejado a la tecnológica en un momento de incertidumbre histórica. Mientras el consejo de administración busca un sucesor definitivo, la directora financiera Colette Kress ha tomado las riendas como CEO interina. Su perfil, curtido en las finanzas y con una relación directa con Wall Street, es visto como un movimiento de estabilidad necesario para calmar a los inversores.</p><p>El desafío para Nvidia es mayúsculo. No solo se trata de reemplazar a quien fue el arquitecto de su dominio en el mercado de chips para inteligencia artificial, sino de mantener la cohesión de un &#x27;imperio&#x27; que funciona, en palabras de algunos analistas, bajo una cultura casi feudal. Entre los nombres que suenan para el relevo, destacan Ian Buck, clave en la plataforma CUDA; Jonathan Ross, fundador de Groq; y Rene Haas, actual CEO de Arm. La capacidad de quien finalmente sea nombrado para gestionar los complejos acuerdos comerciales y las inversiones estratégicas será determinante. El mercado no solo vigila el producto, sino cómo el nuevo liderazgo asegura que Nvidia siga siendo el proveedor de referencia sin el impulso personalista que caracterizó la era de Huang.</p>
+        <h2>1. Nvidia en el punto de mira: qué esperar tras la crisis de liderazgo</h2>
+        <p>Nvidia se encuentra en una encrucijada tras la dimisión de su fundador y consejero delegado, Jensen Huang. Con la directora financiera, Colette Kress, asumiendo el cargo de forma interina, el mercado contiene la respiración ante la presentación de resultados del próximo martes 17 de noviembre. Se espera un beneficio por acción de 2,469 dólares, un 90% superior al del año pasado. Estas cifras serán la primera prueba real para comprobar si el negocio puede seguir funcionando a toda máquina sin su figura más carismática y controvertida.</p><p>La salida de Huang, envuelto en escándalos de gobernanza y espionaje, no es solo un problema de nombres. Nvidia ha tejido una red de inversiones y compromisos financieros que supera los 120.000 millones de dólares, apoyando a empresas que, en muchos casos, son sus propias clientas. Esta &#x27;financiación circular&#x27; es ahora objeto de un escrutinio intenso. Mientras tanto, la empresa afronta la presión de un mercado que cuestiona si el gasto masivo en inteligencia artificial se traducirá realmente en beneficios reales a corto plazo. Si los resultados no convencen, la volatilidad en la cotización, que ya ha sufrido un fuerte castigo, podría intensificarse todavía más.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/empresas/quien-puede-reemplazar-a-jensen-huang-como-ceo-de-nvidia-cuatro-nombres-para-ocupar-su-puesto--24163688.html" target="_blank"
+            <a href="https://www.bolsamania.com/capitalbolsa/noticias/empresas/nvidia-afronta-la-prueba-de-sus-resultados-tras-el-castigo-en-bolsa--24162930.html" target="_blank"
                rel="noopener noreferrer">
                 Leer noticia original en Capital Bolsa
             </a>
         </p>
-        
+        <ul><li><a href="https://www.bolsamania.com/capitalbolsa/noticias/empresas/nvidia-afronta-la-prueba-de-sus-resultados-tras-el-castigo-en-bolsa--24162930.html" target="_blank" rel="noopener noreferrer">Capital Bolsa</a></li><li><a href="https://www.finanzas.com/mercados/efecto-domino-nvidia-100-000-m-inversiones-amenaza.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>2. El desplome de Nvidia: ¿fin de una era o punto de compra?</h2>
-        <p>Nvidia está atravesando una tormenta perfecta. Tras la salida de su CEO, la acción ha sufrido un castigo superior al 30% respecto a sus máximos de octubre. Este episodio ha llevado al índice de fuerza relativa (RSI) a niveles de sobreventa no vistos desde 2019, una señal que, históricamente, ha precedido tanto a rebotes técnicos como a periodos de mayor sufrimiento bursátil.</p><p>La pregunta que se hacen los inversores es si este ajuste es una oportunidad para comprar barato o un aviso de que el sector tecnológico tiene recorrido a la baja. Bernstein, por ejemplo, ha rebajado su recomendación a &#x27;neutral&#x27;. Aunque sus previsiones de crecimiento de ingresos siguen siendo elevadas, la incertidumbre sobre la transición directiva pesa más en la balanza. Los niveles técnicos son claros: si la acción pierde los 165 dólares, el soporte podría desplomarse hasta la zona de los 135-150 dólares. Mientras tanto, el mercado espera con lupa la presentación de resultados del próximo martes, que será la primera gran prueba de fuego para ver si los fundamentales de la empresa siguen intactos a pesar de la sacudida en la cúpula.</p>
+        <h2>2. ACS diversifica su apuesta: los centros de datos ya no son su único motor</h2>
+        <p>ACS ha aprovechado su &#x27;Capital Markets Day&#x27; para enviar un mensaje claro al mercado: aunque los centros de datos para inteligencia artificial han sido una mina de oro —creciendo un 94% en el último año—, la constructora quiere que su futuro sea más amplio. Florentino Pérez busca ahora apoyarse en lo que denomina un &#x27;superciclo&#x27; de infraestructuras: transporte, energía, defensa y minerales críticos.</p><p>El objetivo de la constructora es ambicioso: triplicar su valor en bolsa y elevar el dividendo hasta casi 5 euros por acción para 2030. La estrategia tiene sentido si recordamos que la acción ha sufrido un castigo del 34% desde mayo, precisamente por el miedo de los inversores a que el negocio de la IA se pinchara. Al pivotar hacia sectores más tradicionales y necesarios en la modernización de infraestructuras europeas, especialmente en Alemania, ACS intenta reducir su dependencia del sentimiento volátil que rodea a la tecnología. Es un intento de decir a los accionistas que, si la burbuja de la IA se desinfla, ellos tienen otros pilares donde sostenerse.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/empresas/nvidia-registra-su-mayor-sobreventa-desde-2019-oportunidad-de-compra-o-aviso-de-mas-caidas--24163400.html" target="_blank"
+            <a href="https://www.expansion.com/mercados/cotizaciones/indices/igbolsamadrid_I.MA.html?intcmp=MENUHOM24101&amp;s_kw=bolmad" target="_blank"
                rel="noopener noreferrer">
-                Leer noticia original en Capital Bolsa
+                Leer noticia original en Expansión
             </a>
         </p>
-        
+        <ul><li><a href="https://www.finanzas.com/ibex-35/acs-busca-motores-crecimiento-centros-datos.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>3. Colonial: resultados sólidos que pasan desapercibidos en bolsa</h2>
-        <p>Colonial ha presentado sus resultados trimestrales con un beneficio recurrente que sube un 4% y confirma sus previsiones para 2026. A pesar de que los números son sólidos, la inmobiliaria cotiza con un llamativo descuento del 50% sobre el valor neto de sus activos (NAV). Esto significa que, básicamente, el mercado está valorando el patrimonio de la compañía a mitad de precio, una situación que los analistas consideran una oportunidad interesante.</p><p>¿Por qué importa esto financieramente? Porque el descuento suele indicar que el mercado es escéptico sobre la capacidad de la empresa para monetizar sus activos o teme por sus niveles de deuda. Sin embargo, Colonial cuenta con una liquidez de 2.275 millones de euros y una estructura de deuda bajo control, con tipos mayoritariamente fijos cercanos al 2%. Con un potencial de revalorización que algunos analistas sitúan cerca del 60%, la empresa parece estar cotizando muy por debajo de su valor intrínseco. La clave para que este gap se cierre será la confianza de los inversores en la calidad de sus oficinas prime en ciudades como París, Madrid y Barcelona, en un contexto donde el sector inmobiliario está tratando de recuperar el favor del capital.</p>
+        <h2>3. Técnicas Reunidas vuelve a pagar dividendo tras superar la tormenta</h2>
+        <p>Hay noticias que son un alivio para los inversores, y la vuelta del dividendo de Técnicas Reunidas es una de ellas. La ingeniería española ha confirmado que repartirá 21 millones de euros en enero de 2027 a cuenta de los resultados de este ejercicio. Es el símbolo definitivo de que la empresa ha dejado atrás sus años más oscuros, marcados por la pandemia y las secuelas de la invasión de Ucrania.</p><p>El negocio vuelve a sonreír con un beneficio neto de 119 millones hasta septiembre, un 10% más que el año pasado, y una cartera de proyectos que ha alcanzado un récord histórico de 14.141 millones de euros. Además, la compañía ha mejorado sus previsiones para el cierre de año, estimando un beneficio operativo de unos 295 millones. Este giro positivo se explica por una mejor ejecución de sus proyectos en Oriente Próximo y Norteamérica, y por haber resuelto favorablemente un arbitraje millonario. Con una caja neta superior a los 600 millones, la empresa parece haber recuperado el pulso financiero necesario para mirar al futuro con más optimismo.</p>
         <p class="fuente">
-            <a href="https://www.finanzas.com/ibex-35/colonial-convence-resultados-cotiza-potencial-60.html" target="_blank"
+            <a href="https://cincodias.elpais.com/companias/2026-11-13/tecnicas-reunidas-recupera-el-pago-de-dividendos-con-el-reparto-de-21-millones-el-proximo-enero.html" target="_blank"
                rel="noopener noreferrer">
-                Leer noticia original en Finanzas.com
+                Leer noticia original en Cinco Días
             </a>
         </p>
-        
+        <ul><li><a href="https://cincodias.elpais.com/companias/2026-11-13/tecnicas-reunidas-recupera-el-pago-de-dividendos-con-el-reparto-de-21-millones-el-proximo-enero.html" target="_blank" rel="noopener noreferrer">Cinco Días</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>4. Santander eleva su apuesta por Brasil: la recompra de acciones como escudo</h2>
-        <p>Banco Santander ha decidido subir un 5% su oferta para adquirir el 10% restante de su filial brasileña. Es una operación estratégica diseñada para simplificar la estructura del grupo y evitar que, teniendo el 100% de los activos en balance, no pueda capturar la totalidad del beneficio neto que genera Brasil, que es su segundo mayor mercado.</p><p>Desde el punto de vista del accionista, la gran preocupación ante una ampliación de capital es la &#x27;dilución&#x27;, es decir, que al repartir los beneficios entre más acciones, el valor individual de cada una caiga. Pero Santander ha preparado un escudo: sus programas de recompra de acciones. Al retirar títulos del mercado, el banco compensa ese aumento en el número de acciones, haciendo que el impacto en el beneficio por acción (BPA) sea prácticamente imperceptible. Esta es una muestra de cómo las políticas de remuneración al accionista no son solo un reparto de dinero, sino una herramienta técnica vital para blindar al inversor ante operaciones corporativas. Con una dilución estimada mínima, el movimiento se percibe como una forma ágil de optimizar la estructura de capital sin que el accionista sufra un perjuicio real.</p>
+        <h2>4. Iberdrola acelera: por qué el mercado sigue confiando en la eléctrica</h2>
+        <p>Iberdrola parece estar en otra liga dentro del Ibex 35. Mientras otros sectores sufren con la incertidumbre, la eléctrica ha revisado al alza sus expectativas de beneficio hasta 2030, prometiendo un crecimiento anual del 10%. Para una compañía de este tamaño y madurez, ese ritmo es un dato que llama mucho la atención de los inversores.</p><p>El motivo de este optimismo es su enfoque estratégico: redes eléctricas y renovables. Al priorizar el negocio de redes, Iberdrola se asegura ingresos mucho más estables y predecibles, ya que están regulados por marcos legales claros, alejándose así de la volatilidad del precio de la energía en el mercado mayorista. Si a esto le sumamos una remuneración al accionista que sigue creciendo, es fácil entender por qué analistas como los de Bankinter han elevado su precio objetivo. Básicamente, Iberdrola se ha convertido en un refugio para quienes buscan crecimiento sin el estrés de los sectores tecnológicos, combinando una estrategia defensiva con una ambición de crecimiento de doble dígito.</p>
         <p class="fuente">
-            <a href="https://www.finanzas.com/ibex-35/recompras-blindan-inversor-santander-mejora-canje-brasil.html" target="_blank"
-               rel="noopener noreferrer">
-                Leer noticia original en Finanzas.com
-            </a>
-        </p>
-        
-    </article>
-    <hr>
-    
-    <article>
-        <h2>5. ¿Primera fase del estallido de la burbuja de la IA?</h2>
-        <p>Eugenio Catone ha planteado una tesis inquietante: el mercado estaría atravesando la primera fase del posible estallido de una burbuja en la inteligencia artificial. Según este análisis, el proceso se divide en tres actos. Primero, el mercado de valores ajusta las expectativas y los semiconductores empiezan a sufrir, anticipando un frenazo en el gasto de los grandes operadores de centros de datos. La segunda fase afectaría al crédito, con un aumento en las tensiones de la deuda, mientras que la tercera, la más grave, implicaría una crisis de financiación real para los desarrolladores de modelos de IA, como OpenAI o Anthropic.</p><p>Para los inversores, esto es una llamada a la prudencia. Actualmente, los fabricantes de chips están en el punto de mira, pero la verdadera señal de alarma no será solo la caída de precios, sino el encarecimiento de la financiación. Si los diferenciales de crédito de grado de inversión superan ciertos umbrales, estaríamos ante una señal clara de contagio. Por ahora, el mercado sigue absorbiendo el impacto, pero la tesis sugiere vigilar el flujo de caja libre de las compañías: si las empresas que más invierten en IA empiezan a tener problemas para financiar su expansión, el impacto en la renta variable será mucho más profundo que una corrección técnica en el sector de chips.</p>
-        <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/el-estallido-de-la-burbuja-de-la-ia-tiene-tres-fases-estamos-en-la-primera--24166524.html" target="_blank"
-               rel="noopener noreferrer">
-                Leer noticia original en Capital Bolsa
-            </a>
-        </p>
-        
-    </article>
-    <hr>
-    
-    <article>
-        <h2>6. Microsoft pierde 60.000 millones tras el apagón de Outlook</h2>
-        <p>Una interrupción de 18 horas en servicios clave como Outlook, Teams y Copilot ha costado a Microsoft cerca de 60.000 millones de dólares en capitalización bursátil. Aunque el precio de la acción reaccionó con una caída contenida del 1,5% tras la reapertura, el incidente es un recordatorio del riesgo reputacional y operativo de depender de unos pocos proveedores tecnológicos gigantescos.</p><p>Para las empresas que utilizan estos servicios, el coste no es solo técnico; es económico. En algunos casos, instituciones financieras tuvieron que recurrir a métodos tan analógicos como el fax o el teléfono para seguir operando. Financieramente, las empresas afectadas pueden reclamar daños y perjuicios bajo el Código Civil si logran demostrar que el proveedor incumplió sus niveles de servicio (SLA) contratados. Sin embargo, no hay indemnizaciones automáticas: depende de si la causa fue una negligencia o un evento de fuerza mayor. El gran riesgo para Microsoft no es el pago de posibles multas, sino la erosión de la confianza de sus clientes corporativos, que son quienes sostienen su negocio en la nube. Cuando un &#x27;básico&#x27; como el correo electrónico falla, la reputación de ser un proveedor &#x27;seguro&#x27; para la operativa empresarial queda bajo interrogante.</p>
-        <p class="fuente">
-            <a href="https://www.finanzas.com/mercados/microsoft-pierde-casi-60-000-m-apagon-mundial-outlook.html" target="_blank"
+            <a href="https://www.finanzas.com/ibex-35/dividendo-otras-dos-razones-comprar-iberdrola-despues-resultados.html" target="_blank"
                rel="noopener noreferrer">
                 Leer noticia original en Finanzas.com
             </a>
         </p>
-        
+        <ul><li><a href="https://www.finanzas.com/ibex-35/dividendo-otras-dos-razones-comprar-iberdrola-despues-resultados.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
     </article>
     <hr>
     
+    <article>
+        <h2>5. Pimco pone sobre la mesa una subida de tipos de medio punto en diciembre</h2>
+        <p>La Reserva Federal (Fed) podría tener que apretar las tuercas más de lo esperado en su reunión de diciembre. La gestora de fondos Pimco advierte que una subida de tipos de interés de 50 puntos básicos —medio punto porcentual— está empezando a ser una posibilidad real para el debate de los responsables monetarios.</p><p>¿El motivo? La inflación en Estados Unidos no baja tan rápido como se deseaba. A pesar de los esfuerzos anteriores, el IPC subyacente sigue mostrando firmeza en servicios que, en teoría, deberían ser menos sensibles a los costes de energía o transporte. Cuando los tipos de interés son bajos y la economía es resistente, el banco central utiliza subidas para enfriar el consumo y la inversión y así controlar los precios. Si la Fed sube los tipos, encarece el crédito tanto para empresas como para familias; esto es un mecanismo diseñado para que todos gastemos un poco menos, lo que ayuda a que los precios se moderen. La preocupación es que la Fed se haya quedado atrás y necesite una dosis más fuerte de medicina monetaria para recuperar el control.</p>
+        <p class="fuente">
+            <a href="https://www.bolsamania.com/fundsnews/noticias/gestoras/pimco-ve-posible-subida-50-pb-fed-diciembre-esta-mesa--24165894.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Bolsamanía
+            </a>
+        </p>
+        <ul><li><a href="https://www.bolsamania.com/fundsnews/noticias/gestoras/pimco-ve-posible-subida-50-pb-fed-diciembre-esta-mesa--24165894.html" target="_blank" rel="noopener noreferrer">Bolsamanía</a></li></ul>
+    </article>
+    <hr>
+    
+    <article>
+        <h2>6. El Ibex 35 se desmarca de Wall Street y aguanta los 20.000 puntos</h2>
+        <p>Resulta llamativo ver cómo el Ibex 35 ha conseguido terminar la semana por encima de los 20.000 puntos, ajeno a la tormenta que ha sacudido al sector tecnológico en Estados Unidos. Mientras Nvidia y otras grandes tecnológicas sufrían caídas históricas, el selectivo español se ha apoyado en sus valores tradicionales: banca, energía e industria.</p><p>Este comportamiento demuestra una vez más por qué las bolsas europeas, menos dependientes de los gigantes de la inteligencia artificial, pueden funcionar como una cobertura cuando la tecnología americana entra en modo pánico. Repsol ha sido uno de los grandes protagonistas, subiendo a medida que el precio del petróleo (Brent) se acerca a los 96 dólares por barril, impulsado por las tensiones geopolíticas. Aunque la volatilidad en EE. UU. ha generado nerviosismo por el posible impacto en la inflación y en las decisiones de la Reserva Federal, el mercado español se ha centrado en sus propios fundamentales, logrando un rebote semanal cercano al 3,3%. Es un recordatorio de que, a veces, la &#x27;vieja economía&#x27; es el mejor salvavidas cuando las burbujas digitales empiezan a deshincharse.</p>
+        <p class="fuente">
+            <a href="https://www.finanzas.com/ibex-35/ibex-35-retrocede-nvidia-petroleo-inflacion-punto-mira.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Finanzas.com
+            </a>
+        </p>
+        <ul><li><a href="https://www.finanzas.com/ibex-35/ibex-35-retrocede-nvidia-petroleo-inflacion-punto-mira.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
+    </article>
+    <hr>
+    
+
+</main>
+
 <footer>
-    <p>Un proyecto de CosasDeDineros.</p>
+  <p><strong>Cosas de Dineros</strong></p>
+  <p>Escrito por Alonso Orellana ·
+    <a href="https://instagram.com/cosasdedineros" target="_blank" rel="noopener noreferrer">@cosasdedineros</a>
+  </p>
+  <p style="margin-top:15px;">
+    <a href="legal.html">Aviso legal</a> |
+    <a href="cookies.html">Política de cookies</a> |
+    <a href="privacidad.html">Política de privacidad</a>
+  </p>
 </footer>
+
 </body>
 </html>
