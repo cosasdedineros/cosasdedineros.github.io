@@ -2,309 +2,137 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCX74R28X0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SCX74R28X0');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cosas de Dineros - Noticias financieras</title>
-<meta name="description" content="Noticias financieras explicadas de forma sencilla por Cosas de Dineros.">
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<title>CosasDeDineros - Noticias 15/11/2026</title>
 <style>
-:root {
-  --verde:#1a3a2a;
-  --dorado:#c9a84c;
-  --crema:#f8f5ee;
-  --texto:#1a1a1a;
-}
-
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
 body {
-  font-family:"DM Sans",sans-serif;
-  background:var(--crema);
-  color:var(--texto);
-  line-height:1.7;
+    font-family: Arial, sans-serif;
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #26352c;
+    background: #f8f5ee;
+    line-height: 1.7;
 }
-
-.topbar {
-  background:var(--verde);
-  color:white;
-  display:flex;
-  align-items:center;
-  padding:10px 20px;
-  justify-content:flex-end;
+h1 {
+    color: #1a3a2a;
+    font-size: 32px;
 }
-
-.topbar a {
-  text-decoration:none;
-  background:var(--dorado);
-  color:var(--verde);
-  font-weight:600;
-  padding:8px 16px;
-  border-radius:6px;
-  font-size:14px;
+h2 {
+    color: #1a3a2a;
+    font-size: 23px;
+    line-height: 1.3;
 }
-
-nav {
-  position:sticky;
-  top:0;
-  z-index:999;
-  background:#122a1f;
-  display:flex;
-  gap:20px;
-  padding:12px 20px;
-  overflow-x:auto;
-  scrollbar-width:none;
-  white-space:nowrap;
-}
-
-nav::-webkit-scrollbar {
-  display:none;
-}
-
-@media(min-width:700px) {
-  nav {
-    justify-content:center;
-  }
-}
-
-nav a {
-  color:white;
-  text-decoration:none;
-  font-size:14px;
-  flex-shrink:0;
-}
-
-nav a:hover {
-  color:var(--dorado);
-}
-
-.hero {
-  padding:45px 20px;
-  text-align:center;
-  background:var(--verde);
-  color:white;
-}
-
-.hero h1 {
-  font-family:"Playfair Display",serif;
-  font-size:36px;
-}
-
-.hero p {
-  font-size:16px;
-  margin-top:8px;
-  opacity:0.85;
-}
-
-.contenido {
-  max-width:900px;
-  margin:35px auto;
-  padding:0 20px;
-}
-
-.introduccion {
-  background:white;
-  padding:25px;
-  border-radius:8px;
-  margin-bottom:30px;
-  border-top:3px solid var(--dorado);
-}
-
-.introduccion p {
-  margin-bottom:8px;
-}
-
 article {
-  background:white;
-  padding:30px;
-  border-radius:8px;
-  margin-bottom:25px;
-  border-top:3px solid var(--dorado);
+    margin: 35px 0;
 }
-
-article h2 {
-  font-family:"Playfair Display",serif;
-  color:var(--verde);
-  font-size:23px;
-  line-height:1.35;
-  margin-bottom:20px;
-}
-
-article p {
-  margin-bottom:15px;
-  line-height:1.8;
-  font-size:16px;
-}
-
 .fuente {
-  margin-top:22px;
-  font-size:14px;
+    font-size: 14px;
 }
-
-.fuente a,
-article ul a {
-  color:#876c27;
-  text-decoration:none;
-  font-weight:600;
+a {
+    color: #876c27;
 }
-
-.fuente a:hover,
-article ul a:hover {
-  text-decoration:underline;
-}
-
-article ul {
-  margin:10px 0 0 20px;
-  font-size:13px;
-}
-
-footer {
-  background:var(--verde);
-  color:white;
-  padding:35px 20px;
-  margin-top:60px;
-  text-align:center;
-  font-size:14px;
-}
-
-footer a {
-  color:var(--dorado);
-  text-decoration:none;
-}
-
-@media(max-width:600px) {
-  .hero h1 {
-    font-size:30px;
-  }
-
-  article {
-    padding:22px;
-  }
-
-  article h2 {
-    font-size:21px;
-  }
+hr {
+    border: 0;
+    border-top: 1px solid #d8d2c4;
+    margin: 35px 0;
 }
 </style>
 </head>
-
 <body>
-
-<div class="topbar">
-  <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web"
-     target="_blank" rel="noopener noreferrer">
-    Mensaje directo
-  </a>
-</div>
-
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="instagram.html">Posts</a>
-  <a href="Substack.html">Artículos</a>
-  <a href="noticias.html">Noticias</a>
-  <a href="Calculadoras.html">Calculadoras</a>
-  <a href="comparador-fondos.html">Comparador fondos</a>
-  <a href="datos.html">Datos</a>
-  <a href="Libros.html">Libros</a>
-</nav>
-
-<div class="hero">
-  <h1>Noticias financieras</h1>
-  <p>La actualidad económica explicada sin complicaciones</p>
-</div>
-
-<main class="contenido">
-
-  <div class="introduccion">
-    <p><strong>Las noticias financieras de hoy</strong></p>
-    <p>14/11/2026 · Lectura aproximada: 5 minutos</p>
-    <p>Seis noticias para entender qué está pasando en los mercados, las empresas y la economía, y por qué puede afectar a tu dinero.</p>
-  </div>
-
+<header>
+    <h1>CosasDeDineros</h1>
+    <p>Las noticias financieras explicadas sin complicaciones.</p>
+    <p>15/11/2026 · Lectura aproximada: 5 minutos</p>
+</header>
 
     <article>
-        <h2>1. Nvidia, el gran financiador de la IA, entra en zona de turbulencias tras la salida de su CEO</h2>
-        <p>La salida de Jensen Huang de Nvidia, tras más de tres décadas al frente, no es solo un terremoto en la cúpula directiva; es una señal de alerta para todo el ecosistema de inteligencia artificial. Bajo el mando de Huang, Nvidia se convirtió en el eje central de esta industria, tejiendo una red de inversiones que supera los 124.000 millones de dólares en empresas que, en muchos casos, son también sus principales clientes.</p><p>Este modelo de &#x27;financiación circular&#x27; ha permitido a Nvidia dominar el mercado, pero ahora suscita muchas dudas. Imagina que un proveedor de chips no solo te vende el hardware, sino que también invierte en tu capital o avala tus gastos operativos, como los 105.000 millones de dólares en garantías que Nvidia tiene comprometidos para centros de datos. La incertidumbre radica en qué pasará con esta compleja red bajo una nueva dirección, mientras la empresa busca sucesor para Kress, la directora financiera que ha asumido el mando de forma interina.</p><p>Para el mercado, esto importa porque Nvidia es el corazón financiero de la IA actual. Si la empresa decide apretarse el cinturón o cambiar su estrategia de inversiones ante los escándalos que han rodeado a su fundador, el impacto podría sentirse en las numerosas compañías que dependen de este flujo de capital. La transparencia y la gobernanza pasan ahora a primer plano, obligando a los inversores a ser mucho más selectivos y a mirar más allá del simple crecimiento tecnológico.</p>
+        <h2>1. Nvidia tras el caos de Jensen Huang: una cultura &#x27;feudal&#x27; bajo lupa</h2>
+        <p>La dimisión de Jensen Huang como consejero delegado de Nvidia ha dejado al descubierto una estructura de gestión cuanto menos peculiar. Lejos de la imagen de eficiencia tecnológica, los últimos informes describen una cultura interna calificada de &quot;feudal&quot;, donde los lazos familiares y las relaciones personales habrían ocupado puestos de mando clave. Esta revelación surge tras el escándalo que forzó su salida: una red de relaciones extramatrimoniales que incluía a una subordinada directa y a una empresaria vinculada a una firma investigada por presunto espionaje para China.</p><p>El impacto para Nvidia es doble. Por un lado, la incertidumbre sobre su red de inversiones y financiación, que algunos expertos valoran en el entorno del billón de dólares, preocupa a un mercado que ya ha castigado la acción con una caída del 32% desde sus máximos de octubre. Por otro, la empresa debe aclarar ante los reguladores estadounidenses cómo se permitió la venta de chips a empresas vinculadas a presuntos espías chinos. Mientras la directora financiera, Colette Kress, toma el mando interino, la compañía se enfrenta al reto de convencer al mercado de que su negocio principal —la fabricación de chips para inteligencia artificial— puede sobrevivir a la salida abrupta de quien fue su arquitecto durante 33 años. El próximo martes, en la presentación de resultados, veremos si el negocio sigue operando a toda máquina o si la crisis ha dejado heridas profundas en su estrategia.</p>
         <p class="fuente">
-            <a href="https://www.finanzas.com/mercados/efecto-domino-nvidia-100-000-m-inversiones-amenaza.html" target="_blank"
+            <a href="https://www.expansion.com/economia/2026/11/14/caida-huang-revela-gestion-feudal.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Expansión
+            </a>
+        </p>
+        <ul><li><a href="https://www.expansion.com/economia/2026/11/14/caida-huang-revela-gestion-feudal.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
+    </article>
+    <hr>
+    
+    <article>
+        <h2>2. Técnicas Reunidas blinda su futuro: récords de pedidos y adiós a los miedos por Irán</h2>
+        <p>Buenas noticias para los inversores de Técnicas Reunidas. La ingeniería española ha presentado unas cuentas que han superado las expectativas, tanto en beneficios como en márgenes. Pero más allá de las cifras trimestrales, lo que realmente ha animado al mercado es la tranquilidad que ha aportado la dirección sobre su futuro en Oriente Medio: la compañía ha descartado la necesidad de realizar nuevas provisiones por el conflicto en Irán, un mercado que representa dos tercios de su actividad.</p><p>Este alivio llega acompañado de una cartera de pedidos récord de 14.141 millones de euros, lo que supone un 23% más que hace un año. Gracias a este blindaje de su actividad, la empresa ha revisado al alza sus objetivos para 2026, esperando un margen operativo (EBIT) del 4,5%. Los analistas, como los de Renta 4, han reaccionado elevando su precio objetivo hasta los 42,9 euros, lo que supone un potencial de subida del 35% respecto a su valoración anterior. Además, la compañía ha confirmado su compromiso de pagar un dividendo de 21 millones de euros en enero de 2027 y realizar una recompra de acciones. En definitiva, parece que la empresa ha dejado atrás los años difíciles marcados por las tensiones geopolíticas y la pandemia, estabilizando su caja operativa.</p>
+        <p class="fuente">
+            <a href="https://www.finanzas.com/ibex-35/tecnicas-reunidas-blinda-crecimiento-aleja-fantasma-nuevas-provisiones-iran.html" target="_blank"
                rel="noopener noreferrer">
                 Leer noticia original en Finanzas.com
             </a>
         </p>
-        <ul><li><a href="https://www.finanzas.com/mercados/efecto-domino-nvidia-100-000-m-inversiones-amenaza.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
+        <ul><li><a href="https://www.finanzas.com/ibex-35/tecnicas-reunidas-blinda-crecimiento-aleja-fantasma-nuevas-provisiones-iran.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>2. Técnicas Reunidas vuelve a sonreír: récord de pedidos y dividendo a la vista</h2>
-        <p>Hay noticias que funcionan como un bálsamo tras años complicados, y el anuncio de Técnicas Reunidas es una de ellas. La ingeniería española ha confirmado la vuelta del dividendo, con un pago de 21 millones de euros previsto para enero de 2027, lo que marca el punto final a una etapa oscura marcada por la pandemia y las tensiones geopolíticas.</p><p>¿Por qué es relevante esto? Porque el negocio vuelve a funcionar con solidez. La compañía ha alcanzado una cartera de pedidos récord de 14.141 millones de euros, un 23% más que el año anterior. Además, ha mejorado su previsión de beneficio operativo (EBIT) para 2026 hasta los 295 millones de euros, superando las expectativas del mercado. Renta 4 ha reaccionado a estos datos elevando el precio objetivo de la acción desde 36,40 a 42,90 euros, lo que supone una mejora de valoración del 17,8%, manteniendo su recomendación de &#x27;sobreponderar&#x27;.</p><p>Es importante recordar que un precio objetivo es solo una estimación de los analistas, no una garantía de rentabilidad. Sin embargo, en el caso de Técnicas Reunidas, la mejora en la ejecución de proyectos y la fortaleza de su caja neta —que ha sorprendido al superar los 600 millones de euros— refuerzan la confianza de que la empresa ha dejado atrás su fragilidad financiera.</p>
+        <h2>3. Acciona sufre en bolsa: los problemas para vender activos disparan su deuda</h2>
+        <p>Acciona y su filial, Acciona Energía, han vivido días complicados en el parqué tras reconocer un tropiezo estratégico: no lograrán vender activos renovables en México y Estados Unidos por valor de 1.000 millones de dólares en el plazo previsto. La operación, que debía haberse cerrado durante este año con el fondo Mexico Infrastructure Partners, se ha atascado debido a que el comprador no ha conseguido la financiación necesaria.</p><p>Esto es un problema real para la compañía porque la venta de activos era un pilar fundamental de su plan para reducir su apalancamiento financiero. Al fallar estas desinversiones, la previsión de deuda neta de Acciona Energía para finales de 2026 ha saltado de los 3.000 millones de euros previstos a una horquilla de entre 3.250 y 3.500 millones. Para evitar que esto afecte a su calificación crediticia, la matriz ha tenido que prestarle 500 millones de euros mediante un instrumento financiero que, aunque protege el balance de la filial, refleja las tensiones de liquidez del sector. A pesar de esto, el grupo mantiene sus previsiones de beneficio operativo (EBITDA) en la parte alta del rango gracias al buen rendimiento de su negocio de aerogeneradores, Nordex, que ha visto cómo sus pedidos subían un 20%. El mercado, sin embargo, ha preferido penalizar la falta de cumplimiento en sus promesas de desinversión.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/recomendaciones/renta-4-eleva-de-3640-a-4290-euros-su-precio-objetivo-para-tecnicas-reunidas--24164342.html" target="_blank"
-               rel="noopener noreferrer">
-                Leer noticia original en Capital Bolsa
-            </a>
-        </p>
-        <ul><li><a href="https://www.bolsamania.com/capitalbolsa/noticias/recomendaciones/renta-4-eleva-de-3640-a-4290-euros-su-precio-objetivo-para-tecnicas-reunidas--24164342.html" target="_blank" rel="noopener noreferrer">Capital Bolsa</a></li></ul>
-    </article>
-    <hr>
-    
-    <article>
-        <h2>3. Colonial: el mercado sigue sin valorar a precio justo su patrimonio</h2>
-        <p>Inmobiliaria Colonial ha presentado unos resultados sólidos: su beneficio neto recurrente ha crecido un 3,5%, alcanzando los 161,7 millones de euros, y ha confirmado sus previsiones de beneficio por acción para 2026. A pesar de estos números, la empresa cotiza en bolsa con un descuento importante respecto al valor real de sus activos, el conocido como NAV (Net Asset Value).</p><p>Esto sucede porque el mercado suele ser escéptico sobre la capacidad de estas empresas para seguir generando valor en un entorno de tipos de interés que no han caído tan rápido como muchos deseaban. Para Colonial, la clave está en que sus rentas comparables han subido un 4%, impulsadas especialmente por los activos en Barcelona y Madrid, mientras que su tasa de ocupación se mantiene en el 94%. Su entrada en mercados como Berlín y su diversificación hacia residencias de estudiantes son estrategias para mantener el crecimiento.</p><p>Con un precio objetivo de 8,30 euros fijado por Renta 4 y una recomendación de &#x27;sobreponderar&#x27;, el valor se encuentra en una situación interesante. Financieramente, esto significa que el mercado está pagando &#x27;menos por más&#x27;. El reto para Colonial es demostrar que su cartera, valorada a precios de mercado, seguirá generando efectivo suficiente para compensar las dudas sobre el sector inmobiliario de oficinas en Europa.</p>
-        <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/analisis-fundamental/colonial-gana-un-35-mas-en-terminos-recurrentes-y-confirma-sus-previsiones-para-2026--24164278.html" target="_blank"
-               rel="noopener noreferrer">
-                Leer noticia original en Capital Bolsa
-            </a>
-        </p>
-        <ul><li><a href="https://www.bolsamania.com/capitalbolsa/noticias/analisis-fundamental/colonial-gana-un-35-mas-en-terminos-recurrentes-y-confirma-sus-previsiones-para-2026--24164278.html" target="_blank" rel="noopener noreferrer">Capital Bolsa</a></li></ul>
-    </article>
-    <hr>
-    
-    <article>
-        <h2>4. ACS diversifica su estrategia para evitar depender solo de la IA</h2>
-        <p>ACS ha aprovechado su &#x27;Capital Markets Day&#x27; para enviar un mensaje claro: la inteligencia artificial es un negocio extraordinario —sus ingresos en centros de datos han crecido un 94% este año—, pero no es el único pilar de su futuro. La constructora busca ahora posicionarse en un &#x27;superciclo&#x27; de infraestructuras que incluye energía, defensa, transporte y minerales críticos.</p><p>La ambición de la compañía es triplicar su valor en bolsa y elevar su dividendo hasta casi 5 euros por acción para 2030. ¿Por qué es necesario este giro? Porque el mercado ha castigado la acción un 34% desde sus máximos de mayo debido al escepticismo sobre la sostenibilidad del gasto en inteligencia artificial. Al ampliar su foco hacia infraestructuras tradicionales y proyectos en mercados clave como Alemania, ACS intenta reducir su vulnerabilidad ante cualquier posible frenazo en la inversión tecnológica.</p><p>Financieramente, la estrategia es lógica: diversificar ingresos para mitigar riesgos regulatorios o de mercado. Con su filial Turner como punta de lanza en EE. UU., ACS ha duplicado sus ingresos en los últimos tres años. La clave de esta apuesta reside en que, a diferencia de los activos puramente digitales, la infraestructura básica suele tener una demanda más predecible a largo plazo, lo que podría ayudar a estabilizar su valoración bursátil y recuperar la confianza de los inversores.</p>
-        <p class="fuente">
-            <a href="https://www.finanzas.com/ibex-35/acs-busca-nuevos-motores-crecimiento-centros-datos.html" target="_blank"
+            <a href="https://www.finanzas.com/ibex-35/acciona-filial-verde-desploman-pinchar-desinversiones.html" target="_blank"
                rel="noopener noreferrer">
                 Leer noticia original en Finanzas.com
             </a>
         </p>
-        <ul><li><a href="https://www.finanzas.com/ibex-35/acs-busca-nuevos-motores-crecimiento-centros-datos.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
+        <ul><li><a href="https://www.finanzas.com/ibex-35/acciona-filial-verde-desploman-pinchar-desinversiones.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>5. Oracle: el analista que ve un potencial del 150% en su negocio de IA</h2>
-        <p>Bernstein ha publicado una visión muy optimista sobre Oracle, fijando un precio objetivo de 325 dólares, lo que implica un potencial de subida superior al 150% respecto a la cotización actual. Esta valoración se basa en la idea de que el mercado está infravalorando drásticamente el negocio de infraestructura de inteligencia artificial de la compañía.</p><p>El punto clave de esta tesis es el contrato con OpenAI, que representa aproximadamente el 45% de los servicios contratados pendientes de Oracle. El analista considera que, cuando OpenAI salga a bolsa —algo previsto para 2027—, los inversores tendrán mucha más claridad sobre cómo financiará esta empresa su infraestructura, eliminando así una gran parte de la incertidumbre que pesa sobre las cuentas de Oracle hoy en día. Si se aclara la capacidad de pago del cliente, el riesgo de impago o de cancelación de proyectos cae drásticamente.</p><p>Es importante recordar que un precio objetivo es solo la estimación de un analista. Oracle todavía debe convertir su flujo de caja libre en positivo, algo que espera lograr recién en el segundo semestre de su ejercicio fiscal 2028. Hasta entonces, la empresa debe seguir financiando su crecimiento, habiendo captado recientemente 20.000 millones de dólares. Si la apuesta de Bernstein es correcta, el mercado está ignorando el valor que Oracle está construyendo ahora mismo para el futuro de la computación en la nube.</p>
+        <h2>4. ACS sigue creciendo en EE. UU.: nuevos contratos millonarios en el sector digital</h2>
+        <p>Mientras otros sectores sufren, ACS continúa expandiendo su huella en Estados Unidos, especialmente en el nicho de las grandes infraestructuras corporativas. La constructora española ha confirmado que, a través de su filial Turner, participará en la construcción de la nueva sede global de AT&amp;T cerca de Dallas, un proyecto valorado en 1.180 millones de euros. No es un caso aislado: la empresa también está levantando el complejo mundial de IA de Oracle en Tennessee.</p><p>¿Por qué importa esto? Porque ACS ha logrado transformar su cartera de pedidos hacia sectores de alta tecnología, como los centros de datos, que ya concentran casi la mitad de su actividad. Con unos ingresos en su filial estadounidense que han pasado de 18.000 a 35.000 millones de dólares en apenas tres años, la estrategia de la constructora está funcionando: diversificar hacia el &quot;superciclo&quot; de infraestructuras digitales y energía. El objetivo de triplicar su valor en bolsa y elevar el dividendo hasta los 5 euros para 2030 parece estar respaldado por una contratación constante en el mercado estadounidense, donde es el contratista más grande. Para el accionista, esto reduce el riesgo de depender solo de la obra civil tradicional y la coloca en el corazón de la inversión en inteligencia artificial sin tener que desarrollar la tecnología en sí misma.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/recomendaciones/bernstein-ve-mas-de-un-150-de-potencial-en-oracle-y-fija-su-objetivo-en-325-dolares--24142796.html" target="_blank"
+            <a href="https://www.expansion.com/empresas/construccion-servicios/2026/11/13/acciona-ve-peligrar-venta-eeuu-mexico-renovables-900-millones.html" target="_blank"
                rel="noopener noreferrer">
-                Leer noticia original en Capital Bolsa
+                Leer noticia original en Expansión
             </a>
         </p>
-        <ul><li><a href="https://www.bolsamania.com/capitalbolsa/noticias/recomendaciones/bernstein-ve-mas-de-un-150-de-potencial-en-oracle-y-fija-su-objetivo-en-325-dolares--24142796.html" target="_blank" rel="noopener noreferrer">Capital Bolsa</a></li></ul>
+        <ul><li><a href="https://www.expansion.com/empresas/construccion-servicios/2026/11/13/acciona-ve-peligrar-venta-eeuu-mexico-renovables-900-millones.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
     </article>
     <hr>
     
-
-</main>
-
+    <article>
+        <h2>5. Francia bajo la lupa: ¿por qué los mercados no temen un contagio a la eurozona?</h2>
+        <p>Francia se encuentra en una situación delicada: déficit público elevado y un bloqueo político que dificulta aplicar recortes presupuestarios impopulares. Sin embargo, a pesar de que los rendimientos de su deuda han subido, los analistas de Rabobank insisten en que no estamos ante una crisis aguda de liquidez como las que vimos años atrás. El mercado está viendo esto más como una &quot;crisis a cámara lenta&quot;.</p><p>La razón por la que no cunde el pánico generalizado en la eurozona es la red de seguridad que proporcionan la Unión Europea y el Banco Central Europeo, que actúan como dique de contención para evitar efectos contagio. Además, la situación francesa es particular: aunque los políticos evitan los recortes en pensiones y seguridad social para no perder votos antes de las presidenciales de 2027, el país tiene costes de financiación que, comparados con el resto de la zona euro, siguen siendo manejables. ¿Podría extenderse a otros países? Italia tiene retos similares, pero su gobierno ha mostrado mayor disposición a mantener el superávit primario, mientras que España, aun con parálisis política, ha visto cómo esa misma inercia limitaba el gasto público. Por ahora, el mercado francés está ajustando su precio al riesgo político real, pero no hay indicios de que el sistema financiero europeo vaya a romperse por ello.</p>
+        <p class="fuente">
+            <a href="https://www.bolsamania.com/noticias/economia/contagio-crisis-francia-limitado-ue-bce-encargaran-sea-asi--24112338.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Bolsamanía
+            </a>
+        </p>
+        <ul><li><a href="https://www.bolsamania.com/noticias/economia/contagio-crisis-francia-limitado-ue-bce-encargaran-sea-asi--24112338.html" target="_blank" rel="noopener noreferrer">Bolsamanía</a></li></ul>
+    </article>
+    <hr>
+    
+    <article>
+        <h2>6. Los inversores europeos huyen de la incertidumbre hacia fondos conservadores</h2>
+        <p>El dinero en Europa está hablando claro: los inversores prefieren jugar a lo seguro ante la incertidumbre económica. Según datos de Morningstar hasta octubre, los fondos que están acaparando las mayores entradas de capital no son los de renta variable pura, sino los productos monetarios y de renta fija. Un ejemplo es el fondo Pimco GIS Balanced Income and Growth, que ha captado más de 12.500 millones de euros en lo que va de año, buscando generar rentas estables en un entorno de tipos elevados.</p><p>¿Qué significa esto para ti? Que el mercado está premiando los activos que ofrecen una rentabilidad predecible frente a las promesas de grandes crecimientos que conlleva más riesgo. Los fondos monetarios, como el de JPMorgan, también han tenido un éxito notable al ofrecer rentabilidades muy ligadas a los tipos de interés oficiales, funcionando casi como un refugio donde el capital está protegido mientras esperan a que se aclare el panorama. Esto no significa que la bolsa haya muerto; fondos tecnológicos como el de Polar Capital siguen recibiendo dinero, pero el movimiento dominante es defensivo. En España, esta tendencia es aún más marcada, con una preferencia casi absoluta por la renta fija. Es una muestra de que, ante la volatilidad geopolítica y las dudas sobre la inflación, la prioridad del inversor europeo actual es proteger el capital y obtener un pequeño extra sin sustos.</p>
+        <p class="fuente">
+            <a href="https://www.expansion.com/mercados/fondos/2026/11/14/fondos-inversion-arrasan-europa-2026.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Expansión
+            </a>
+        </p>
+        <ul><li><a href="https://www.expansion.com/mercados/fondos/2026/11/14/fondos-inversion-arrasan-europa-2026.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
+    </article>
+    <hr>
+    
 <footer>
-  <p><strong>Cosas de Dineros</strong></p>
-  <p>Escrito por Alonso Orellana ·
-    <a href="https://instagram.com/cosasdedineros" target="_blank" rel="noopener noreferrer">@cosasdedineros</a>
-  </p>
-  <p style="margin-top:15px;">
-    <a href="legal.html">Aviso legal</a> |
-    <a href="cookies.html">Política de cookies</a> |
-    <a href="privacidad.html">Política de privacidad</a>
-  </p>
+    <p>Un proyecto de CosasDeDineros.</p>
 </footer>
-
 </body>
 </html>
