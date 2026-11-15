@@ -750,6 +750,13 @@ documento = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- GOOGLE ADSENSE -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2646608092155910"
+     crossorigin="anonymous"></script>
+
+<!-- GOOGLE ANALYTICS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCX74R28X0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -757,97 +764,292 @@ documento = f"""<!DOCTYPE html>
   gtag('js', new Date());
   gtag('config', 'G-SCX74R28X0');
 </script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- TIPOGRAFÍAS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <title>CosasDeDineros - Noticias {fecha_texto}</title>
+
 <style>
-body {{
-    font-family: Arial, sans-serif;
-    max-width: 760px;
-    margin: 40px auto;
-    padding: 0 20px;
-    color: #26352c;
-    background: #f8f5ee;
-    line-height: 1.7;
-}}
-h1 {{
-    color: #1a3a2a;
-    font-size: 32px;
-}}
-h2 {{
-    color: #1a3a2a;
-    font-size: 23px;
-    line-height: 1.3;
-}}
-article {{
-    margin: 35px 0;
-}}
-.fuente {{
-    font-size: 14px;
-}}
-a {{
-    color: #876c27;
-}}
-hr {{
-    border: 0;
-    border-top: 1px solid #d8d2c4;
-    margin: 35px 0;
+:root{{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
 }}
 
-nav {{
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px 22px;
-    padding: 14px 18px;
-    margin: -40px calc((760px - 100vw) / 2) 30px;
-    background: #1a3a2a;
-}}
-nav a {{
-    color: #f8f5ee;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
-}}
-nav a:hover {{
-    color: #c9a84c;
-}}
-@media (max-width: 700px) {{
-    nav {{
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        margin-left: -20px;
-        margin-right: -20px;
-        padding: 13px 20px;
-    }}
+*{{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }}
 
+body{{
+  font-family:"DM Sans",sans-serif;
+  background:var(--crema);
+  color:var(--texto);
+  line-height:1.7;
+}}
+
+.topbar{{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:var(--verde);
+  color:white;
+  display:flex;
+  align-items:center;
+  padding:10px 20px;
+}}
+
+.usuario-email{{
+  font-size:13px;
+  color:var(--dorado);
+  font-weight:500;
+  display:none;
+  align-items:center;
+  gap:6px;
+}}
+
+.usuario-email::before{{
+  content:"●";
+  color:#4caf50;
+  font-size:10px;
+}}
+
+nav{{
+  position:sticky;
+  top:45px;
+  z-index:999;
+  background:#122a1f;
+  display:flex;
+  gap:20px;
+  padding:12px 20px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  white-space:nowrap;
+}}
+
+nav::-webkit-scrollbar{{
+  display:none;
+}}
+
+@media(min-width:700px){{
+  nav{{
+    justify-content:center;
+  }}
+}}
+
+nav a{{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  flex-shrink:0;
+}}
+
+nav a:hover{{
+  color:var(--dorado);
+}}
+
+.contenido{{
+  max-width:760px;
+  margin:40px auto;
+  padding:0 20px;
+}}
+
+header{{
+  margin-bottom:35px;
+}}
+
+h1{{
+  font-family:"Playfair Display",serif;
+  color:var(--verde);
+  font-size:32px;
+  line-height:1.3;
+  margin-bottom:10px;
+}}
+
+h2{{
+  font-family:"Playfair Display",serif;
+  color:var(--verde);
+  font-size:23px;
+  line-height:1.3;
+  margin-bottom:15px;
+}}
+
+header p{{
+  margin-bottom:8px;
+}}
+
+article{{
+  margin:35px 0;
+}}
+
+article p{{
+  margin-bottom:14px;
+}}
+
+.fuente{{
+  font-size:14px;
+}}
+
+a{{
+  color:#876c27;
+}}
+
+nav a{{
+  color:white;
+}}
+
+hr{{
+  border:0;
+  border-top:1px solid #d8d2c4;
+  margin:35px 0;
+}}
+
+footer{{
+  max-width:760px;
+  margin:40px auto;
+  padding:20px;
+  text-align:center;
+  font-size:14px;
+  color:#666;
+}}
+
+@media(max-width:700px){{
+  .contenido{{
+    margin:25px auto;
+  }}
+
+  h1{{
+    font-size:28px;
+  }}
+}}
 </style>
 </head>
+
 <body>
-<nav aria-label="Navegación principal">
-    <a href="index.html">Inicio</a>
-    <a href="instagram.html">Instagram</a>
-    <a href="Substack.html">Substack</a>
-    <a href="noticias.html">Noticias</a>
-    <a href="Calculadoras.html">Calculadoras</a>
-    <a href="comparador-fondos.html">Comparador de fondos</a>
-    <a href="datos.html">Datos</a>
-    <a href="Libros.html">Libros</a>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span id="usuarioEmail" class="usuario-email"></span>
+
+  <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+    <button id="btnLogin" style="background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:14px;">
+      Iniciar sesión
+    </button>
+
+    <div id="usuarioBox" style="display:none;align-items:center;gap:8px;">
+      <span id="usuarioNombre" style="font-size:13px;color:white;"></span>
+
+      <button id="btnLogout" style="background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:14px;">
+        Salir
+      </button>
+    </div>
+
+    <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+       target="_blank"
+       style="text-decoration:none;background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;">
+      📩 Mensaje directo
+    </a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+  <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="datos.html">Datos</a>
+  <a href="Libros.html">Libros</a>
+  <a href="noticias.html">Noticias</a>
 </nav>
+
+<div class="contenido">
+
 <header>
-    <h1>CosasDeDineros</h1>
-    <p>Las noticias financieras explicadas sin complicaciones.</p>
-    <p>{fecha_texto} · Lectura aproximada: 5 minutos</p>
+  <h1>CosasDeDineros</h1>
+  <p>Las noticias financieras explicadas sin complicaciones.</p>
+  <p>{fecha_texto} · Lectura aproximada: 5 minutos</p>
 </header>
+
 {contenido_html}
+
+</div>
+
 <footer>
-    <p>Un proyecto de CosasDeDineros.</p>
+  <p>Un proyecto de CosasDeDineros.</p>
 </footer>
+
+<!-- FIREBASE: INICIO DE SESIÓN -->
+<script type="module">
+import {{ initializeApp }} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {{
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+}} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {{
+  apiKey: "AIzaSyCYwFgLTVliJXYcFX3mRQ8-XBu-Bw6M_z4",
+  authDomain: "cosasdedineros-7dfd9.firebaseapp.com",
+  projectId: "cosasdedineros-7dfd9",
+  storageBucket: "cosasdedineros-7dfd9.firebasestorage.app",
+  messagingSenderId: "573057231036",
+  appId: "1:573057231036:web:66b538098b3805d39608b9",
+  measurementId: "G-PJ54E4Y971"
+}};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+const btnLogin = document.getElementById("btnLogin");
+const btnLogout = document.getElementById("btnLogout");
+const usuarioBox = document.getElementById("usuarioBox");
+const usuarioNombre = document.getElementById("usuarioNombre");
+const usuarioEmail = document.getElementById("usuarioEmail");
+
+btnLogin.addEventListener("click", async () => {{
+  try {{
+    await signInWithPopup(auth, provider);
+  }} catch (error) {{
+    console.error("Error al iniciar sesión:", error);
+    alert("No se ha podido iniciar sesión. Inténtalo de nuevo.");
+  }}
+}});
+
+btnLogout.addEventListener("click", async () => {{
+  try {{
+    await signOut(auth);
+  }} catch (error) {{
+    console.error("Error al cerrar sesión:", error);
+  }}
+}});
+
+onAuthStateChanged(auth, (user) => {{
+  if (user) {{
+    btnLogin.style.display = "none";
+    usuarioBox.style.display = "flex";
+    usuarioNombre.textContent = user.displayName || user.email;
+    usuarioEmail.textContent = user.email || "";
+    usuarioEmail.style.display = "flex";
+  }} else {{
+    btnLogin.style.display = "block";
+    usuarioBox.style.display = "none";
+    usuarioEmail.style.display = "none";
+    usuarioNombre.textContent = "";
+  }}
+}});
+</script>
+
 </body>
 </html>
 """
