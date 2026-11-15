@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -63,41 +62,40 @@ hr {
     margin: 35px 0;
 }
 
-/* MENÚ DE NAVEGACIÓN */
+/* MENÚ PRINCIPAL */
 nav {
     position: sticky;
     top: 0;
     z-index: 1000;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px 22px;
-    padding: 14px 18px;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0;
     margin: 0 -20px 30px;
-    background: #1a3a2a;
+    padding: 25px 35px;
+    background: #0b2e24;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+nav::-webkit-scrollbar {
+    display: none;
 }
 
 nav a {
-    color: #f8f5ee;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
+    font-size: 36px;
+    font-weight: 400;
+    padding: 0 27px;
+    flex-shrink: 0;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.activo {
     color: #c9a84c;
-}
-
-@media (max-width: 700px) {
-    nav {
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        margin-left: -20px;
-        margin-right: -20px;
-        padding: 13px 20px;
-    }
 }
 
 footer {
@@ -106,6 +104,17 @@ footer {
     border-top: 1px solid #d8d2c4;
     color: #1a3a2a;
     font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    nav {
+        padding: 25px 25px;
+    }
+
+    nav a {
+        font-size: 30px;
+        padding: 0 20px;
+    }
 }
 </style>
 </head>
@@ -119,12 +128,10 @@ footer {
 </header>
 
 <nav aria-label="Navegación principal">
-    <a href="index.html">Inicio</a>
-    <a href="instagram.html">Instagram</a>
-    <a href="Substack.html">Substack</a>
-    <a href="noticias.html">Noticias</a>
+    <a href="instagram.html">Posts</a>
+    <a href="articulos.html">Artículos</a>
     <a href="Calculadoras.html">Calculadoras</a>
-    <a href="comparador-fondos.html">Comparador de fondos</a>
+    <a href="comparador-fondos.html">Comparador fondos</a>
     <a href="datos.html">Datos</a>
     <a href="Libros.html">Libros</a>
 </nav>
@@ -133,9 +140,7 @@ footer {
     <h2>1. Nvidia tras el caos de Jensen Huang: una cultura 'feudal' bajo lupa</h2>
     <p>La dimisión de Jensen Huang como consejero delegado de Nvidia ha dejado al descubierto una estructura de gestión cuanto menos peculiar. Lejos de la imagen de eficiencia tecnológica, los últimos informes describen una cultura interna calificada de "feudal", donde los lazos familiares y las relaciones personales habrían ocupado puestos de mando clave. Esta revelación surge tras el escándalo que forzó su salida: una red de relaciones extramatrimoniales que incluía a una subordinada directa y a una empresaria vinculada a una firma investigada por presunto espionaje para China.</p>
     <p>El impacto para Nvidia es doble. Por un lado, la incertidumbre sobre su red de inversiones y financiación, que algunos expertos valoran en el entorno del billón de dólares, preocupa a un mercado que ya ha castigado la acción con una caída del 32% desde sus máximos de octubre. Por otro, la empresa debe aclarar ante los reguladores estadounidenses cómo se permitió la venta de chips a empresas vinculadas a presuntos espías chinos. Mientras la directora financiera, Colette Kress, toma el mando interino, la compañía se enfrenta al reto de convencer al mercado de que su negocio principal —la fabricación de chips para inteligencia artificial— puede sobrevivir a la salida abrupta de quien fue su arquitecto durante 33 años. El próximo martes, en la presentación de resultados, veremos si el negocio sigue operando a toda máquina o si la crisis ha dejado heridas profundas en su estrategia.</p>
-    <p class="fuente">
-        <a href="https://www.expansion.com/economia/2026/11/14/caida-huang-revela-gestion-feudal.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Expansión</a>
-    </p>
+    <p class="fuente"><a href="https://www.expansion.com/economia/2026/11/14/caida-huang-revela-gestion-feudal.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Expansión</a></p>
 </article>
 
 <hr>
@@ -144,9 +149,7 @@ footer {
     <h2>2. Técnicas Reunidas blinda su futuro: récords de pedidos y adiós a los miedos por Irán</h2>
     <p>Buenas noticias para los inversores de Técnicas Reunidas. La ingeniería española ha presentado unas cuentas que han superado las expectativas, tanto en beneficios como en márgenes. Pero más allá de las cifras trimestrales, lo que realmente ha animado al mercado es la tranquilidad que ha aportado la dirección sobre su futuro en Oriente Medio: la compañía ha descartado la necesidad de realizar nuevas provisiones por el conflicto en Irán, un mercado que representa dos tercios de su actividad.</p>
     <p>Este alivio llega acompañado de una cartera de pedidos récord de 14.141 millones de euros, lo que supone un 23% más que hace un año. Gracias a este blindaje de su actividad, la empresa ha revisado al alza sus objetivos para 2026, esperando un margen operativo (EBIT) del 4,5%. Los analistas, como los de Renta 4, han reaccionado elevando su precio objetivo hasta los 42,9 euros, lo que supone un potencial de subida del 35% respecto a su valoración anterior. Además, la compañía ha confirmado su compromiso de pagar un dividendo de 21 millones de euros en enero de 2027 y realizar una recompra de acciones. En definitiva, parece que la empresa ha dejado atrás los años difíciles marcados por las tensiones geopolíticas y la pandemia, estabilizando su caja operativa.</p>
-    <p class="fuente">
-        <a href="https://www.finanzas.com/ibex-35/tecnicas-reunidas-blinda-crecimiento-aleja-fantasma-nuevas-provisiones-iran.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Finanzas.com</a>
-    </p>
+    <p class="fuente"><a href="https://www.finanzas.com/ibex-35/tecnicas-reunidas-blinda-crecimiento-aleja-fantasma-nuevas-provisiones-iran.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Finanzas.com</a></p>
 </article>
 
 <hr>
@@ -155,9 +158,7 @@ footer {
     <h2>3. Acciona sufre en bolsa: los problemas para vender activos disparan su deuda</h2>
     <p>Acciona y su filial, Acciona Energía, han vivido días complicados en el parqué tras reconocer un tropiezo estratégico: no lograrán vender activos renovables en México y Estados Unidos por valor de 1.000 millones de dólares en el plazo previsto. La operación, que debía haberse cerrado durante este año con el fondo Mexico Infrastructure Partners, se ha atascado debido a que el comprador no ha conseguido la financiación necesaria.</p>
     <p>Esto es un problema real para la compañía porque la venta de activos era un pilar fundamental de su plan para reducir su apalancamiento financiero. Al fallar estas desinversiones, la previsión de deuda neta de Acciona Energía para finales de 2026 ha saltado de los 3.000 millones de euros previstos a una horquilla de entre 3.250 y 3.500 millones. Para evitar que esto afecte a su calificación crediticia, la matriz ha tenido que prestarle 500 millones de euros mediante un instrumento financiero que, aunque protege el balance de la filial, refleja las tensiones de liquidez del sector. A pesar de esto, el grupo mantiene sus previsiones de beneficio operativo (EBITDA) en la parte alta del rango gracias al buen rendimiento de su negocio de aerogeneradores, Nordex, que ha visto cómo sus pedidos subían un 20%. El mercado, sin embargo, ha preferido penalizar la falta de cumplimiento en sus promesas de desinversión.</p>
-    <p class="fuente">
-        <a href="https://www.finanzas.com/ibex-35/acciona-filial-verde-desploman-pinchar-desinversiones.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Finanzas.com</a>
-    </p>
+    <p class="fuente"><a href="https://www.finanzas.com/ibex-35/acciona-filial-verde-desploman-pinchar-desinversiones.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Finanzas.com</a></p>
 </article>
 
 <hr>
@@ -166,9 +167,7 @@ footer {
     <h2>4. ACS sigue creciendo en EE. UU.: nuevos contratos millonarios en el sector digital</h2>
     <p>Mientras otros sectores sufren, ACS continúa expandiendo su huella en Estados Unidos, especialmente en el nicho de las grandes infraestructuras corporativas. La constructora española ha confirmado que, a través de su filial Turner, participará en la construcción de la nueva sede global de AT&amp;T cerca de Dallas, un proyecto valorado en 1.180 millones de euros. No es un caso aislado: la empresa también está levantando el complejo mundial de IA de Oracle en Tennessee.</p>
     <p>¿Por qué importa esto? Porque ACS ha logrado transformar su cartera de pedidos hacia sectores de alta tecnología, como los centros de datos, que ya concentran casi la mitad de su actividad. Con unos ingresos en su filial estadounidense que han pasado de 18.000 a 35.000 millones de dólares en apenas tres años, la estrategia de la constructora está funcionando: diversificar hacia el "superciclo" de infraestructuras digitales y energía. El objetivo de triplicar su valor en bolsa y elevar el dividendo hasta los 5 euros para 2030 parece estar respaldado por una contratación constante en el mercado estadounidense, donde es el contratista más grande. Para el accionista, esto reduce el riesgo de depender solo de la obra civil tradicional y la coloca en el corazón de la inversión en inteligencia artificial sin tener que desarrollar la tecnología en sí misma.</p>
-    <p class="fuente">
-        <a href="https://www.expansion.com/empresas/construccion-servicios/2026/11/13/acciona-ve-peligrar-venta-eeuu-mexico-renovables-900-millones.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Expansión</a>
-    </p>
+    <p class="fuente"><a href="https://www.expansion.com/empresas/construccion-servicios/2026/11/13/acciona-ve-peligrar-venta-eeuu-mexico-renovables-900-millones.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Expansión</a></p>
 </article>
 
 <hr>
@@ -177,9 +176,7 @@ footer {
     <h2>5. Francia bajo la lupa: ¿por qué los mercados no temen un contagio a la eurozona?</h2>
     <p>Francia se encuentra en una situación delicada: déficit público elevado y un bloqueo político que dificulta aplicar recortes presupuestarios impopulares. Sin embargo, a pesar de que los rendimientos de su deuda han subido, los analistas de Rabobank insisten en que no estamos ante una crisis aguda de liquidez como las que vimos años atrás. El mercado está viendo esto más como una "crisis a cámara lenta".</p>
     <p>La razón por la que no cunde el pánico generalizado en la eurozona es la red de seguridad que proporcionan la Unión Europea y el Banco Central Europeo, que actúan como dique de contención para evitar efectos contagio. Además, la situación francesa es particular: aunque los políticos evitan los recortes en pensiones y seguridad social para no perder votos antes de las presidenciales de 2027, el país tiene costes de financiación que, comparados con el resto de la zona euro, siguen siendo manejables. ¿Podría extenderse a otros países? Italia tiene retos similares, pero su gobierno ha mostrado mayor disposición a mantener el superávit primario, mientras que España, aun con parálisis política, ha visto cómo esa misma inercia limitaba el gasto público. Por ahora, el mercado francés está ajustando su precio al riesgo político real, pero no hay indicios de que el sistema financiero europeo vaya a romperse por ello.</p>
-    <p class="fuente">
-        <a href="https://www.bolsamania.com/noticias/economia/contagio-crisis-francia-limitado-ue-bce-encargaran-sea-asi--24112338.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Bolsamanía</a>
-    </p>
+    <p class="fuente"><a href="https://www.bolsamania.com/noticias/economia/contagio-crisis-francia-limitado-ue-bce-encargaran-sea-asi--24112338.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Bolsamanía</a></p>
 </article>
 
 <hr>
@@ -188,9 +185,7 @@ footer {
     <h2>6. Los inversores europeos huyen de la incertidumbre hacia fondos conservadores</h2>
     <p>El dinero en Europa está hablando claro: los inversores prefieren jugar a lo seguro ante la incertidumbre económica. Según datos de Morningstar hasta octubre, los fondos que están acaparando las mayores entradas de capital no son los de renta variable pura, sino los productos monetarios y de renta fija. Un ejemplo es el fondo Pimco GIS Balanced Income and Growth, que ha captado más de 12.500 millones de euros en lo que va de año, buscando generar rentas estables en un entorno de tipos elevados.</p>
     <p>¿Qué significa esto para ti? Que el mercado está premiando los activos que ofrecen una rentabilidad predecible frente a las promesas de grandes crecimientos que conlleva más riesgo. Los fondos monetarios, como el de JPMorgan, también han tenido un éxito notable al ofrecer rentabilidades muy ligadas a los tipos de interés oficiales, funcionando casi como un refugio donde el capital está protegido mientras esperan a que se aclare el panorama. Esto no significa que la bolsa haya muerto; fondos tecnológicos como el de Polar Capital siguen recibiendo dinero, pero el movimiento dominante es defensivo. En España, esta tendencia es aún más marcada, con una preferencia casi absoluta por la renta fija. Es una muestra de que, ante la volatilidad geopolítica y las dudas sobre la inflación, la prioridad del inversor europeo actual es proteger el capital y obtener un pequeño extra sin sustos.</p>
-    <p class="fuente">
-        <a href="https://www.expansion.com/mercados/fondos/2026/11/14/fondos-inversion-arrasan-europa-2026.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Expansión</a>
-    </p>
+    <p class="fuente"><a href="https://www.expansion.com/mercados/fondos/2026/11/14/fondos-inversion-arrasan-europa-2026.html" target="_blank" rel="noopener noreferrer">Leer noticia original en Expansión</a></p>
 </article>
 
 <hr>
