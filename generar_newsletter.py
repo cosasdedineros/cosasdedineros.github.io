@@ -792,9 +792,53 @@ hr {{
     border-top: 1px solid #d8d2c4;
     margin: 35px 0;
 }}
+
+nav {{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    padding: 14px 18px;
+    margin: -40px calc((760px - 100vw) / 2) 30px;
+    background: #1a3a2a;
+}}
+nav a {{
+    color: #f8f5ee;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}}
+nav a:hover {{
+    color: #c9a84c;
+}}
+@media (max-width: 700px) {{
+    nav {{
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin-left: -20px;
+        margin-right: -20px;
+        padding: 13px 20px;
+    }}
+}}
+
 </style>
 </head>
 <body>
+<nav aria-label="Navegación principal">
+    <a href="index.html">Inicio</a>
+    <a href="instagram.html">Instagram</a>
+    <a href="Substack.html">Substack</a>
+    <a href="noticias.html">Noticias</a>
+    <a href="Calculadoras.html">Calculadoras</a>
+    <a href="comparador-fondos.html">Comparador de fondos</a>
+    <a href="datos.html">Datos</a>
+    <a href="Libros.html">Libros</a>
+</nav>
 <header>
     <h1>CosasDeDineros</h1>
     <p>Las noticias financieras explicadas sin complicaciones.</p>
