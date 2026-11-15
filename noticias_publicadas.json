@@ -202,6 +202,48 @@
       "resumen": "Goldman Sachs ha realizado ajustes en su lista de recomendaciones de compra en Europa, integrando a Deutsche Bank y a la cervecera danesa Carlsberg en su 'Conviction List'. Ambas empresas, aunque operan en sectores radicalmente distintos, comparten una tesis común: un potencial de mejora operativa que el mercado aún no parece reflejar plenamente en sus valoraciones actuales. En el caso de Deutsche Bank, el banco estadounidense cree que estamos ante una \"nueva era de rentabilidad\". El analista Chris Hallam destaca que la entidad podría elevar su rentabilidad sobre el capital tangible (RoTE) por",
       "fuente": "Bolsamanía",
       "url": "https://www.bolsamania.com/noticias/empresas/banco-cervecera-nuevas-apuestas-goldman-para-invertir-europa--23997426.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "El S&P 500 resiste el batacazo de Nvidia: ¿es el fin de la dependencia total del chip?",
+      "resumen": "Esta semana hemos visto algo inusual en Wall Street: Nvidia, el gigante de la inteligencia artificial, se ha desplomado un 11% tras la salida de su CEO, Jensen Huang. Sin embargo, el S&P 500, el índice que agrupa a las 500 mayores empresas de EE. UU., no solo no ha caído, sino que ha subido un 2,9% en el mismo periodo. ¿Cómo es posible? La respuesta está en la diversificación. Mientras los inversores vendían Nvidia, el dinero se ha movido hacia sectores como el industrial, el energético y el consumo. Además, otros fabricantes de chips como AMD han aprovechado el vacío de poder para revalorizar",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/bolsa/el-sp-500-no-se-ha-visto-afectado-por-la-caida-de-las-acciones-de-nvidia-esta-semana-esto-es-lo-que-mantiene-a-flote-al-resto-del-mercado--24163598.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "El IBEX 35 se blinda frente al caos tecnológico: un refugio de 20.000 puntos",
+      "resumen": "Mientras en Estados Unidos los inversores viven días de infarto por el caso Nvidia y los fallos de Microsoft, el IBEX 35 ha demostrado que tener un índice lleno de bancos, energéticas e industrias tradicionales tiene sus ventajas. Esta semana, el selectivo español ha logrado subir un 3,36% y mantenerse por encima de la barrera de los 20.000 puntos, algo que hace poco parecía impensable. La lógica financiera es sencilla: la bolsa española tiene poca exposición a las empresas de inteligencia artificial que ahora mismo están en el punto de mira. Mientras el Nasdaq (donde cotizan las tecnológicas)",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/ibex-35/ibex-35-salva-semana-cuchillos-largos-wall-street-rebote-336.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "Santander UK integra a 1.000 empleados de TSB: el camino hacia la eficiencia",
+      "resumen": "El Banco Santander está en plena fase de digestión tras un año de compras intensas. En el Reino Unido, ha dado el primer paso real para integrar TSB, el banco que compró al Sabadell, absorbiendo a 1.000 trabajadores de sus servicios centrales. El objetivo no es solo ganar tamaño, sino capturar lo que en el sector llamamos 'sinergias': básicamente, ahorrar costes eliminando duplicidades, como tener dos sedes, dos sistemas informáticos o dos equipos legales donde solo hace falta uno. El Santander espera que esta operación le reporte unos 470 millones de euros en ganancias adicionales para 2028. ",
+      "fuente": "Cinco Días",
+      "url": "https://cincodias.elpais.com/companias/2026-11-13/el-santander-absorbe-en-reino-unido-a-1000-trabajadores-de-tsb-y-aspira-a-culminar-la-fusion-el-proximo-ano.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "ACS consolida su apuesta en EE. UU.: nuevos macrocontratos para no depender solo de la IA",
+      "resumen": "ACS, a través de su filial Turner, sigue reforzando su peso en Estados Unidos. Esta semana se ha confirmado que participará en la construcción de la nueva sede global de AT&T en Texas, un proyecto de 1.180 millones de euros. No es un contrato cualquiera: se suma a otros como el campus de inteligencia artificial de Oracle en Tennessee. Esta actividad refleja cómo ACS ha transformado su cartera, pasando de la construcción tradicional a especializarse en infraestructuras tecnológicas de alto valor. ¿Por qué es importante este giro? Porque aunque el negocio de los centros de datos ha crecido un 94",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/empresas/construccion-servicios/2026/11/14/acs-construira-sede-global-at-t-valorada-1-200-millones.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "Red Eléctrica se 'aísla' temporalmente: qué significa el corte de exportaciones",
+      "resumen": "El pasado 5 de noviembre, Red Eléctrica (REE) tuvo que suspender durante varias horas todas las exportaciones de electricidad a Francia, Portugal y Marruecos. Aunque pueda parecer un detalle técnico, es una señal de estrés en el sistema eléctrico. España, que suele vender energía a sus vecinos, se vio obligada a cerrar el grifo para asegurarse de que el suministro nacional estuviera garantizado ante una demanda alta y una producción renovable (solar y eólica) inusualmente baja. Para entender por qué importa, imagina el sistema eléctrico como una bañera: si sale más agua (electricidad) de la qu",
+      "fuente": "Cinco Días",
+      "url": "https://cincodias.elpais.com/companias/2026-11-14/ree-suspendio-todas-las-exportaciones-de-electricidad-el-pasado-dia-5-durante-varias-horas.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "La inflación en España se asienta en el 4,9%: el gas se convierte en el nuevo foco de presión",
+      "resumen": "El INE ha confirmado que la inflación en España se situó en octubre en el 4,9%, encadenando tres meses por encima del 4%. Aunque la gasolina dio un respiro, la subida del precio del gas y de la electricidad ha tirado del índice hacia arriba. Lo que esto nos dice es que la inflación sigue siendo obstinada, impulsada ahora por factores energéticos que no dependen de la actividad económica interna, sino de los precios de los mercados internacionales. ¿Por qué importa esto a tu bolsillo? La inflación no es solo un número; es la erosión constante del poder adquisitivo. Si los precios que más suben ",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/economia/2026/11/13/inflacion-octubre-confirma-4-9-impulsada-alza-subida-gas.html"
     }
   ]
 }

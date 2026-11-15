@@ -2,6 +2,13 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- GOOGLE ADSENSE -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2646608092155910"
+     crossorigin="anonymous"></script>
+
+<!-- GOOGLE ANALYTICS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCX74R28X0"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -9,174 +16,369 @@
   gtag('js', new Date());
   gtag('config', 'G-SCX74R28X0');
 </script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- TIPOGRAFÍAS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <title>CosasDeDineros - Noticias 15/11/2026</title>
+
 <style>
-body {
-    font-family: Arial, sans-serif;
-    max-width: 760px;
-    margin: 40px auto;
-    padding: 0 20px;
-    color: #26352c;
-    background: #f8f5ee;
-    line-height: 1.7;
-}
-h1 {
-    color: #1a3a2a;
-    font-size: 32px;
-}
-h2 {
-    color: #1a3a2a;
-    font-size: 23px;
-    line-height: 1.3;
-}
-article {
-    margin: 35px 0;
-}
-.fuente {
-    font-size: 14px;
-}
-a {
-    color: #876c27;
-}
-hr {
-    border: 0;
-    border-top: 1px solid #d8d2c4;
-    margin: 35px 0;
+:root{
+  --verde:#1a3a2a;
+  --dorado:#c9a84c;
+  --crema:#f8f5ee;
+  --texto:#1a1a1a;
 }
 
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px 22px;
-    padding: 14px 18px;
-    margin: -40px calc((760px - 100vw) / 2) 30px;
-    background: #1a3a2a;
-}
-nav a {
-    color: #f8f5ee;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
-}
-nav a:hover {
-    color: #c9a84c;
-}
-@media (max-width: 700px) {
-    nav {
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        margin-left: -20px;
-        margin-right: -20px;
-        padding: 13px 20px;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
+body{
+  font-family:"DM Sans",sans-serif;
+  background:var(--crema);
+  color:var(--texto);
+  line-height:1.7;
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:var(--verde);
+  color:white;
+  display:flex;
+  align-items:center;
+  padding:10px 20px;
+}
+
+.usuario-email{
+  font-size:13px;
+  color:var(--dorado);
+  font-weight:500;
+  display:none;
+  align-items:center;
+  gap:6px;
+}
+
+.usuario-email::before{
+  content:"●";
+  color:#4caf50;
+  font-size:10px;
+}
+
+nav{
+  position:sticky;
+  top:45px;
+  z-index:999;
+  background:#122a1f;
+  display:flex;
+  gap:20px;
+  padding:12px 20px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  white-space:nowrap;
+}
+
+nav::-webkit-scrollbar{
+  display:none;
+}
+
+@media(min-width:700px){
+  nav{
+    justify-content:center;
+  }
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  flex-shrink:0;
+}
+
+nav a:hover{
+  color:var(--dorado);
+}
+
+.contenido{
+  max-width:760px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+header{
+  margin-bottom:35px;
+}
+
+h1{
+  font-family:"Playfair Display",serif;
+  color:var(--verde);
+  font-size:32px;
+  line-height:1.3;
+  margin-bottom:10px;
+}
+
+h2{
+  font-family:"Playfair Display",serif;
+  color:var(--verde);
+  font-size:23px;
+  line-height:1.3;
+  margin-bottom:15px;
+}
+
+header p{
+  margin-bottom:8px;
+}
+
+article{
+  margin:35px 0;
+}
+
+article p{
+  margin-bottom:14px;
+}
+
+.fuente{
+  font-size:14px;
+}
+
+a{
+  color:#876c27;
+}
+
+nav a{
+  color:white;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #d8d2c4;
+  margin:35px 0;
+}
+
+footer{
+  max-width:760px;
+  margin:40px auto;
+  padding:20px;
+  text-align:center;
+  font-size:14px;
+  color:#666;
+}
+
+@media(max-width:700px){
+  .contenido{
+    margin:25px auto;
+  }
+
+  h1{
+    font-size:28px;
+  }
+}
 </style>
 </head>
+
 <body>
-<nav aria-label="Navegación principal">
-    <a href="index.html">Inicio</a>
-    <a href="instagram.html">Instagram</a>
-    <a href="Substack.html">Substack</a>
-    <a href="noticias.html">Noticias</a>
-    <a href="Calculadoras.html">Calculadoras</a>
-    <a href="comparador-fondos.html">Comparador de fondos</a>
-    <a href="datos.html">Datos</a>
-    <a href="Libros.html">Libros</a>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span id="usuarioEmail" class="usuario-email"></span>
+
+  <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
+    <button id="btnLogin" style="background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:14px;">
+      Iniciar sesión
+    </button>
+
+    <div id="usuarioBox" style="display:none;align-items:center;gap:8px;">
+      <span id="usuarioNombre" style="font-size:13px;color:white;"></span>
+
+      <button id="btnLogout" style="background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:14px;">
+        Salir
+      </button>
+    </div>
+
+    <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+       target="_blank"
+       style="text-decoration:none;background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;">
+      📩 Mensaje directo
+    </a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html">Inicio</a>
+  <a href="instagram.html">Posts</a>
+  <a href="Substack.html">Artículos</a>
+  <a href="Calculadoras.html">Calculadoras</a>
+  <a href="comparador-fondos.html">Comparador fondos</a>
+  <a href="datos.html">Datos</a>
+  <a href="Libros.html">Libros</a>
+  <a href="noticias.html">Noticias</a>
 </nav>
+
+<div class="contenido">
+
 <header>
-    <h1>CosasDeDineros</h1>
-    <p>Las noticias financieras explicadas sin complicaciones.</p>
-    <p>15/11/2026 · Lectura aproximada: 5 minutos</p>
+  <h1>CosasDeDineros</h1>
+  <p>Las noticias financieras explicadas sin complicaciones.</p>
+  <p>15/11/2026 · Lectura aproximada: 5 minutos</p>
 </header>
 
+
     <article>
-        <h2>1. Nvidia intenta recuperar el aliento tras la caída histórica por la salida de su CEO</h2>
-        <p>Las acciones de Nvidia han experimentado una montaña rusa emocional esta semana. Tras desplomarse cerca de un 14% en la apertura del jueves, después de conocerse la dimisión de su fundador y consejero delegado, Jensen Huang, la tecnológica ha logrado recuperar terreno, situando su cotización por encima de los 170 dólares. Este rebote ha servido para devolver algo de optimismo a los futuros del Nasdaq 100, que se habían visto arrastrados por la incertidumbre.</p><p>La salida de Huang, que deja la compañía tras 33 años al frente, no es solo un relevo directivo; ha desatado una crisis de gobernanza. El directivo se vio forzado a dimitir tras admitir relaciones extramatrimoniales, una de ellas con una empresaria vinculada a una firma investigada por presunto espionaje para China. Ahora, la directora financiera, Colette Kress, asume el cargo de consejera delegada interina. Su primera gran prueba será la presentación de resultados el próximo martes 17 de noviembre, donde el mercado buscará respuestas sobre el futuro del negocio sin su figura más carismática. Los inversores observan con cautela: ¿es este desplome una oportunidad de compra o el inicio de una corrección más profunda?</p>
+        <h2>1. El S&amp;P 500 resiste el batacazo de Nvidia: ¿es el fin de la dependencia total del chip?</h2>
+        <p>Esta semana hemos visto algo inusual en Wall Street: Nvidia, el gigante de la inteligencia artificial, se ha desplomado un 11% tras la salida de su CEO, Jensen Huang. Sin embargo, el S&amp;P 500, el índice que agrupa a las 500 mayores empresas de EE. UU., no solo no ha caído, sino que ha subido un 2,9% en el mismo periodo.</p><p>¿Cómo es posible? La respuesta está en la diversificación. Mientras los inversores vendían Nvidia, el dinero se ha movido hacia sectores como el industrial, el energético y el consumo. Además, otros fabricantes de chips como AMD han aprovechado el vacío de poder para revalorizarse un 30%. Esto sugiere que el mercado podría estar empezando a perder su miedo a que el sector tecnológico se quede sin motor. Que el índice aguante mientras su antigua estrella cae es, financieramente hablando, una señal de salud: significa que el crecimiento ya no depende únicamente de una sola empresa o de un solo tipo de tecnología. Si esta tendencia se consolida, podríamos ver un mercado menos concentrado y quizás más estable frente a las crisis de liderazgo individuales.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/nvidia-recupera-los-170-dolares-y-devuelve-al-verde-a-los-futuros-del-nasdaq-100--24167374.html" target="_blank"
+            <a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/el-sp-500-no-se-ha-visto-afectado-por-la-caida-de-las-acciones-de-nvidia-esta-semana-esto-es-lo-que-mantiene-a-flote-al-resto-del-mercado--24163598.html" target="_blank"
                rel="noopener noreferrer">
                 Leer noticia original en Capital Bolsa
             </a>
         </p>
-        <ul><li><a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/nvidia-recupera-los-170-dolares-y-devuelve-al-verde-a-los-futuros-del-nasdaq-100--24167374.html" target="_blank" rel="noopener noreferrer">Capital Bolsa</a></li></ul>
+        <ul><li><a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/el-sp-500-no-se-ha-visto-afectado-por-la-caida-de-las-acciones-de-nvidia-esta-semana-esto-es-lo-que-mantiene-a-flote-al-resto-del-mercado--24163598.html" target="_blank" rel="noopener noreferrer">Capital Bolsa</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>2. Bestinver ve gangas en sectores olvidados mientras la bolsa se concentra en pocos valores</h2>
-        <p>La gestora Bestinver ha lanzado una advertencia sobre el estado actual de los mercados: la rentabilidad de los índices está siendo impulsada por un grupo muy reducido de compañías, lo que ha provocado que muchos otros negocios sólidos coticen con descuentos que no se veían desde hace años. Para Enrique Pérez-Plá, consejero delegado de la firma, esta es una anomalía que ofrece oportunidades interesantes para quien sepa mirar fuera de lo que está de moda.</p><p>La estrategia de Bestinver en su cartera ibérica incluye la incorporación de valores como Meliá, Digi y Jerónimo Martins, reduciendo su exposición a otros sectores mediante la venta de EDP, Ferrovial y Acerinox. En el plano internacional, han sorprendido con la entrada en constructoras británicas como Persimmon y Barratt Redrow, a las que atribuyen un potencial de revalorización significativo, cercano al 50% y 60% respectivamente, apostando por la recuperación de márgenes gracias al abaratamiento del suelo. Este enfoque subraya una filosofía clara: mientras el mercado se obsesiona con los mismos nombres, el valor real suele encontrarse en empresas ignoradas pero con capacidad de generar beneficios sostenibles a largo plazo.</p>
+        <h2>2. El IBEX 35 se blinda frente al caos tecnológico: un refugio de 20.000 puntos</h2>
+        <p>Mientras en Estados Unidos los inversores viven días de infarto por el caso Nvidia y los fallos de Microsoft, el IBEX 35 ha demostrado que tener un índice lleno de bancos, energéticas e industrias tradicionales tiene sus ventajas. Esta semana, el selectivo español ha logrado subir un 3,36% y mantenerse por encima de la barrera de los 20.000 puntos, algo que hace poco parecía impensable.</p><p>La lógica financiera es sencilla: la bolsa española tiene poca exposición a las empresas de inteligencia artificial que ahora mismo están en el punto de mira. Mientras el Nasdaq (donde cotizan las tecnológicas) sufría caídas, en España el protagonismo se lo llevaron empresas como Repsol o Iberdrola. ¿Por qué importa esto? Porque cuando el dinero huye de la tecnología por miedo o incertidumbre, busca lugares donde los beneficios sean más predecibles y estén atados a la economía real, como es el caso de los bancos o las empresas de energía. Este comportamiento nos recuerda que, en finanzas, la diversificación no es solo tener muchas acciones, sino tener negocios que reaccionen de forma distinta ante las mismas noticias.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/bestinver-alerta-de-que-unos-pocos-valores-dominan-la-bolsa-y-ve-descuentos-que-no-observaba-desde-hace-anos--24169544.html" target="_blank"
-               rel="noopener noreferrer">
-                Leer noticia original en Capital Bolsa
-            </a>
-        </p>
-        <ul><li><a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/bestinver-alerta-de-que-unos-pocos-valores-dominan-la-bolsa-y-ve-descuentos-que-no-observaba-desde-hace-anos--24169544.html" target="_blank" rel="noopener noreferrer">Capital Bolsa</a></li></ul>
-    </article>
-    <hr>
-    
-    <article>
-        <h2>3. El IBEX 35 resiste la tormenta tecnológica y mantiene los 20.000 puntos</h2>
-        <p>Mientras Wall Street sufría una semana de fuertes turbulencias por el caso Nvidia y los problemas técnicos de Microsoft, el IBEX 35 ha demostrado una sorprendente capacidad de aguante, cerrando la semana con una revalorización del 3,36% y consolidándose por encima de los 20.020 puntos. El selectivo español ha funcionado como un refugio gracias a su composición: un mayor peso de la banca, la industria y la energía frente a la fuerte exposición al sector tecnológico que castiga a los índices estadounidenses.</p><p>El protagonismo esta semana ha recaído en los valores energéticos, espoleados por el repunte del precio del petróleo Brent, que ha vuelto a acercarse a los 96 dólares. Repsol, por ejemplo, ha liderado las subidas del selectivo. Por el contrario, la sesión final dejó un mal sabor de boca para Acciona y Acciona Energía, que sufrieron caídas cercanas al 7% y 8% tras comunicar dificultades en la venta de algunos de sus activos en México y Estados Unidos. Esta diferencia de comportamiento ilustra bien el momento actual: los mercados están premiando la estabilidad operativa mientras castigan con dureza cualquier señal de debilidad o retraso en los planes estratégicos corporativos.</p>
-        <p class="fuente">
-            <a href="https://www.expansion.com/mercados/cronica-bolsa/2026/11/13/ibex-recibe-nuevos-obstaculos-recuperar-20-000.html" target="_blank"
-               rel="noopener noreferrer">
-                Leer noticia original en Expansión
-            </a>
-        </p>
-        <ul><li><a href="https://www.expansion.com/mercados/cronica-bolsa/2026/11/13/ibex-recibe-nuevos-obstaculos-recuperar-20-000.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
-    </article>
-    <hr>
-    
-    <article>
-        <h2>4. Cuando el sistema se apaga: el coste real de depender de un solo gigante tecnológico</h2>
-        <p>La reciente interrupción global de servicios clave de Microsoft —como Outlook, Teams y Copilot— ha dejado una lección inquietante sobre la fragilidad operativa del sector financiero actual. Durante 18 horas, la imposibilidad de utilizar estas herramientas obligó a traders de todo el mundo a desempolvar métodos de comunicación analógicos, como el teléfono y el fax, para poder seguir operando y liquidando transacciones. Aunque las bolsas lograron mantenerse abiertas, el impacto en la liquidez y en el procesamiento de órdenes ha sido un recordatorio necesario de nuestra hiperdependencia.</p><p>Desde el punto de vista financiero, una interrupción de esta magnitud no es solo un problema técnico; es un riesgo reputacional y operativo que puede traducirse en pérdidas tangibles. Mientras empresas como Microsoft trabajan para estabilizar sus servidores, el mercado ya está haciendo cuentas. Algunas instituciones advirtieron que, si el apagón se hubiera prolongado más allá de las 24 horas, las consecuencias para la operativa financiera habrían entrado en una fase crítica. Este incidente subraya por qué la diversificación de proveedores no es solo una buena práctica, sino una necesidad de seguridad operativa para evitar que un solo error en un gigante de Silicon Valley bloquee el flujo del capital mundial.</p>
-        <p class="fuente">
-            <a href="https://www.finanzas.com/mercados/caida-mundial-microsoft-obliga-traders-volver-telefono-fax.html" target="_blank"
+            <a href="https://www.finanzas.com/ibex-35/ibex-35-salva-semana-cuchillos-largos-wall-street-rebote-336.html" target="_blank"
                rel="noopener noreferrer">
                 Leer noticia original en Finanzas.com
             </a>
         </p>
-        <ul><li><a href="https://www.finanzas.com/mercados/caida-mundial-microsoft-obliga-traders-volver-telefono-fax.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
+        <ul><li><a href="https://www.finanzas.com/ibex-35/ibex-35-salva-semana-cuchillos-largos-wall-street-rebote-336.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>5. Enagás se refuerza en Francia comprando un 18% adicional de Teréga</h2>
-        <p>Enagás sigue dando pasos en su plan estratégico 2025-2030, centrado en la rotación de activos y la seguridad de suministro energético. La compañía española ha anunciado la compra de un 18% adicional de la francesa Teréga a EDF Invest por 311 millones de euros, lo que eleva su participación total al 49,5%. Esta operación es un movimiento táctico para consolidar su presencia en un operador estratégico: Teréga controla el 16% de la red de transporte de gas en Francia y el 27% de la capacidad de almacenamiento del país.</p><p>Financieramente, es importante entender que esta operación no implica una toma de control ni cambios en la gobernanza, por lo que la participación se seguirá reflejando en las cuentas de Enagás mediante el método de puesta en equivalencia. Esto significa que Enagás no suma directamente los ingresos y gastos de Teréga en su cuenta de resultados, sino que contabiliza su parte proporcional del beneficio neto. Este refuerzo en la red vecina es clave, ya que ambas empresas están conectadas por infraestructuras vitales como los puntos de Irún y Larrau, además de ser socias en el futuro hidroducto BarMar, que unirá Barcelona y Marsella. Con este movimiento, Enagás busca afianzarse como pieza clave en la infraestructura energética europea, priorizando los activos que garantizan la seguridad y la descarbonización del sistema.</p>
+        <h2>3. Santander UK integra a 1.000 empleados de TSB: el camino hacia la eficiencia</h2>
+        <p>El Banco Santander está en plena fase de digestión tras un año de compras intensas. En el Reino Unido, ha dado el primer paso real para integrar TSB, el banco que compró al Sabadell, absorbiendo a 1.000 trabajadores de sus servicios centrales. El objetivo no es solo ganar tamaño, sino capturar lo que en el sector llamamos &#x27;sinergias&#x27;: básicamente, ahorrar costes eliminando duplicidades, como tener dos sedes, dos sistemas informáticos o dos equipos legales donde solo hace falta uno.</p><p>El Santander espera que esta operación le reporte unos 470 millones de euros en ganancias adicionales para 2028. Para lograrlo, el banco planea reducir gastos de 4.000 a 3.100 millones de euros. Financieramente, esto es vital: al absorber una entidad y simplificar su estructura, el banco busca que cada euro invertido rinda más. Sin embargo, hay que tener cuidado con las cifras: el beneficio del grupo ha caído un 2% en los primeros nueve meses debido precisamente a los gastos de reestructuración. Es el peaje necesario: gastas dinero hoy (los costes de la fusión) para que, una vez la maquinaria esté engrasada, el banco genere beneficios de forma más eficiente en el futuro.</p>
         <p class="fuente">
-            <a href="https://www.expansion.com/empresas/energia/2026/11/13/enagas-logra-40-5-francesa-terega-comprar-18-edf-311-millones.html" target="_blank"
+            <a href="https://cincodias.elpais.com/companias/2026-11-13/el-santander-absorbe-en-reino-unido-a-1000-trabajadores-de-tsb-y-aspira-a-culminar-la-fusion-el-proximo-ano.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Cinco Días
+            </a>
+        </p>
+        <ul><li><a href="https://cincodias.elpais.com/companias/2026-11-13/el-santander-absorbe-en-reino-unido-a-1000-trabajadores-de-tsb-y-aspira-a-culminar-la-fusion-el-proximo-ano.html" target="_blank" rel="noopener noreferrer">Cinco Días</a></li></ul>
+    </article>
+    <hr>
+    
+    <article>
+        <h2>4. ACS consolida su apuesta en EE. UU.: nuevos macrocontratos para no depender solo de la IA</h2>
+        <p>ACS, a través de su filial Turner, sigue reforzando su peso en Estados Unidos. Esta semana se ha confirmado que participará en la construcción de la nueva sede global de AT&amp;T en Texas, un proyecto de 1.180 millones de euros. No es un contrato cualquiera: se suma a otros como el campus de inteligencia artificial de Oracle en Tennessee. Esta actividad refleja cómo ACS ha transformado su cartera, pasando de la construcción tradicional a especializarse en infraestructuras tecnológicas de alto valor.</p><p>¿Por qué es importante este giro? Porque aunque el negocio de los centros de datos ha crecido un 94% este año, ACS quiere asegurar su futuro diversificando en energía, defensa y transporte. Al especializarse en obras corporativas complejas, la empresa no solo sube sus ingresos —la cartera de pedidos de Turner ha pasado de 27.000 a 55.000 millones de dólares en tres años—, sino que también protege sus márgenes frente a otros sectores más cíclicos. En finanzas, esto se llama mejorar la calidad del beneficio: en lugar de depender de contratos de obra pública que a veces son impredecibles, se enfoca en clientes corporativos que necesitan infraestructuras críticas, donde la barrera de entrada para otros competidores es mucho más alta.</p>
+        <p class="fuente">
+            <a href="https://www.expansion.com/empresas/construccion-servicios/2026/11/14/acs-construira-sede-global-at-t-valorada-1-200-millones.html" target="_blank"
                rel="noopener noreferrer">
                 Leer noticia original en Expansión
             </a>
         </p>
-        <ul><li><a href="https://www.expansion.com/empresas/energia/2026/11/13/enagas-logra-40-5-francesa-terega-comprar-18-edf-311-millones.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
+        <ul><li><a href="https://www.expansion.com/empresas/construccion-servicios/2026/11/14/acs-construira-sede-global-at-t-valorada-1-200-millones.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>6. Goldman Sachs renueva sus apuestas en Europa: Deutsche Bank y Carlsberg en el punto de mira</h2>
-        <p>Goldman Sachs ha realizado ajustes en su lista de recomendaciones de compra en Europa, integrando a Deutsche Bank y a la cervecera danesa Carlsberg en su &#x27;Conviction List&#x27;. Ambas empresas, aunque operan en sectores radicalmente distintos, comparten una tesis común: un potencial de mejora operativa que el mercado aún no parece reflejar plenamente en sus valoraciones actuales.</p><p>En el caso de Deutsche Bank, el banco estadounidense cree que estamos ante una &quot;nueva era de rentabilidad&quot;. El analista Chris Hallam destaca que la entidad podría elevar su rentabilidad sobre el capital tangible (RoTE) por encima del 13% para 2028 mediante una mayor eficiencia en tecnología y una reducción de costes. Con un precio objetivo de 44,25 euros, el banco sugiere un recorrido alcista de cerca del 47% respecto a la cotización utilizada en el informe. Por su parte, en Carlsberg, la clave es la diversificación: la adquisición de Britvic y la expansión en el mercado de bebidas sin alcohol están compensando la debilidad de la demanda de cerveza en China. Con un precio objetivo de 1.200 coronas danesas, Goldman ve un potencial de subida del 24% para la cervecera. Como siempre, conviene recordar que un precio objetivo es solo la estimación de un analista y no una garantía de rentabilidad.</p>
+        <h2>5. Red Eléctrica se &#x27;aísla&#x27; temporalmente: qué significa el corte de exportaciones</h2>
+        <p>El pasado 5 de noviembre, Red Eléctrica (REE) tuvo que suspender durante varias horas todas las exportaciones de electricidad a Francia, Portugal y Marruecos. Aunque pueda parecer un detalle técnico, es una señal de estrés en el sistema eléctrico. España, que suele vender energía a sus vecinos, se vio obligada a cerrar el grifo para asegurarse de que el suministro nacional estuviera garantizado ante una demanda alta y una producción renovable (solar y eólica) inusualmente baja.</p><p>Para entender por qué importa, imagina el sistema eléctrico como una bañera: si sale más agua (electricidad) de la que entra, la presión baja hasta que el sistema falla. El día en cuestión, las centrales nucleares y de ciclo combinado estaban funcionando al límite de su capacidad disponible. Que REE prefiriera quedarse con toda la energía en casa en lugar de venderla fuera demuestra que el sistema está trabajando con márgenes muy estrechos. Esto no significa que vaya a haber un apagón inminente, pero es una advertencia de que la estabilidad eléctrica está condicionada a tener suficiente capacidad de reserva. Si la demanda sube este invierno, el sistema tendrá que gestionar con mucho cuidado qué se exporta y qué se queda, o bien forzar a más centrales a entrar en funcionamiento.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/noticias/empresas/banco-cervecera-nuevas-apuestas-goldman-para-invertir-europa--23997426.html" target="_blank"
+            <a href="https://cincodias.elpais.com/companias/2026-11-14/ree-suspendio-todas-las-exportaciones-de-electricidad-el-pasado-dia-5-durante-varias-horas.html" target="_blank"
                rel="noopener noreferrer">
-                Leer noticia original en Bolsamanía
+                Leer noticia original en Cinco Días
             </a>
         </p>
-        <ul><li><a href="https://www.bolsamania.com/noticias/empresas/banco-cervecera-nuevas-apuestas-goldman-para-invertir-europa--23997426.html" target="_blank" rel="noopener noreferrer">Bolsamanía</a></li></ul>
+        <ul><li><a href="https://cincodias.elpais.com/companias/2026-11-14/ree-suspendio-todas-las-exportaciones-de-electricidad-el-pasado-dia-5-durante-varias-horas.html" target="_blank" rel="noopener noreferrer">Cinco Días</a></li></ul>
     </article>
     <hr>
     
+    <article>
+        <h2>6. La inflación en España se asienta en el 4,9%: el gas se convierte en el nuevo foco de presión</h2>
+        <p>El INE ha confirmado que la inflación en España se situó en octubre en el 4,9%, encadenando tres meses por encima del 4%. Aunque la gasolina dio un respiro, la subida del precio del gas y de la electricidad ha tirado del índice hacia arriba. Lo que esto nos dice es que la inflación sigue siendo obstinada, impulsada ahora por factores energéticos que no dependen de la actividad económica interna, sino de los precios de los mercados internacionales.</p><p>¿Por qué importa esto a tu bolsillo? La inflación no es solo un número; es la erosión constante del poder adquisitivo. Si los precios que más suben son los de la vivienda y la energía, el impacto es directo porque son gastos que no puedes evitar. Además, para las empresas, esto supone una presión extra en sus márgenes: o bien asumen el coste de la energía más cara, reduciendo sus beneficios, o bien trasladan esa subida al precio final que pagas. El hecho de que la inflación subyacente (la que excluye los componentes más volátiles como energía y alimentos frescos) se mantenga en el 3,1% sugiere que, aunque los precios energéticos son el problema principal, la presión en el resto de la economía no está bajando. Esto complica la vida a cualquiera que intente planificar gastos a medio plazo.</p>
+        <p class="fuente">
+            <a href="https://www.expansion.com/economia/2026/11/13/inflacion-octubre-confirma-4-9-impulsada-alza-subida-gas.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Expansión
+            </a>
+        </p>
+        <ul><li><a href="https://www.expansion.com/economia/2026/11/13/inflacion-octubre-confirma-4-9-impulsada-alza-subida-gas.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
+    </article>
+    <hr>
+    
+
+</div>
+
 <footer>
-    <p>Un proyecto de CosasDeDineros.</p>
+  <p>Un proyecto de CosasDeDineros.</p>
 </footer>
+
+<!-- FIREBASE: INICIO DE SESIÓN -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCYwFgLTVliJXYcFX3mRQ8-XBu-Bw6M_z4",
+  authDomain: "cosasdedineros-7dfd9.firebaseapp.com",
+  projectId: "cosasdedineros-7dfd9",
+  storageBucket: "cosasdedineros-7dfd9.firebasestorage.app",
+  messagingSenderId: "573057231036",
+  appId: "1:573057231036:web:66b538098b3805d39608b9",
+  measurementId: "G-PJ54E4Y971"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+const btnLogin = document.getElementById("btnLogin");
+const btnLogout = document.getElementById("btnLogout");
+const usuarioBox = document.getElementById("usuarioBox");
+const usuarioNombre = document.getElementById("usuarioNombre");
+const usuarioEmail = document.getElementById("usuarioEmail");
+
+btnLogin.addEventListener("click", async () => {
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (error) {
+    console.error("Error al iniciar sesión:", error);
+    alert("No se ha podido iniciar sesión. Inténtalo de nuevo.");
+  }
+});
+
+btnLogout.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error("Error al cerrar sesión:", error);
+  }
+});
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    btnLogin.style.display = "none";
+    usuarioBox.style.display = "flex";
+    usuarioNombre.textContent = user.displayName || user.email;
+    usuarioEmail.textContent = user.email || "";
+    usuarioEmail.style.display = "flex";
+  } else {
+    btnLogin.style.display = "block";
+    usuarioBox.style.display = "none";
+    usuarioEmail.style.display = "none";
+    usuarioNombre.textContent = "";
+  }
+});
+</script>
+
 </body>
 </html>
