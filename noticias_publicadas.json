@@ -160,6 +160,48 @@
       "resumen": "El dinero en Europa está hablando claro: los inversores prefieren jugar a lo seguro ante la incertidumbre económica. Según datos de Morningstar hasta octubre, los fondos que están acaparando las mayores entradas de capital no son los de renta variable pura, sino los productos monetarios y de renta fija. Un ejemplo es el fondo Pimco GIS Balanced Income and Growth, que ha captado más de 12.500 millones de euros en lo que va de año, buscando generar rentas estables en un entorno de tipos elevados. ¿Qué significa esto para ti? Que el mercado está premiando los activos que ofrecen una rentabilidad ",
       "fuente": "Expansión",
       "url": "https://www.expansion.com/mercados/fondos/2026/11/14/fondos-inversion-arrasan-europa-2026.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "Nvidia intenta recuperar el aliento tras la caída histórica por la salida de su CEO",
+      "resumen": "Las acciones de Nvidia han experimentado una montaña rusa emocional esta semana. Tras desplomarse cerca de un 14% en la apertura del jueves, después de conocerse la dimisión de su fundador y consejero delegado, Jensen Huang, la tecnológica ha logrado recuperar terreno, situando su cotización por encima de los 170 dólares. Este rebote ha servido para devolver algo de optimismo a los futuros del Nasdaq 100, que se habían visto arrastrados por la incertidumbre. La salida de Huang, que deja la compañía tras 33 años al frente, no es solo un relevo directivo; ha desatado una crisis de gobernanza. El",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/bolsa/nvidia-recupera-los-170-dolares-y-devuelve-al-verde-a-los-futuros-del-nasdaq-100--24167374.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "Bestinver ve gangas en sectores olvidados mientras la bolsa se concentra en pocos valores",
+      "resumen": "La gestora Bestinver ha lanzado una advertencia sobre el estado actual de los mercados: la rentabilidad de los índices está siendo impulsada por un grupo muy reducido de compañías, lo que ha provocado que muchos otros negocios sólidos coticen con descuentos que no se veían desde hace años. Para Enrique Pérez-Plá, consejero delegado de la firma, esta es una anomalía que ofrece oportunidades interesantes para quien sepa mirar fuera de lo que está de moda. La estrategia de Bestinver en su cartera ibérica incluye la incorporación de valores como Meliá, Digi y Jerónimo Martins, reduciendo su exposi",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/bolsa/bestinver-alerta-de-que-unos-pocos-valores-dominan-la-bolsa-y-ve-descuentos-que-no-observaba-desde-hace-anos--24169544.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "El IBEX 35 resiste la tormenta tecnológica y mantiene los 20.000 puntos",
+      "resumen": "Mientras Wall Street sufría una semana de fuertes turbulencias por el caso Nvidia y los problemas técnicos de Microsoft, el IBEX 35 ha demostrado una sorprendente capacidad de aguante, cerrando la semana con una revalorización del 3,36% y consolidándose por encima de los 20.020 puntos. El selectivo español ha funcionado como un refugio gracias a su composición: un mayor peso de la banca, la industria y la energía frente a la fuerte exposición al sector tecnológico que castiga a los índices estadounidenses. El protagonismo esta semana ha recaído en los valores energéticos, espoleados por el rep",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/mercados/cronica-bolsa/2026/11/13/ibex-recibe-nuevos-obstaculos-recuperar-20-000.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "Cuando el sistema se apaga: el coste real de depender de un solo gigante tecnológico",
+      "resumen": "La reciente interrupción global de servicios clave de Microsoft —como Outlook, Teams y Copilot— ha dejado una lección inquietante sobre la fragilidad operativa del sector financiero actual. Durante 18 horas, la imposibilidad de utilizar estas herramientas obligó a traders de todo el mundo a desempolvar métodos de comunicación analógicos, como el teléfono y el fax, para poder seguir operando y liquidando transacciones. Aunque las bolsas lograron mantenerse abiertas, el impacto en la liquidez y en el procesamiento de órdenes ha sido un recordatorio necesario de nuestra hiperdependencia. Desde el",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/mercados/caida-mundial-microsoft-obliga-traders-volver-telefono-fax.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "Enagás se refuerza en Francia comprando un 18% adicional de Teréga",
+      "resumen": "Enagás sigue dando pasos en su plan estratégico 2025-2030, centrado en la rotación de activos y la seguridad de suministro energético. La compañía española ha anunciado la compra de un 18% adicional de la francesa Teréga a EDF Invest por 311 millones de euros, lo que eleva su participación total al 49,5%. Esta operación es un movimiento táctico para consolidar su presencia en un operador estratégico: Teréga controla el 16% de la red de transporte de gas en Francia y el 27% de la capacidad de almacenamiento del país. Financieramente, es importante entender que esta operación no implica una toma",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/empresas/energia/2026/11/13/enagas-logra-40-5-francesa-terega-comprar-18-edf-311-millones.html"
+    },
+    {
+      "fecha": "2026-11-15",
+      "titular": "Goldman Sachs renueva sus apuestas en Europa: Deutsche Bank y Carlsberg en el punto de mira",
+      "resumen": "Goldman Sachs ha realizado ajustes en su lista de recomendaciones de compra en Europa, integrando a Deutsche Bank y a la cervecera danesa Carlsberg en su 'Conviction List'. Ambas empresas, aunque operan en sectores radicalmente distintos, comparten una tesis común: un potencial de mejora operativa que el mercado aún no parece reflejar plenamente en sus valoraciones actuales. En el caso de Deutsche Bank, el banco estadounidense cree que estamos ante una \"nueva era de rentabilidad\". El analista Chris Hallam destaca que la entidad podría elevar su rentabilidad sobre el capital tangible (RoTE) por",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/empresas/banco-cervecera-nuevas-apuestas-goldman-para-invertir-europa--23997426.html"
     }
   ]
 }
