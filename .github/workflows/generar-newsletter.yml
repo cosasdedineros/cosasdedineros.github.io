@@ -4,14 +4,15 @@ name: Generar newsletter financiera
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 8 * * *"
-      timezone: "Europe/Madrid"
-    - cron: "0 15 * * *"
+    - cron: "7,17,27,37,47,57 8-23 * * *"
       timezone: "Europe/Madrid"
 
 permissions:
   contents: write
 
+concurrency:
+  group: generar-newsletter
+  cancel-in-progress: false
 
 jobs:
   generar:
@@ -21,29 +22,114 @@ jobs:
       - name: Descargar repositorio
         uses: actions/checkout@v4
 
+      - name: Comprobar si toca generar o reintentar
+        id: turno
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          python - <<'PY'
+          import os
+          import json
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          if os.environ["EVENT_NAME"] == "workflow_dispatch":
+              slot = "manual"
+          else:
+              ahora = datetime.now(ZoneInfo("Europe/Madrid"))
+              hoy = ahora.date().isoformat()
+
+              try:
+                  with open("newsletter_estado.json", "r", encoding="utf-8") as f:
+                      estado = json.load(f)
+              except (FileNotFoundError, json.JSONDecodeError):
+                  estado = {}
+
+              dia = estado.get(hoy, {})
+
+              if not dia.get("manana", False):
+                  slot = "manana"
+              elif ahora.hour >= 15 and not dia.get("tarde", False):
+                  slot = "tarde"
+              else:
+                  slot = ""
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"slot={slot}\n")
+
+          print(f"Turno seleccionado: {slot or 'ninguno'}")
+          PY
+
       - name: Preparar Python
+        if: steps.turno.outputs.slot != ''
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Instalar bibliotecas
+        if: steps.turno.outputs.slot != ''
         run: pip install requests trafilatura beautifulsoup4 google-genai
 
       - name: Generar newsletter con Gemini
+        if: steps.turno.outputs.slot != ''
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python generar_newsletter.py
 
       - name: Publicar noticias en la web
+        if: steps.turno.outputs.slot != ''
         run: |
           cp borrador_newsletter.html noticias.html
+
+      - name: Registrar generación correcta
+        if: steps.turno.outputs.slot == 'manana' || steps.turno.outputs.slot == 'tarde'
+        env:
+          SLOT: ${{ steps.turno.outputs.slot }}
+        run: |
+          python - <<'PY'
+          import os
+          import json
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          archivo = "newsletter_estado.json"
+
+          try:
+              with open(archivo, "r", encoding="utf-8") as f:
+                  estado = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError):
+              estado = {}
+
+          hoy = datetime.now(ZoneInfo("Europe/Madrid")).date().isoformat()
+
+          if hoy not in estado:
+              estado[hoy] = {}
+
+          estado[hoy][os.environ["SLOT"]] = True
+
+          with open(archivo, "w", encoding="utf-8") as f:
+              json.dump(estado, f, ensure_ascii=False, indent=2)
+
+          print(f"Generación registrada: {hoy} - {os.environ['SLOT']}")
+          PY
+
+      - name: Guardar cambios en GitHub
+        if: steps.turno.outputs.slot != ''
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add noticias.html noticias_publicadas.json
+
+          if [ -f newsletter_estado.json ]; then
+            git add newsletter_estado.json
+          fi
+
           git diff --cached --quiet || git commit -m "Actualizar noticias"
           git push
 
       - name: Guardar borrador
+        if: steps.turno.outputs.slot != ''
         uses: actions/upload-artifact@v4
         with:
           name: borrador-newsletter
