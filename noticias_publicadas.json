@@ -398,6 +398,48 @@
       "resumen": "La petrolera Moeve ha iniciado el proceso para buscar comprador para su red de 1.700 estaciones de servicio, una operación que podría alcanzar los 2.000 millones de euros. Sin embargo, más allá del valor contable, la noticia ha desatado un debate jurídico y económico sobre si las leyes actuales de competencia en España siguen teniendo sentido o si se han quedado obsoletas. La Ley de Hidrocarburos limita que un solo operador controle más del 30% de las gasolineras en una misma provincia para evitar monopolios. Esta norma, diseñada hace años cuando el mercado era menos ágil, se ha convertido en ",
       "fuente": "Expansión",
       "url": "https://www.expansion.com/empresas/energia/2026/11/17/venta-gasolineras-moeve-pone-prueba-cnmc-ley-energetica.html"
+    },
+    {
+      "fecha": "2026-11-17",
+      "titular": "Semiconductores: un sector golpeado que busca su suelo",
+      "resumen": "El sector de los semiconductores atraviesa una etapa de ajuste importante, cotizando actualmente a unas 13 veces sus beneficios previstos. Para ponerlo en contexto, esta cifra es significativamente inferior a su media histórica de 19 veces y roza los mínimos de los últimos tres años. Es un escenario curioso, porque mientras el mercado castiga a estas empresas, la realidad en las fábricas es otra: la demanda de chips de memoria y procesadores para servidores sigue siendo superior a la oferta. Goldman Sachs, que ha analizado esta desconexión, sugiere que los precios actuales ya descuentan un det",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/bolsa/goldman-sachs-las-acciones-de-semiconductores-cerca-de-minimos-de-valoracion-de-3-anos-a-pesar-de-que-la-demanda-supera-a-la-oferta--24199946.html"
+    },
+    {
+      "fecha": "2026-11-17",
+      "titular": "Bonos: la oportunidad que PIMCO no veía hace 25 años",
+      "resumen": "Si eres de los que cree que la renta fija es solo para tiempos aburridos, quizás debas mirar lo que dice PIMCO. La gestora asegura que, actualmente, el mercado de bonos ofrece una oportunidad que no se veía desde hace un cuarto de siglo. Esto se debe a que las rentabilidades rondan el 5,5%, un nivel que, comparado con la inflación, permite por fin asegurar ingresos reales durante los próximos tres a cinco años. Para entender por qué esto importa ahora, hay que recordar el pasado reciente: hasta 2021, los bonos generaban tan poco que no servían ni para protegerse de las caídas. Sin embargo, con",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/renta-fija/pimco-ve-en-los-bonos-una-oportunidad-que-solo-aparece-una-vez-cada-25-anos--24199326.html"
+    },
+    {
+      "fecha": "2026-11-17",
+      "titular": "Banca española: dividendos a salvo, pero recompras a revisión",
+      "resumen": "La banca española ha cerrado su temporada de resultados trimestrales con un mensaje claro para los inversores: el dividendo ordinario es sagrado y está asegurado. Sin embargo, hay una letra pequeña que no debemos ignorar: la visibilidad sobre los programas de recompra de acciones extraordinarios se ha nublado. ¿Por qué ocurre esto? Tras el crecimiento del crédito y la revalorización de carteras, los niveles de capital (o solvencia) de muchas entidades han quedado más ajustados de lo previsto. Para que un banco pueda recomprar acciones, necesita tener un excedente de capital claro. Si ese marge",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/ibex-35/banca-espanola-asegura-dividendo-pero-pierde-visibilidad-recompras-acciones.html"
+    },
+    {
+      "fecha": "2026-11-17",
+      "titular": "Puig convence al mercado con su plan a largo plazo",
+      "resumen": "Puig ha logrado algo difícil en el mundo financiero actual: que un banco de inversión como Jefferies eleve su precio objetivo un 19% tras su última presentación de estrategia. Este ajuste refleja una mayor confianza en que la empresa de fragancias puede mantener su crecimiento orgánico hasta 2032. La clave de esta mejora está en el segmento \"niche\" o ultra-premium, que ha sorprendido positivamente y podría multiplicar sus ventas por tres en los próximos años. ¿Por qué importa esto? Porque el mercado temía que el auge de los perfumes post-pandemia fuera una moda pasajera. Sin embargo, Puig ha d",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/ibex-35/jefferies-sube-apuesta-puig-25-euros.html"
+    },
+    {
+      "fecha": "2026-11-17",
+      "titular": "Salario Mínimo en 2027: 1.286 euros y exención fiscal",
+      "resumen": "El Gobierno ha aprobado una nueva subida del Salario Mínimo Interprofesional (SMI) para 2027, situándolo en 1.286 euros mensuales en catorce pagas. Esta medida, que afectará a unos 2,5 millones de trabajadores, viene acompañada de un cambio técnico importante: la exención de tributación en el IRPF. En lenguaje sencillo, esto significa que el incremento bruto se notará más en el bolsillo neto, ya que se han ajustado los tramos para evitar que el trabajador pague más impuestos simplemente por haber subido su sueldo. Desde el punto de vista económico, este es el tercer gran aumento en volumen de ",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/economia/2026/11/17/gobierno-aprueba-subida-salario-minimo-1-286-euros-2027.html"
+    },
+    {
+      "fecha": "2026-11-17",
+      "titular": "Bruselas eleva el crecimiento español al 2,6% para 2026",
+      "resumen": "La Comisión Europea ha revisado al alza su previsión de crecimiento para la economía española, situando el avance del PIB en un 2,6% para 2026. Esta mejora de dos décimas respecto a las previsiones de primavera se apoya principalmente en la resistencia del consumo privado. A pesar de vivir en un entorno geopolítico incierto y con precios de la energía que siguen siendo un lastre, el consumo de los hogares ha demostrado ser un motor más potente de lo que se esperaba. ¿Cómo funciona esto? Bruselas explica que el empleo sigue creciendo y que las familias están utilizando parte de su tasa de ahorr",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/economia/comision-europea-mejora-prevision-pib-espana-crecera-26-2026--24201150.html"
     }
   ]
 }
