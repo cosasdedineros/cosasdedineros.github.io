@@ -545,6 +545,41 @@
       "resumen": "Jim Cramer, el conocido comentarista de CNBC, ha lanzado un aviso a los inversores que apuestan a que las tecnológicas caerán: podrían estar jugando con fuego. Tras unos resultados de Nvidia que superaron las previsiones —con ingresos de 115.800 millones de dólares y una previsión de 130.000 millones para el siguiente trimestre—, el argumento de que la demanda de chips de inteligencia artificial se está frenando ha perdido fuerza. La lógica de Cramer es sencilla: muchos inversores han apostado en corto contra estas empresas esperando un colapso inminente. Si el mercado, tras digerir las cuenta",
       "fuente": "Capital Bolsa",
       "url": "https://www.bolsamania.com/capitalbolsa/noticias/gurus-de-mercado/los-bajistas-en-peligro-tras-la-caida-de-nvidia-y-la-salida-a-bolsa-de-anthropics---cramer--24216984.html"
+    },
+    {
+      "fecha": "2026-11-19",
+      "titular": "Anthropic debuta en Wall Street: la mayor salida a bolsa de la historia",
+      "resumen": "Anthropic, la creadora del asistente de IA Claude, ha protagonizado el estreno bursátil más grande de la historia en el Nasdaq. La compañía fijó su precio de salida en 83 dólares por acción, pero la expectación era tal que en su primer día llegó a dispararse un 34%, alcanzando un precio de 111,5 dólares. Esta cifra sitúa su valoración de mercado por encima de los 2 billones de dólares, superando a gigantes como Meta o Tesla. El éxito de esta colocación, que ha captado más de 107.000 millones de dólares entre la oferta pública y la privada, es un termómetro clave para el sector. Los inversores ",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/mercados/anthropic-dispara-34-mayor-opv-historia-supera-2-billones-dolares.html"
+    },
+    {
+      "fecha": "2026-11-19",
+      "titular": "Nvidia bajo presión: el riesgo de un frenazo en la inversión de IA",
+      "resumen": "Los resultados de Nvidia, los primeros tras la salida de Jensen Huang, han mostrado unas cifras espectaculares: los ingresos se duplicaron hasta los 115.800 millones de dólares. Sin embargo, el mercado mira con lupa lo que viene después. La compañía ha elevado sus compromisos de suministro a 390.000 millones de dólares para asegurar memoria y capacidad, pero la sostenibilidad de este gasto empieza a generar dudas. El problema financiero es sencillo: si los laboratorios de IA y los operadores de centros de datos reducen su inversión —por falta de financiación o por un despliegue más lento de lo",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/empresas/el-per-de-nvidia-puede-saltar-de-11-a-35-veces-si-se-recorta-la-inversion-en-ia--24220386.html"
+    },
+    {
+      "fecha": "2026-11-19",
+      "titular": "Solaria cambia de estrategia y busca ingresos recurrentes en centros de datos",
+      "resumen": "Solaria ha aprovechado su día del inversor (Capital Markets Day) para anunciar un giro en su modelo de negocio. La energética española, tradicionalmente centrada en la energía solar, ha decidido que ya no quiere limitarse a vender terrenos con acceso a la red eléctrica para centros de datos. Ahora, su meta es participar en la propiedad de estas instalaciones a través de sociedades conjuntas con socios de primer nivel. Este movimiento busca transformar ingresos puntuales en recurrentes. Un ejemplo es el proyecto de 70 MW en Madrid: Solaria mantendrá una participación del 50% y actuará como prov",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/empresas/solaria-cae-nuevas-previsiones-estrategia-centros-datos-cmd--24229662.html"
+    },
+    {
+      "fecha": "2026-11-19",
+      "titular": "Santander entra en el club selecto del IBEX sin recomendaciones de venta",
+      "resumen": "Banco Santander ha logrado un hito relevante en su relación con los analistas: se ha quedado sin ninguna recomendación de infraponderar (o venta) tras la presentación de sus resultados del tercer trimestre, en los que anunció un beneficio récord de 12.405 millones de euros hasta septiembre. Es, actualmente, una de las cuatro únicas empresas del IBEX 35 en esta situación, junto a Fluidra, Puig y Rovi. Este cambio en la visión de los expertos se debe a la mejora en la percepción de su plan de transformación y la disciplina de costes. A pesar de los miedos que genera su exposición a Brasil, donde",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/ibex-35/santander-vuelve-lista-caviar-ibex-35-recomendaciones-venta.html"
+    },
+    {
+      "fecha": "2026-11-19",
+      "titular": "La Fed en el punto de mira: el riesgo de subir tipos cuando el desempleo se enquista",
+      "resumen": "El mercado financiero empieza a descontar que la Reserva Federal (Fed) podría subir los tipos de interés en su reunión de diciembre. El motivo es la inflación, que se muestra más resistente de lo que le gustaría al banco central estadounidense. Figuras como el gobernador Christopher Waller han puesto sobre la mesa un incremento de medio punto porcentual (50 puntos básicos) para frenar estas presiones. Pero este endurecimiento tiene una cara B preocupante. Mientras el banco central busca enfriar los precios, el mercado laboral muestra señales de fatiga. La duración media del desempleo ha subido",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/economia/la-fed-juega-con-fuego--24232852.html"
     }
   ]
 }
