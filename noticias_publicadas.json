@@ -622,6 +622,48 @@
       "resumen": "Nvidia ha presentado unas cuentas que, sobre el papel, son espectaculares: los ingresos del tercer trimestre se han duplicado, superando los 115.800 millones de dólares, un crecimiento del 103% frente al año anterior. Sin embargo, la reacción de Wall Street demuestra que en el mercado actual las cifras del pasado ya no bastan para mantener la confianza. La compañía se encuentra en pleno proceso de transición tras la dimisión de su icónico fundador, Jensen Huang, y las dudas sobre quién llevará el timón están pesando más que los récords de ventas. Los inversores están analizando el aumento de l",
       "fuente": "Capital Bolsa",
       "url": "https://www.bolsamania.com/capitalbolsa/noticias/recomendaciones/esto-es-lo-que-dicen-los-principales-analistas-de-wall-street-sobre-los-resultados-de-nvidia--24217290.html"
+    },
+    {
+      "fecha": "2026-11-20",
+      "titular": "Anthropic: el mercado busca suelo tras un debut vertiginoso",
+      "resumen": "Anthropic, la desarrolladora del asistente Claude, ha vivido una montaña rusa bursátil en sus primeras 48 horas. Tras una salida a bolsa (OPV) fijada en 83 dólares por acción, el valor se disparó un 34% en su apertura, pero ha ido perdiendo fuelle hasta acercarse de nuevo a su precio de colocación. Esta corrección refleja el escepticismo de los inversores institucionales, muchos de los cuales se quedaron fuera de la oferta inicial y ahora prefieren esperar a que el precio se estabilice. El problema de fondo no es la tecnología, sino la valoración. Anthropic alcanzó una capitalización inicial d",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/recomendaciones/es-momento-de-comprar-o-vender-acciones-de-anthropic--24245788.html"
+    },
+    {
+      "fecha": "2026-11-20",
+      "titular": "Nvidia: ¿es el momento de comprar tras la caída?",
+      "resumen": "Nvidia sigue en el ojo del huracán tras la dimisión de su icónico CEO, Jensen Huang, y el reciente desplome bursátil que ha borrado miles de millones de valor en pocos días. Pese a que la compañía presentó unos resultados trimestrales impecables —con ingresos que se duplicaron hasta los 115.844 millones de dólares y un beneficio neto un 104% superior al del año anterior—, el mercado se mantiene cauteloso. Bankinter ha rebajado el precio objetivo de la acción de 309 a 242 dólares, argumentando que el riesgo ha aumentado en la compañía. Aun así, mantiene una recomendación de compra al considerar",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/analisis-fundamental/nvidia-con-criterios-muy-conservadores-el-potencial-alcista-es-mas-del-60--24243724.html"
+    },
+    {
+      "fecha": "2026-11-20",
+      "titular": "Centros de datos: España aprueba una regulación que enfada al sector",
+      "resumen": "El Gobierno ha aprobado un real decreto que impone estrictos requisitos de sostenibilidad a los centros de datos en España. La medida, que ha sido recibida con fuertes críticas por la patronal SpainDC y diversas comunidades autónomas, exige que estas infraestructuras cubran el 80% de su consumo eléctrico con energía renovable, demostrada hora a hora. Esto obliga a las empresas a instalar costosos sistemas de baterías para asegurar que el suministro sea 'verde' incluso durante la noche. Financieramente, esto cambia las reglas del juego. La patronal advierte que el aumento en los costes de const",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/empresas/2026/11/20/patronal-grandes-tecnologicas-recurre-decreto-centros-datos-pedira-suspension-cautelar.html"
+    },
+    {
+      "fecha": "2026-11-20",
+      "titular": "UBS apuesta por el oro: ¿por qué ahora?",
+      "resumen": "El oro está pasando por un bache significativo, alejándose de sus máximos recientes debido a la fortaleza del dólar y a unas expectativas de tipos de interés que presionan al alza la rentabilidad de la deuda estadounidense. Sin embargo, los analistas de UBS siguen viendo una oportunidad estratégica de compra, con un objetivo de 5.000 dólares por onza para finales de 2027, lo que supondría una revalorización cercana al 32%. ¿Qué motiva este optimismo en un momento de caídas? UBS señala que los fundamentales no han cambiado. Los bancos centrales de todo el mundo siguen comprando oro a ritmos réc",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/mercados/ubs-recomienda-oro-frente-euro-fija-objetivo-5-000.html"
+    },
+    {
+      "fecha": "2026-11-20",
+      "titular": "El Gobierno aprueba una nueva subida del SMI y de los sueldos de los funcionarios",
+      "resumen": "A menos de dos semanas de las elecciones generales del 29 de noviembre, el Gobierno ha oficializado una doble subida salarial que afectará a cerca de seis millones de trabajadores en España. Por un lado, el Salario Mínimo Interprofesional (SMI) subirá un 5,3% hasta los 1.286 euros mensuales en 14 pagas para 2027. Por otro, los sueldos de los funcionarios se incrementarán un 4,5%. Para entender el impacto financiero de esta decisión, hay que mirar más allá de la noticia política. La subida del SMI tiene un coste estimado de unos 3.000 millones de euros para las empresas, siendo las pequeñas fir",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/economia/2026/11/18/sanchez-aprueba-subidas-sueldo-seis-millones-trabajadores-visperas-elecciones.html"
+    },
+    {
+      "fecha": "2026-11-20",
+      "titular": "SpaceX recurre a la deuda para comprar chips y alimentar su expansión en IA",
+      "resumen": "SpaceX ha colocado 32.000 millones de dólares en bonos para financiar una compra masiva de chips 'Vera Rubin' de Nvidia. Esta operación, estructurada a través de un vehículo financiero independiente, es un claro ejemplo de cómo las empresas tecnológicas están financiando su crecimiento fuera de balance. SpaceX aportará solo el 15% del coste total de 47.300 millones de dólares, utilizando deuda para pagar el resto, lo que le permite mantener su liquidez para otras inversiones críticas. Lo llamativo de esta emisión es el coste: el mayor tramo de bonos ofrece una rentabilidad del 8,259%. Este por",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/empresas/spacex-coloca-32000-millones-de-dolares-en-deuda-para-acelerar-su-expansion-en-ia--24243720.html"
     }
   ]
 }
