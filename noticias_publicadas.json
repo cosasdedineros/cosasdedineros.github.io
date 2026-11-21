@@ -706,6 +706,48 @@
       "resumen": "El Gobierno ha aprobado un real decreto que impone requisitos de sostenibilidad mucho más estrictos para los centros de datos en España. A partir de ahora, cualquier nueva infraestructura de este tipo deberá cubrir el 80% de su consumo eléctrico con energía renovable, y lo más importante: este consumo debe ser 'correlativo hora a hora'. Es decir, la empresa no puede simplemente comprar energía verde a largo plazo para compensar; debe demostrar que la electricidad que consume se ha generado en el mismo momento en que se está usando. Este cambio es un golpe financiero para un sector que hasta ah",
       "fuente": "Bolsamanía",
       "url": "https://www.bolsamania.com/noticias/economia/gobierno-aprueba-regulacion-centros-datos-exige-estandares-sostenibilidad--24244790.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Anthropic: el estreno bursátil que se convirtió en una trampa de volatilidad",
+      "resumen": "La salida a bolsa (OPV) de Anthropic, la creadora del asistente Claude, ha sido el gran evento financiero de la semana, pero no ha tenido el final feliz que muchos esperaban. Tras fijar un precio de 83 dólares por acción y dispararse un 34% en su debut, el entusiasmo se evaporó rápidamente. Los inversores institucionales, que se quedaron fuera de la colocación inicial, han optado por no entrar al mercado, provocando un desplome que ha llevado a la acción a corregir más de un 10% en una sola sesión. ¿Por qué importa esto? Porque Anthropic no es una empresa cualquiera; es el termómetro actual de",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/mercados/anthropic-desploma-historica-opv.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Semana negra en el Ibex 35: la corrección global pasa factura",
+      "resumen": "El IBEX 35 ha cerrado una semana para el olvido, perdiendo un 5,73% y situándose en los 18.873 puntos. La ruptura del soporte psicológico de los 19.000 enteros confirma que el miedo no es solo algo que ocurre en Wall Street. Lo más llamativo es que el castigo ha sido total: ninguno de los 35 valores del selectivo ha logrado cerrar la semana en positivo. El origen del problema sigue siendo la inteligencia artificial. Las dudas sobre si las empresas podrán recuperar las inversiones multimillonarias que están realizando han contagiado a todo el mercado. En España, sectores como la energía o la te",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/empresas/ni-uno-se-salva-35-valores-ibex-cierran-rojo-semana-negra-para-bolsa--24248538.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Nvidia: la crisis de confianza y el frente judicial se complican",
+      "resumen": "La pesadilla de Nvidia no tiene fin. Esta semana, el gigante de los chips ha profundizado su caída, acumulando ya un retroceso del 47,5% desde sus máximos. La dimisión de su icónico CEO, Jensen Huang, fue el primer golpe, pero ahora se suman dos frentes judiciales que preocupan gravemente a los inversores: una investigación del estado de California sobre el envío de chips avanzados a China y otra de la SEC por posibles irregularidades contables. Financieramente, Nvidia ha caído al cuarto puesto en el ranking de capitalización de Wall Street, siendo superada por Apple, Microsoft y Alphabet. Lo ",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/mercados/2026/11/20/6affefcaafc7cf70335b08c8-directo.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Gobierno prorroga el impuesto a la banca para financiar vivienda",
+      "resumen": "El Ejecutivo ha anunciado una medida que afecta directamente al sector financiero: la prórroga durante 2027 del impuesto a la banca. Con esta decisión, se espera recaudar 1.400 millones de euros que se destinarán íntegramente a políticas de vivienda. El objetivo, según el presidente Pedro Sánchez, es financiar la construcción de 6.000 viviendas asequibles y ayudar a 120.000 inquilinos. Desde el punto de vista financiero, este tipo de impuestos repercute directamente en la cuenta de resultados de los bancos. Aunque el sector ya ha digerido la implementación de esta tasa, la prórroga supone un c",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/empresas/banca/2026/11/21/sanchez-anuncia-prorroga-impuesto-banca-2027-recaudar-1-400-millones.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "El oro, atrapado entre la política monetaria y las ventas de pánico",
+      "resumen": "El oro no está siendo el refugio que muchos esperaban en esta crisis bursátil. El metal precioso ha caído hasta los 3.590 dólares por onza, perdiendo un 2,5% en la última jornada. Según los analistas de Julius Baer, el motivo principal son las expectativas de que la Reserva Federal (Fed) mantenga o incluso suba los tipos de interés, lo que hace que otros activos, como los bonos, resulten más atractivos comparativamente. ¿Por qué el oro sufre cuando suben los tipos? Porque es un activo que no paga intereses. Si puedes comprar deuda pública estadounidense y obtener un retorno superior al 5% anua",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/pulsos-mercado/oro-vuelve-caer-acusa-expectativas-excesivas-subidas-tipos--24243836.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Vanguard apuesta por la gestión activa en renta fija mediante nuevos ETF",
+      "resumen": "Vanguard ha dado un paso estratégico en el mercado europeo al lanzar sus primeros fondos cotizados (ETF) de renta fija de gestión activa. Los dos productos, centrados en bonos corporativos europeos y deuda estadounidense de alto rendimiento (high yield), buscan superar a sus índices de referencia mediante un análisis disciplinado de crédito. Esta es una novedad importante para una firma históricamente conocida por su enfoque pasivo y de bajo coste. ¿Qué significa que un ETF sea de gestión activa? A diferencia de los fondos indexados, que simplemente copian un índice, aquí los gestores toman de",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/fundsnews/noticias/productos/vanguard-lanza-dos-primeros-etf-ucits-renta-fija-activa-europa--24230362.html"
     }
   ]
 }
