@@ -664,6 +664,48 @@
       "resumen": "SpaceX ha colocado 32.000 millones de dólares en bonos para financiar una compra masiva de chips 'Vera Rubin' de Nvidia. Esta operación, estructurada a través de un vehículo financiero independiente, es un claro ejemplo de cómo las empresas tecnológicas están financiando su crecimiento fuera de balance. SpaceX aportará solo el 15% del coste total de 47.300 millones de dólares, utilizando deuda para pagar el resto, lo que le permite mantener su liquidez para otras inversiones críticas. Lo llamativo de esta emisión es el coste: el mayor tramo de bonos ofrece una rentabilidad del 8,259%. Este por",
       "fuente": "Capital Bolsa",
       "url": "https://www.bolsamania.com/capitalbolsa/noticias/empresas/spacex-coloca-32000-millones-de-dolares-en-deuda-para-acelerar-su-expansion-en-ia--24243720.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Nvidia: seis días, 669.000 millones menos y una crisis de confianza que no cede",
+      "resumen": "Nvidia está viviendo un calvario bursátil. En apenas seis sesiones, la compañía ha visto cómo su valor en bolsa se evaporaba en 669.000 millones de dólares, una cifra que supera la capitalización total de casi cualquier otra empresa en el mundo. El castigo persiste a pesar de que la firma ha publicado resultados trimestrales sólidos y ha mejorado sus previsiones, lo que confirma que el problema no es el negocio actual, sino el miedo al futuro. La incertidumbre gira en torno a dos ejes principales: la investigación independiente abierta tras la dimisión de Jensen Huang por un escándalo personal",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/empresas/nvidia-pierde-669000-millones-de-dolares-en-bolsa-en-solo-seis-sesiones--24243444.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "El debut agridulce de Anthropic: cuando la mayor OPV de la historia no basta para salvar el mercado",
+      "resumen": "Anthropic, el creador del asistente Claude, ha protagonizado la mayor salida a bolsa (OPV) de la historia, logrando captar unos 119.500 millones de dólares. Sin embargo, lo que debía ser el salvavidas que restaurara la confianza en el sector de la inteligencia artificial ha terminado convirtiéndose en un termómetro de la desconfianza inversora. Tras un primer día de euforia donde la acción subió un 17%, el valor ha sufrido correcciones rápidas, llegando a caer un 11% en sesiones posteriores, lo que ha reabierto el debate sobre las valoraciones astronómicas del sector. ¿Qué ha cambiado? El merc",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/empresas/anthropic-desinfla-tras-historico-debut-reabre-debate-ia--24243076.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Semana negra para el Ibex 35: la corrección global golpea sin piedad",
+      "resumen": "El Ibex 35 ha cerrado una semana para olvidar, con un desplome del 5,7%, situándose en los 18.873 puntos y perdiendo la barrera psicológica de los 19.000. Lo más llamativo es que el castigo ha sido total: ninguno de sus 35 valores ha logrado cerrar en positivo. Esta racha sitúa al selectivo español en niveles no vistos desde marzo, cuando el estallido de la crisis en Irán provocó un movimiento similar de pánico en los mercados. Aunque el epicentro de este seísmo bursátil se encuentra en Wall Street, con el Nasdaq liderando las caídas por las dudas sobre la inteligencia artificial, el contagio ",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/ibex-35/ibex-35-pierde-57-semana-negra-marcada-miedo-ia.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Repsol crece en el Mar del Norte: una estrategia para ganar músculo sin cargar deuda",
+      "resumen": "Repsol ha cerrado una operación estratégica para reforzar su presencia en el Mar del Norte mediante la adquisición de los activos de exploración y producción de EnQuest en el Reino Unido. La clave de esta operación, que asciende a unos 830 millones de euros, no es solo el tamaño del negocio, sino la estructura financiera empleada: la compra se realiza a través de su sociedad conjunta (Neo Next +) con TotalEnergies y HitecVision, lo que permite a Repsol evitar la consolidación de deuda adicional en su propio balance. Esto es un movimiento táctico interesante. En un entorno de tipos de interés a",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/ibex-35/repsol-refuerza-negocio-reino-unido-asumir-toda-factura.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "Santander y el reto de los neobancos: ¿por qué los ahorradores se llevan 1.000 millones?",
+      "resumen": "El Banco Santander ha revelado que, en los primeros nueve meses del año, sus clientes en España han movido 1.000 millones de euros de sus cuentas hacia neobancos como Revolut o Trade Republic. Aunque la cifra parece elevada, el banco ha restado importancia al impacto en sus cuentas, asegurando que su base total de depósitos en España ha crecido un 5% en el mismo periodo. Esta situación refleja una dinámica interesante en la banca actual: la guerra del pasivo ya no es solo entre bancos tradicionales, sino contra nuevos actores digitales que ofrecen rentabilidades más atractivas en cuentas corri",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/empresas/banca/2026/11/21/santander-salen-1-000-millones-depositos-neobancos.html"
+    },
+    {
+      "fecha": "2026-11-21",
+      "titular": "España impone el 'sello verde' a los centros de datos: el fin de la barra libre energética",
+      "resumen": "El Gobierno ha aprobado un real decreto que impone requisitos de sostenibilidad mucho más estrictos para los centros de datos en España. A partir de ahora, cualquier nueva infraestructura de este tipo deberá cubrir el 80% de su consumo eléctrico con energía renovable, y lo más importante: este consumo debe ser 'correlativo hora a hora'. Es decir, la empresa no puede simplemente comprar energía verde a largo plazo para compensar; debe demostrar que la electricidad que consume se ha generado en el mismo momento en que se está usando. Este cambio es un golpe financiero para un sector que hasta ah",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/economia/gobierno-aprueba-regulacion-centros-datos-exige-estandares-sostenibilidad--24244790.html"
     }
   ]
 }
