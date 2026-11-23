@@ -26,97 +26,190 @@
   gtag('config', 'G-SCX74R28X0');
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#F6F4EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ═════════ BASE ═════════ */
 :root{
-  --verde:#1a3a2a;
-  --dorado:#c9a84c;
-  --crema:#f8f5ee;
-  --texto:#1a1a1a;
+  --verde:#0B6B55;       /* color de marca (acento) */
+  --verde-osc:#0F2A23;   /* hero y bloques oscuros */
+  --dorado:#F2B84B;      /* ámbar de acento */
+  --crema:#F6F4EE;
+  --texto:#14211D;
+  --tinta:#14211D;
+  --suave:#3F4F49;
+  --linea:#DAD6C9;
+  --pad:max(32px,calc((100% - 1200px)/2 + 32px));
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:"DM Sans";background:var(--crema);color:var(--texto);}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;line-height:1.6;
+  background:var(--crema);color:var(--tinta);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;}
+:focus-visible{outline:3px solid var(--dorado);outline-offset:2px;}
+
+/* ═════════ CABECERA ═════════ */
+.cabecera{
+  position:sticky;top:0;z-index:1000;
+  background:var(--crema);border-bottom:1px solid var(--linea);
+}
 .topbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:var(--verde);
-  color:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 20px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;
+  padding:14px var(--pad) 0;color:var(--tinta);
 }
-
-  nav{
-  position:sticky;top:45px;z-index:999;
-  background:#122a1f;
-  display:flex;gap:20px;padding:12px 20px;
-  overflow-x:auto;
-  scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
-  white-space:nowrap;
-  /* Sin justify-content en móvil → empieza desde la izquierda */
+.marca{
+  display:flex;align-items:center;gap:12px;
+  color:var(--tinta);text-decoration:none;
+  font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;
+  font-size:22px;letter-spacing:-.01em;
 }
-
-@media(min-width:700px){
-  nav{ justify-content:center; }
+.marca svg{width:40px;height:40px;flex-shrink:0;}
+.usuario-email{
+  font-size:13px;color:var(--verde);font-weight:500;
+  display:none;align-items:center;gap:6px;
 }
+.usuario-email::before{content:"●";color:#2e9e57;font-size:10px;}
+.topbar-acciones{
+  display:flex;align-items:center;justify-content:flex-end;
+  flex-wrap:wrap;gap:10px 12px;margin-left:auto;
+}
+.usuario-box{align-items:center;gap:10px;}
+.usuario-nombre{font-size:14px;font-weight:500;color:var(--tinta);}
+.btn-principal,.btn-contorno{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 20px;border-radius:999px;
+  font:600 15px/1 "Inter",system-ui,sans-serif;
+  cursor:pointer;text-decoration:none;
+  transition:background .15s,color .15s;
+}
+.btn-principal{background:var(--verde);color:#fff;border:1.5px solid var(--verde);}
+.btn-principal:hover{background:#09594A;}
+.btn-contorno{background:transparent;color:var(--tinta);border:1.5px solid var(--tinta);}
+.btn-contorno:hover{background:var(--tinta);color:var(--crema);}
+.btn-contorno svg{width:18px;height:18px;flex-shrink:0;}
 
-  
+nav{
+  display:flex;gap:0 28px;padding:6px var(--pad) 0;
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+nav::-webkit-scrollbar{display:none;}
 nav a{
-  color:white;
-  text-decoration:none;
-  font-size:14px;
+  color:var(--tinta);text-decoration:none;
+  font-size:16px;font-weight:500;flex-shrink:0;
+  padding:12px 0;border-bottom:3px solid transparent;
+  transition:color .15s;
 }
-nav a:hover{color:var(--dorado);}
-nav a.active{color:var(--dorado);}
+nav a:hover{color:var(--verde);}
+nav a[aria-current="page"]{font-weight:600;border-bottom-color:var(--verde);}
+
+/* ═════════ HERO ═════════ */
 .hero{
-  padding:50px 20px;
-  text-align:center;
-  background:var(--verde);
-  color:white;
+  position:relative;overflow:hidden;text-align:left;
+  background:var(--verde-osc);color:var(--crema);
+  padding:104px var(--pad) 120px;
 }
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:58%;
+  pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' preserveAspectRatio='none'%3E%3Cpath d='M0 280 C200 270 380 230 560 180 C760 125 980 70 1200 20 L1200 300 L0 300 Z' fill='%2314473A' fill-opacity='.55'/%3E%3Cpath d='M0 280 C200 270 380 230 560 180 C760 125 980 70 1200 20' fill='none' stroke='%23F2B84B' stroke-width='3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;
+}
+.hero h1,.hero h2{position:relative;z-index:1;}
 .hero h1{
-  font-size:36px;
-  font-family:"Playfair Display";
+  font-weight:700;font-size:clamp(40px,6.4vw,76px);
+  line-height:1.04;letter-spacing:-.035em;max-width:1000px;
 }
-.ig-section{
-  max-width:1100px;
-  margin:60px auto;
-  padding:0 20px;
+.hero h2{
+  font-family:"Inter",system-ui,sans-serif;font-weight:500;
+  font-size:clamp(18px,2.4vw,26px);line-height:1.35;
+  margin-top:20px;color:var(--dorado);opacity:1;max-width:640px;
 }
-.ig-section h2{
-  text-align:center;
-  margin-bottom:30px;
-  font-family:"Playfair Display";
-  font-size:32px;
-  color:var(--verde);
+
+/* ═════════ FOOTER ═════════ */
+footer{
+  background:#14211D;color:#D5DDD8;
+  margin-top:96px;padding:56px var(--pad);
+  display:grid;grid-template-columns:1fr auto;gap:8px 32px;
+  text-align:left;font-size:15px;
 }
+footer p{margin:0;}
+footer strong{
+  font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;
+  font-size:22px;color:var(--crema);
+}
+footer p a{color:#D5DDD8;text-decoration:underline;}
+footer .legal{
+  grid-column:2;grid-row:1/span 2;align-self:start;
+  display:flex;flex-wrap:wrap;gap:4px 28px;
+}
+footer .legal a{color:#D5DDD8;text-decoration:none;padding:8px 0;}
+footer a:hover{color:#fff;}
+
+/* ═════════ COOKIES ═════════ */
+#cookie-banner{
+  position:fixed;left:0;right:0;bottom:0;transform:none;
+  width:auto;max-width:none;
+  background:#fff;color:var(--suave);
+  border:0;border-top:1px solid var(--linea);border-radius:0;
+  padding:16px var(--pad);
+  font-family:"Inter",system-ui,sans-serif;font-size:15px;
+  display:none;flex-wrap:wrap;justify-content:space-between;align-items:center;
+  gap:14px 24px;z-index:99999;
+  box-shadow:0 -8px 24px -12px rgba(20,33,29,.25);
+}
+#cookie-banner p{flex:1 1 420px;margin:0;line-height:1.5;}
+#cookie-buttons{display:flex;flex-wrap:wrap;gap:10px;flex-shrink:0;}
+#cookie-banner button{
+  min-height:44px;padding:0 20px;border-radius:999px;
+  border:1.5px solid var(--tinta);
+  font:600 15px/1 "Inter",system-ui,sans-serif;cursor:pointer;
+}
+#cookie-banner #reject{background:var(--tinta);color:var(--crema);}
+#cookie-banner #cookie-settings{background:transparent;color:var(--tinta);}
+#cookie-banner #accept{background:var(--verde);border-color:var(--verde);color:#fff;}
+
+/* ═════════ POSTS ═════════ */
+.hero{padding:72px var(--pad) 104px;}
+.hero h1{font-size:clamp(36px,5.4vw,60px);}
+.ig-section{max-width:1200px;margin:0 auto;padding:72px 32px 0;}
 .ig-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
-  gap:20px;
-  align-items:start;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:28px;align-items:start;
 }
 .ig-grid .instagram-media{
-  width:100% !important;
-  max-width:100% !important;
-  min-width:0 !important;
+  width:100% !important;max-width:100% !important;min-width:0 !important;
+  margin:0 !important;
+  border:1px solid var(--linea) !important;border-radius:24px !important;
+  box-shadow:none !important;background:#fff !important;
 }
-footer{
-  background:var(--verde);
-  color:white;
-  padding:40px;
-  margin-top:60px;
-  text-align:center;
+
+/* ═════════ RESPONSIVE / ACCESIBILIDAD ═════════ */
+@media(max-width:900px){
+  footer{grid-template-columns:1fr;}
+  footer .legal{grid-column:1;grid-row:auto;margin-top:16px;}
 }
-footer a{
-  color:var(--dorado);
-  text-decoration:none;
+@media(max-width:700px){
+  :root{--pad:20px;}
+  .hero{padding:56px var(--pad) 112px;}
+  .hero::after{height:40%;}
+  .ig-section{padding:48px 20px 0;}
+  .ig-grid{grid-template-columns:minmax(0,1fr);gap:20px;}
+  .topbar{gap:10px 16px;padding-top:12px;}
+  .marca{font-size:19px;gap:10px;}
+  .marca svg{width:34px;height:34px;}
+  .btn-principal,.btn-contorno{min-height:40px;padding:0 16px;font-size:14px;}
 }
-footer a:hover{text-decoration:underline;}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important;}
+}
 </style>
 
 <script type="application/ld+json">
@@ -135,64 +228,9 @@ footer a:hover{text-decoration:underline;}
 
 </head>
 
-<style>
-#cookie-banner {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  max-width: 800px;
-  background: #1b1b1b;
-  color: #fff;
-  padding: 14px 16px;
-  border-radius: 12px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  z-index: 99999;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
+<body>
 
-#cookie-banner p {
-  margin: 0;
-  flex: 1;
-  line-height: 1.3;
-}
-
-#cookie-buttons {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-#cookie-banner button {
-  border: none;
-  padding: 7px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-#accept {
-  background: #4caf50;
-  color: white;
-}
-
-#reject {
-  background: #e53935;
-  color: white;
-}
-
-#cookie-settings {
-  background: #555;
-  color: white;
-}
-</style>
-
+<!-- COOKIE BANNER -->
 <div id="cookie-banner">
   <p>
     Usamos cookies para mejorar la experiencia, analizar tráfico y mostrar anuncios personalizados.
@@ -232,29 +270,38 @@ window.addEventListener("load", () => {
 });
 </script>
 
-  
-<body>
+<!-- CABECERA: TOPBAR + NAV -->
+<header class="cabecera">
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <span></span>
-  <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
-     target="_blank"
-     style="text-decoration:none; background:var(--dorado); color:var(--verde); font-weight:600; padding:8px 16px; border-radius:6px;">
-    📩 Mensaje directo
-  </a>
-</div>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <a class="marca" href="index.html" aria-label="Cosas de Dineros, inicio">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" style="fill:var(--verde)"/><path d="M9 28 L16 20 L22 24 L31 12" fill="none" stroke="#F6F4EE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="12" r="3" fill="#F2B84B"/></svg>
+      Cosas de Dineros
+    </a>
+    <div class="topbar-acciones">
+      <a class="btn-contorno"
+         href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Mensaje directo
+      </a>
+    </div>
+  </div>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="instagram.html" class="active">Posts</a>
-  <a href="Substack.html">Artículos</a>
-  <a href="Calculadoras.html">Calculadoras</a>
-  <a href="comparador-fondos.html">Comparador fondos</a>
-  <a href="datos.html" class="active">Datos</a>
-  <a href="Libros.html">Libros</a>
-</nav>
+  <!-- NAV -->
+  <nav aria-label="Principal">
+    <a href="index.html">Inicio</a>
+    <a href="instagram.html" aria-current="page">Posts</a>
+    <a href="Substack.html">Artículos</a>
+    <a href="Calculadoras.html">Calculadoras</a>
+    <a href="comparador-fondos.html">Comparador fondos</a>
+    <a href="datos.html">Datos</a>
+    <a href="Libros.html">Libros</a>
+    <a href="noticias.html">Noticias</a>
+  </nav>
+
+</header>
 
 <!-- HERO -->
 <div class="hero">
@@ -294,16 +341,16 @@ window.addEventListener("load", () => {
 
   <p>
     Escrito por Alonso Orellana ·
-    <a href="https://instagram.com/cosasdedineros" target="_blank">
+    <a href="https://instagram.com/cosasdedineros" target="_blank" rel="noopener">
       @cosasdedineros
     </a>
   </p>
 
-  <p>
-    <a href="legal.html" style="color:#4caf50; text-decoration:none;">
-      Aviso legal
-    </a>
-  </p>
+  <div class="legal">
+    <a href="legal.html">Aviso legal</a>
+    <a href="cookies.html">Política de cookies</a>
+    <a href="privacidad.html">Política de privacidad</a>
+  </div>
 </footer>
 
 
