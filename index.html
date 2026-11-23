@@ -19,7 +19,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #F2B84B;outline-offset:2p
 
 <div style="--accent: {{accent}}; background: #F6F4EE; color: #14211D; font-family: 'Inter', system-ui, sans-serif; font-size: 17px; line-height: 1.6; width: 100%; box-sizing: border-box">
 
-  <!-- HEADER: índice original + mensaje directo + login conservados -->
+  <!-- HEADER -->
   <header style="border-bottom: 1px solid #DAD6C9; background: #F6F4EE">
     <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px">
       <a href="https://cosasdedineros.github.io/index.html" style="display: flex; align-items: center; gap: 12px">
@@ -31,11 +31,12 @@ a:focus-visible,button:focus-visible{outline:3px solid #F2B84B;outline-offset:2p
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7 L12 13 L20 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Mensaje directo
         </a>
-        <button type="button" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: var(--accent); color: #FFFFFF; font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer">Iniciar sesión</button>
+        <sc-if value="{{ sesionIniciada }}" hint-placeholder-val="{{ false }}">
+          <button type="button" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1.5px solid #14211D; border-radius: 999px; background: transparent; color: #14211D; font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer">Salir</button>
+        </sc-if>
+        <sc-if value="{{ sesionCerrada }}" hint-placeholder-val="{{ true }}">
+          <button type="button" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: var(--accent); color: #FFFFFF; font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer">Iniciar sesión</button>
+        </sc-if>
       </div>
     </div>
     <nav aria-label="Principal" style="max-width: 1200px; margin: 0 auto; padding: 6px 32px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; gap: 0 28px; font-size: 16px; font-weight: 500">
-      <a href="https://cosasdedineros.github.io/index.html" style="padding: 12px 0; border-bottom: 3px solid var(--accent); font-weight: 600">Inicio</a>
-      <a href="https://cosasdedineros.github.io/instagram.html" style="padding: 12px 0; border-bottom: 3px solid transparent">Posts</a>
-      <a href="https://cosasdedineros.github.io/Substack.html" style="padding: 12px 0; border-bottom: 3px solid transparent">Artículos</a>
-      <a href="https://cosasdedineros.github.io/Calculadoras.html" style="padding: 12px 0; border-bottom: 3px solid transparent">Calculadoras</a>
