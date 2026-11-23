@@ -874,6 +874,41 @@
       "resumen": "Si pensabas que la banca de inversión en Latinoamérica era dominio exclusivo de los gigantes estadounidenses como JPMorgan o Citi, los datos de este año te van a sorprender. Santander y BBVA están dominando la financiación en la región, superando a sus rivales de Wall Street tanto en bonos como en préstamos sindicados. ¿Cuál es el secreto? La combinación de escala y cercanía. Santander es el líder indiscutible en el mercado de bonos, con un volumen de colocaciones que deja atrás a JPMorgan por miles de millones de euros. BBVA, por su parte, es muy fuerte en préstamos. Juntos, han captado a una",
       "fuente": "Expansión",
       "url": "https://www.expansion.com/empresas/banca/2026/11/23/santander-bbva-ganan-batalla-latinoamerica-jpmorgan-citi.html"
+    },
+    {
+      "fecha": "2026-11-23",
+      "titular": "Jensen Huang vuelve a Nvidia: el mercado celebra el regreso del fundador",
+      "resumen": "Nvidia ha cerrado una de las semanas más convulsas de su historia reciente. Apenas diez días después de anunciar su dimisión en medio de un escándalo personal que incluía presuntas infidelidades y contactos con una espía china, Jensen Huang ha sido restituido como consejero delegado de la tecnológica con efecto inmediato. La decisión, aprobada por unanimidad por el consejo de administración, busca frenar la hemorragia bursátil que ha llevado a Nvidia a perder cerca de la mitad de su valor desde sus máximos de octubre. El respaldo público de Donald Trump, que ha calificado a Huang de \"tesoro na",
+      "fuente": "Expansión",
+      "url": "https://www.expansion.com/empresas/2026/11/23/nvidia-restituye-jensen-huang-ceo.html"
+    },
+    {
+      "fecha": "2026-11-23",
+      "titular": "Wall Street intenta frenar la hemorragia: ¿fin de la sobreventa o rebote técnico?",
+      "resumen": "El inicio de esta semana ha traído un respiro a las tecnológicas de Wall Street, que vienen de firmar una de sus peores rachas desde 2020. Tras días de caídas generalizadas, el rebote ha sido contundente, con el Nasdaq y el S&P 500 protagonizando subidas destacadas. Este movimiento responde, en gran medida, al regreso de Jensen Huang a Nvidia, pero también a una dinámica técnica conocida como el cierre de posiciones cortas. Muchos inversores habían apostado fuerte en contra de las tecnológicas durante la semana pasada, esperando que la corrección fuera más profunda. Cuando el precio de las acc",
+      "fuente": "Capital Bolsa",
+      "url": "https://www.bolsamania.com/capitalbolsa/noticias/bolsa/del-miedo-a-caer-al-miedo-a-quedarse-fuera-que-hay-detras-del-rebote-tecnologico-de-wall-street--24264516.html"
+    },
+    {
+      "fecha": "2026-11-23",
+      "titular": "Morgan Stanley ve el desplome tecnológico como una oportunidad 'irrepetible'",
+      "resumen": "Aunque el miedo ha dominado los titulares, los estrategas de Morgan Stanley han lanzado un mensaje de optimismo poco habitual. Creen que la fuerte corrección que ha sufrido Wall Street —que ha llevado a índices como el S&P 500 a caer un 12% desde sus máximos de octubre— ha dejado los precios de muchas acciones en niveles históricamente baratos. El argumento principal es una divergencia: mientras que las cotizaciones han caído, las previsiones de beneficios de las empresas siguen siendo sólidas. De hecho, el ratio PER del S&P 500 (que mide lo que pagamos por cada euro de beneficio esperado) ha ",
+      "fuente": "Finanzas.com",
+      "url": "https://www.finanzas.com/mercados/morgan-stanley-ve-oportunidad-compra-irrepetible-desplome-wall-street.html"
+    },
+    {
+      "fecha": "2026-11-23",
+      "titular": "Centros de datos en España: ¿regulación verde o freno al negocio?",
+      "resumen": "La reciente aprobación del Real Decreto 1032/2026 ha generado una tormenta de opiniones en el sector tecnológico y financiero español. La nueva norma impone exigencias estrictas a los centros de datos de gran potencia (más de 10 megavatios), obligándoles a que el 80% de su energía sea renovable y, lo que es más complejo, con una correspondencia horaria entre generación y consumo. Esto significa que ya no vale con comprar certificados verdes; el centro de datos debe demostrar que la electricidad que usa se ha generado en el mismo momento. La reacción de los analistas es un claro ejemplo de la d",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/empresas/decreto-centros-de-datos-divide-analistas-oportunidades-alertan-riesgos--24260022.html"
+    },
+    {
+      "fecha": "2026-11-23",
+      "titular": "Técnicas Reunidas se asegura 1.500 millones con tres centrales en Alemania",
+      "resumen": "Técnicas Reunidas ha dado un golpe de efecto en su cartera de pedidos con la adjudicación de tres centrales eléctricas de ciclo combinado en Alemania. El contrato, valorado en más de 1.500 millones de euros, es significativo por dos razones: la escala de los proyectos y su enfoque estratégico. Las nuevas instalaciones, situadas en Weisweiler, Gersteinwerk y Voerde, tendrán una capacidad de unos 800-850 megavatios cada una y estarán preparadas para funcionar con hidrógeno en el futuro. ¿Por qué es importante para la constructora española? La empresa llevaba tiempo esperando la luz verde definit",
+      "fuente": "Bolsamanía",
+      "url": "https://www.bolsamania.com/noticias/empresas/tecnicas-reunidas-tres-centrales-alemania-mas-de-1500-millones--24256976.html"
     }
   ]
 }
