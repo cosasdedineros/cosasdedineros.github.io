@@ -20,287 +20,348 @@
 <!-- TIPOGRAFÍAS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#F6F4EE">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <title>CosasDeDineros - Noticias 23/11/2026</title>
 
 <style>
+/* ═════════ BASE ═════════ */
 :root{
-  --verde:#1a3a2a;
-  --dorado:#c9a84c;
-  --crema:#f8f5ee;
-  --texto:#1a1a1a;
+  --verde:#0B6B55;       /* color de marca (acento) */
+  --verde-osc:#0F2A23;   /* hero y bloques oscuros */
+  --dorado:#F2B84B;      /* ámbar de acento */
+  --crema:#F6F4EE;
+  --texto:#14211D;
+  --tinta:#14211D;
+  --suave:#3F4F49;
+  --linea:#DAD6C9;
+  --pad:max(32px,calc((100% - 1200px)/2 + 32px));
 }
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
-  font-family:"DM Sans",sans-serif;
-  background:var(--crema);
-  color:var(--texto);
-  line-height:1.7;
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;line-height:1.6;
+  background:var(--crema);color:var(--tinta);
+  -webkit-font-smoothing:antialiased;
 }
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;}
+:focus-visible{outline:3px solid var(--dorado);outline-offset:2px;}
 
+/* ═════════ CABECERA ═════════ */
+.cabecera{
+  position:sticky;top:0;z-index:1000;
+  background:var(--crema);border-bottom:1px solid var(--linea);
+}
 .topbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:var(--verde);
-  color:white;
-  display:flex;
-  align-items:center;
-  padding:10px 20px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;
+  padding:14px var(--pad) 0;color:var(--tinta);
 }
-
+.marca{
+  display:flex;align-items:center;gap:12px;
+  color:var(--tinta);text-decoration:none;
+  font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;
+  font-size:22px;letter-spacing:-.01em;
+}
+.marca svg{width:40px;height:40px;flex-shrink:0;}
 .usuario-email{
-  font-size:13px;
-  color:var(--dorado);
-  font-weight:500;
-  display:none;
-  align-items:center;
-  gap:6px;
+  font-size:13px;color:var(--verde);font-weight:500;
+  display:none;align-items:center;gap:6px;
 }
-
-.usuario-email::before{
-  content:"●";
-  color:#4caf50;
-  font-size:10px;
+.usuario-email::before{content:"●";color:#2e9e57;font-size:10px;}
+.topbar-acciones{
+  display:flex;align-items:center;justify-content:flex-end;
+  flex-wrap:wrap;gap:10px 12px;margin-left:auto;
 }
+.usuario-box{align-items:center;gap:10px;}
+.usuario-nombre{font-size:14px;font-weight:500;color:var(--tinta);}
+.btn-principal,.btn-contorno{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 20px;border-radius:999px;
+  font:600 15px/1 "Inter",system-ui,sans-serif;
+  cursor:pointer;text-decoration:none;
+  transition:background .15s,color .15s;
+}
+.btn-principal{background:var(--verde);color:#fff;border:1.5px solid var(--verde);}
+.btn-principal:hover{background:#09594A;}
+.btn-contorno{background:transparent;color:var(--tinta);border:1.5px solid var(--tinta);}
+.btn-contorno:hover{background:var(--tinta);color:var(--crema);}
+.btn-contorno svg{width:18px;height:18px;flex-shrink:0;}
 
 nav{
-  position:sticky;
-  top:45px;
-  z-index:999;
-  background:#122a1f;
-  display:flex;
-  gap:20px;
-  padding:12px 20px;
-  overflow-x:auto;
-  scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
-  white-space:nowrap;
+  display:flex;gap:0 28px;padding:6px var(--pad) 0;
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
 }
-
-nav::-webkit-scrollbar{
-  display:none;
-}
-
-@media(min-width:700px){
-  nav{
-    justify-content:center;
-  }
-}
-
+nav::-webkit-scrollbar{display:none;}
 nav a{
-  color:white;
-  text-decoration:none;
-  font-size:14px;
-  flex-shrink:0;
+  color:var(--tinta);text-decoration:none;
+  font-size:16px;font-weight:500;flex-shrink:0;
+  padding:12px 0;border-bottom:3px solid transparent;
+  transition:color .15s;
+}
+nav a:hover{color:var(--verde);}
+nav a[aria-current="page"]{font-weight:600;border-bottom-color:var(--verde);}
+
+/* ═════════ HERO ═════════ */
+.hero{
+  position:relative;overflow:hidden;text-align:left;
+  background:var(--verde-osc);color:var(--crema);
+  padding:104px var(--pad) 120px;
+}
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:58%;
+  pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' preserveAspectRatio='none'%3E%3Cpath d='M0 280 C200 270 380 230 560 180 C760 125 980 70 1200 20 L1200 300 L0 300 Z' fill='%2314473A' fill-opacity='.55'/%3E%3Cpath d='M0 280 C200 270 380 230 560 180 C760 125 980 70 1200 20' fill='none' stroke='%23F2B84B' stroke-width='3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;
+}
+.hero h1,.hero h2{position:relative;z-index:1;}
+.hero h1{
+  font-weight:700;font-size:clamp(40px,6.4vw,76px);
+  line-height:1.04;letter-spacing:-.035em;max-width:1000px;
+}
+.hero h2{
+  font-family:"Inter",system-ui,sans-serif;font-weight:500;
+  font-size:clamp(18px,2.4vw,26px);line-height:1.35;
+  margin-top:20px;color:var(--dorado);opacity:1;max-width:640px;
 }
 
-nav a:hover{
-  color:var(--dorado);
-}
-
-.contenido{
-  max-width:760px;
-  margin:40px auto;
-  padding:0 20px;
-}
-
-header{
-  margin-bottom:35px;
-}
-
-h1{
-  font-family:"Playfair Display",serif;
-  color:var(--verde);
-  font-size:32px;
-  line-height:1.3;
-  margin-bottom:10px;
-}
-
-h2{
-  font-family:"Playfair Display",serif;
-  color:var(--verde);
-  font-size:23px;
-  line-height:1.3;
-  margin-bottom:15px;
-}
-
-header p{
-  margin-bottom:8px;
-}
-
-article{
-  margin:35px 0;
-}
-
-article p{
-  margin-bottom:14px;
-}
-
-.fuente{
-  font-size:14px;
-}
-
-a{
-  color:#876c27;
-}
-
-nav a{
-  color:white;
-}
-
-hr{
-  border:0;
-  border-top:1px solid #d8d2c4;
-  margin:35px 0;
-}
-
+/* ═════════ FOOTER ═════════ */
 footer{
-  max-width:760px;
-  margin:40px auto;
-  padding:20px;
-  text-align:center;
-  font-size:14px;
-  color:#666;
+  background:#14211D;color:#D5DDD8;
+  margin-top:96px;padding:56px var(--pad);
+  display:grid;grid-template-columns:1fr auto;gap:8px 32px;
+  text-align:left;font-size:15px;
 }
+footer p{margin:0;}
+footer strong{
+  font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;
+  font-size:22px;color:var(--crema);
+}
+footer p a{color:#D5DDD8;text-decoration:underline;}
+footer .legal{
+  grid-column:2;grid-row:1/span 2;align-self:start;
+  display:flex;flex-wrap:wrap;gap:4px 28px;
+}
+footer .legal a{color:#D5DDD8;text-decoration:none;padding:8px 0;}
+footer a:hover{color:#fff;}
 
+/* ═════════ NOTICIAS ═════════ */
+.hero{padding:72px var(--pad) 104px;}
+.hero h1{font-size:clamp(36px,5.4vw,60px);}
+.hero p{position:relative;z-index:1;}
+.hero h1 + p{
+  margin-top:20px;max-width:640px;
+  font-size:clamp(18px,2.4vw,26px);font-weight:500;line-height:1.35;color:var(--dorado);
+}
+.hero p + p{margin-top:12px;font-size:15px;color:#D5DDD8;}
+.contenido{
+  max-width:1200px;margin:0 auto;padding:72px 32px 0;
+  display:flex;flex-direction:column;gap:24px;
+}
+.contenido hr{display:none;}
+article{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);
+  column-gap:56px;align-items:start;
+  background:#fff;border:1px solid var(--linea);border-radius:28px;
+  padding:48px 56px;
+}
+article > h2{
+  grid-column:1;grid-row:1 / span 8;
+  font-size:clamp(24px,2.4vw,30px);font-weight:700;line-height:1.2;
+  letter-spacing:-.015em;color:var(--tinta);
+}
+article > *:not(h2){grid-column:2;}
+article p{margin-bottom:16px;font-size:18px;line-height:1.75;color:var(--suave);}
+article p.fuente{margin:8px 0 0;}
+.fuente a{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 20px;
+  border:1.5px solid var(--verde);border-radius:999px;
+  color:var(--verde);font-size:15px;font-weight:600;text-decoration:none;
+  transition:background .15s,color .15s;
+}
+.fuente a::after{content:"→";}
+.fuente a:hover{background:var(--verde);color:#fff;}
+article ul{list-style:none;margin-top:14px;font-size:14px;color:var(--suave);}
+article li::before{content:"Fuente: ";}
+article li a{color:var(--suave);}
+article li a:hover{color:var(--verde);}
+
+/* ═════════ RESPONSIVE / ACCESIBILIDAD ═════════ */
+@media(max-width:900px){
+  footer{grid-template-columns:1fr;}
+  footer .legal{grid-column:1;grid-row:auto;margin-top:16px;}
+  article{grid-template-columns:1fr;padding:36px 28px;}
+  article > h2{grid-column:1;grid-row:auto;margin-bottom:18px;}
+  article > *:not(h2){grid-column:1;}
+}
 @media(max-width:700px){
-  .contenido{
-    margin:25px auto;
-  }
-
-  h1{
-    font-size:28px;
-  }
+  :root{--pad:20px;}
+  .hero{padding:56px var(--pad) 112px;}
+  .hero::after{height:40%;}
+  .contenido{padding:48px 20px 0;}
+  article{padding:28px 22px;border-radius:24px;}
+  article p{font-size:17px;}
+  .topbar{gap:10px 16px;padding-top:12px;}
+  .marca{font-size:19px;gap:10px;}
+  .marca svg{width:34px;height:34px;}
+  .topbar-acciones{gap:8px;}
+  .btn-principal,.btn-contorno{min-height:40px;padding:0 16px;font-size:14px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <span id="usuarioEmail" class="usuario-email"></span>
+<!-- CABECERA: TOPBAR + NAV -->
+<header class="cabecera">
 
-  <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
-    <button id="btnLogin" style="background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:14px;">
-      Iniciar sesión
-    </button>
-
-    <div id="usuarioBox" style="display:none;align-items:center;gap:8px;">
-      <span id="usuarioNombre" style="font-size:13px;color:white;"></span>
-
-      <button id="btnLogout" style="background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:14px;">
-        Salir
-      </button>
-    </div>
-
-    <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
-       target="_blank"
-       style="text-decoration:none;background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;">
-      📩 Mensaje directo
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <a class="marca" href="index.html" aria-label="Cosas de Dineros, inicio">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" style="fill:var(--verde)"/><path d="M9 28 L16 20 L22 24 L31 12" fill="none" stroke="#F6F4EE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="12" r="3" fill="#F2B84B"/></svg>
+      Cosas de Dineros
     </a>
+    <span id="usuarioEmail" class="usuario-email"></span>
+    <div class="topbar-acciones">
+      <button id="btnLogin" class="btn-principal" type="button">Iniciar sesión</button>
+      <div id="usuarioBox" class="usuario-box" style="display:none;">
+        <span id="usuarioNombre" class="usuario-nombre"></span>
+        <button id="btnLogout" class="btn-contorno" type="button">Salir</button>
+      </div>
+      <a class="btn-contorno"
+         href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Mensaje directo
+      </a>
+    </div>
   </div>
-</div>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="instagram.html">Posts</a>
-  <a href="Substack.html">Artículos</a>
-  <a href="Calculadoras.html">Calculadoras</a>
-  <a href="comparador-fondos.html">Comparador fondos</a>
-  <a href="datos.html">Datos</a>
-  <a href="Libros.html">Libros</a>
-  <a href="noticias.html">Noticias</a>
-</nav>
+  <!-- NAV -->
+  <nav aria-label="Principal">
+    <a href="index.html">Inicio</a>
+    <a href="instagram.html">Posts</a>
+    <a href="Substack.html">Artículos</a>
+    <a href="Calculadoras.html">Calculadoras</a>
+    <a href="comparador-fondos.html">Comparador fondos</a>
+    <a href="datos.html">Datos</a>
+    <a href="Libros.html">Libros</a>
+    <a href="noticias.html" aria-current="page">Noticias</a>
+  </nav>
 
-<div class="contenido">
+</header>
 
-<header>
+<!-- CABECERA DE LA EDICIÓN -->
+<div class="hero">
   <h1>CosasDeDineros</h1>
   <p>Las noticias financieras explicadas sin complicaciones.</p>
   <p>23/11/2026 · Lectura aproximada: 5 minutos</p>
-</header>
+</div>
 
+<!-- NOTICIAS -->
+<div class="contenido">
 
-    <article>
-        <h2>1. Jensen Huang vuelve a Nvidia: el mercado celebra el regreso del fundador</h2>
-        <p>Nvidia ha cerrado una de las semanas más convulsas de su historia reciente. Apenas diez días después de anunciar su dimisión en medio de un escándalo personal que incluía presuntas infidelidades y contactos con una espía china, Jensen Huang ha sido restituido como consejero delegado de la tecnológica con efecto inmediato.</p><p>La decisión, aprobada por unanimidad por el consejo de administración, busca frenar la hemorragia bursátil que ha llevado a Nvidia a perder cerca de la mitad de su valor desde sus máximos de octubre. El respaldo público de Donald Trump, que ha calificado a Huang de &quot;tesoro nacional&quot;, y la confirmación por parte de las autoridades estadounidenses de que su vuelta no supone un riesgo para la seguridad nacional, han sido claves para convencer a la junta de dar marcha atrás.</p><p>Para los inversores, este giro es un alivio. El regreso del &quot;arquitecto&quot; de la revolución de la inteligencia artificial calma los temores sobre la estrategia futura de la compañía, especialmente en un momento donde el sector tecnológico se cuestiona si las multimillonarias inversiones en chips y centros de datos generarán la rentabilidad prometida. Aunque Nvidia mantendrá abierta una investigación independiente sobre los hechos ocurridos, la confianza parece haber vuelto al parqué, disparando las acciones de la compañía en la sesión de este lunes.</p>
+<article>
+        <h2>1. BBVA vs. Santander: por qué los expertos prefieren al banco vasco</h2>
+        <p>Si te preguntas a qué banco español mirar con más cariño ahora mismo, los analistas de Jefferies lo tienen claro: BBVA está un paso por delante de Santander. La clave de esta preferencia no es otra que el mercado mexicano. BBVA está aprovechando como nadie el crecimiento del crédito en México, que avanza a un ritmo del 12% anual. Esto les permite ser más optimistas con sus futuros beneficios, proyectando un crecimiento que supera lo que esperaba el consenso del mercado.</p><p>Por el contrario, Santander se enfrenta a un escenario algo más &quot;espinoso&quot; en Brasil. Aunque es una entidad muy diversificada, el banco cántabro lucha contra unos tipos de interés en Brasil que se resisten a bajar, lo que complica sus márgenes de beneficio. Además, la entidad ha movido su cartera crediticia hacia perfiles de menor riesgo, algo que, aunque da seguridad, es menos lucrativo.</p><p>Para que lo entiendas, en el mundo bancario, el margen de intereses es la diferencia entre lo que el banco cobra por prestarte dinero y lo que paga por tus ahorros. Cuando los tipos son altos y la competencia aprieta, como ocurre en Brasil, ese margen se comprime. Jefferies mantiene a BBVA como compra clara con un potencial de subida del 21%, mientras que para Santander sugiere prudencia (mantener) ante los retos que tiene por delante. En resumen, BBVA juega hoy con el viento a favor de México, mientras Santander gestiona los obstáculos del terreno brasileño.</p>
         <p class="fuente">
-            <a href="https://www.expansion.com/empresas/2026/11/23/nvidia-restituye-jensen-huang-ceo.html" target="_blank"
-               rel="noopener noreferrer">
-                Leer noticia original en Expansión
-            </a>
-        </p>
-        <ul><li><a href="https://www.expansion.com/empresas/2026/11/23/nvidia-restituye-jensen-huang-ceo.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
-    </article>
-    <hr>
-    
-    <article>
-        <h2>2. Wall Street intenta frenar la hemorragia: ¿fin de la sobreventa o rebote técnico?</h2>
-        <p>El inicio de esta semana ha traído un respiro a las tecnológicas de Wall Street, que vienen de firmar una de sus peores rachas desde 2020. Tras días de caídas generalizadas, el rebote ha sido contundente, con el Nasdaq y el S&amp;P 500 protagonizando subidas destacadas. Este movimiento responde, en gran medida, al regreso de Jensen Huang a Nvidia, pero también a una dinámica técnica conocida como el cierre de posiciones cortas.</p><p>Muchos inversores habían apostado fuerte en contra de las tecnológicas durante la semana pasada, esperando que la corrección fuera más profunda. Cuando el precio de las acciones comenzó a subir de golpe, quienes tenían esas posiciones bajistas se vieron obligados a recomprar acciones para minimizar sus pérdidas, acelerando así el rebote. A esto se suma el miedo a &quot;quedarse fuera&quot;: con el fin de año a la vuelta de la esquina, algunos gestores que habían reducido su exposición al mercado han empezado a comprar para no presentar resultados mediocres ante sus clientes.</p><p>Sin embargo, los estrategas advierten que no hay que confundir euforia con estabilidad. Las valoraciones siguen siendo exigentes y el mercado está muy pendiente de los próximos datos de inflación (PCE) que se publicarán este miércoles. Mientras la volatilidad (medida por el índice VIX) siga en niveles elevados, el mercado seguirá buscando un suelo sólido, y cualquier dato que decepcione podría reactivar las ventas con la misma velocidad con la que han desaparecido.</p>
-        <p class="fuente">
-            <a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/del-miedo-a-caer-al-miedo-a-quedarse-fuera-que-hay-detras-del-rebote-tecnologico-de-wall-street--24264516.html" target="_blank"
-               rel="noopener noreferrer">
-                Leer noticia original en Capital Bolsa
-            </a>
-        </p>
-        <ul><li><a href="https://www.bolsamania.com/capitalbolsa/noticias/bolsa/del-miedo-a-caer-al-miedo-a-quedarse-fuera-que-hay-detras-del-rebote-tecnologico-de-wall-street--24264516.html" target="_blank" rel="noopener noreferrer">Capital Bolsa</a></li></ul>
-    </article>
-    <hr>
-    
-    <article>
-        <h2>3. Morgan Stanley ve el desplome tecnológico como una oportunidad &#x27;irrepetible&#x27;</h2>
-        <p>Aunque el miedo ha dominado los titulares, los estrategas de Morgan Stanley han lanzado un mensaje de optimismo poco habitual. Creen que la fuerte corrección que ha sufrido Wall Street —que ha llevado a índices como el S&amp;P 500 a caer un 12% desde sus máximos de octubre— ha dejado los precios de muchas acciones en niveles históricamente baratos.</p><p>El argumento principal es una divergencia: mientras que las cotizaciones han caído, las previsiones de beneficios de las empresas siguen siendo sólidas. De hecho, el ratio PER del S&amp;P 500 (que mide lo que pagamos por cada euro de beneficio esperado) ha bajado de 23 a 16,5 veces, situándose por debajo de su media histórica de 17,4. Para Morgan Stanley, esto justifica volver a aumentar la apuesta por la bolsa, especialmente en empresas industriales, tecnológicas y cíclicas que ofrecen calidad.</p><p>Es importante recordar que estas recomendaciones son estimaciones de analistas, no una garantía. El banco admite que el mercado está descontando una caída de beneficios que ellos no creen que vaya a ocurrir. Según sus modelos, el crecimiento de los beneficios podría ser del 14% en 2027, lejos del pesimismo que se respira hoy en el parqué. Su postura es clara: ante una caída tan rápida, las mejores gangas se encuentran en los negocios con flujos de caja reales que el mercado ha castigado por inercia, más que por una debilidad real en sus cuentas.</p>
-        <p class="fuente">
-            <a href="https://www.finanzas.com/mercados/morgan-stanley-ve-oportunidad-compra-irrepetible-desplome-wall-street.html" target="_blank"
+            <a href="https://www.finanzas.com/ibex-35/razones-comprar-bbva-lugar-santander.html" target="_blank"
                rel="noopener noreferrer">
                 Leer noticia original en Finanzas.com
             </a>
         </p>
-        <ul><li><a href="https://www.finanzas.com/mercados/morgan-stanley-ve-oportunidad-compra-irrepetible-desplome-wall-street.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
+        <ul><li><a href="https://www.finanzas.com/ibex-35/razones-comprar-bbva-lugar-santander.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>4. Centros de datos en España: ¿regulación verde o freno al negocio?</h2>
-        <p>La reciente aprobación del Real Decreto 1032/2026 ha generado una tormenta de opiniones en el sector tecnológico y financiero español. La nueva norma impone exigencias estrictas a los centros de datos de gran potencia (más de 10 megavatios), obligándoles a que el 80% de su energía sea renovable y, lo que es más complejo, con una correspondencia horaria entre generación y consumo. Esto significa que ya no vale con comprar certificados verdes; el centro de datos debe demostrar que la electricidad que usa se ha generado en el mismo momento.</p><p>La reacción de los analistas es un claro ejemplo de la división de opiniones. Por un lado, firmas como Banco Sabadell ven la medida como un freno que añade incertidumbre y costes al desarrollo del negocio en España. Por otro, RBC Capital Markets considera que el decreto es, en realidad, más suave de lo que se temía, con periodos de transición que permiten a las empresas adaptarse sin morir en el intento.</p><p>Para inversores en empresas como Merlin Properties o ACS, esto es fundamental. Merlin, que apuesta fuerte por este sector, ha calculado que el peor escenario posible —tener que instalar sistemas de baterías gigantescos ante la falta de suministro— reduciría la rentabilidad de sus proyectos. El mercado penalizó las acciones de estos grupos tras la noticia, pero ahora los inversores analizan si las cláusulas de compensación y la flexibilidad introducida en el decreto final serán suficientes para que las inversiones sigan siendo rentables.</p>
+        <h2>2. El &#x27;mal de altura&#x27; de Inditex: ¿fin del rally bursátil?</h2>
+        <p>Inditex ha vivido meses de gloria, llegando a superar los 60 euros por acción. Sin embargo, en las últimas semanas ha empezado a notar lo que en bolsa llamamos &#x27;mal de altura&#x27;. Tras subir un 16,5% en apenas dos meses, el valor está en plena toma de beneficios, lo que significa que muchos inversores han decidido vender para quedarse con las ganancias acumuladas tras tocar máximos históricos.</p><p>El problema no es que la empresa funcione mal, sino que el mercado ya la había valorado casi a la perfección. Según Bestinver, Inditex cotiza ahora a 28 veces sus beneficios estimados, una prima del 50% frente a sus competidores. Esto ha llevado a algunos expertos a rebajar su recomendación de &#x27;comprar&#x27; a &#x27;mantener&#x27;, ya que consideran que a estos precios el potencial de subida es limitado.</p><p>La próxima fecha marcada en el calendario es el 2 de diciembre, cuando publicarán sus resultados de los nueve primeros meses. Será crucial ver qué dicen sobre el inicio del cuarto trimestre. Los analistas se muestran cautelosos: las comparativas con el año pasado son muy exigentes y el consumo en España se nota algo más contenido. Inditex es una máquina de eficiencia —tarda menos de tres meses en renovar su ropa frente a los más de cuatro de H&amp;M—, pero hasta el mejor atleta necesita tomar aire después de un sprint tan largo. Los inversores esperan ahora a ver si el invierno permite mejores precios de entrada.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/noticias/empresas/decreto-centros-de-datos-divide-analistas-oportunidades-alertan-riesgos--24260022.html" target="_blank"
+            <a href="https://www.finanzas.com/ibex-35/mal-altura-ataca-inditex.html" target="_blank"
                rel="noopener noreferrer">
-                Leer noticia original en Bolsamanía
+                Leer noticia original en Finanzas.com
             </a>
         </p>
-        <ul><li><a href="https://www.bolsamania.com/noticias/empresas/decreto-centros-datos-divide-analistas-oportunidades-alertan-riesgos--24260022.html" target="_blank" rel="noopener noreferrer">Bolsamanía</a></li></ul>
+        <ul><li><a href="https://www.finanzas.com/ibex-35/mal-altura-ataca-inditex.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
     </article>
     <hr>
     
     <article>
-        <h2>5. Técnicas Reunidas se asegura 1.500 millones con tres centrales en Alemania</h2>
-        <p>Técnicas Reunidas ha dado un golpe de efecto en su cartera de pedidos con la adjudicación de tres centrales eléctricas de ciclo combinado en Alemania. El contrato, valorado en más de 1.500 millones de euros, es significativo por dos razones: la escala de los proyectos y su enfoque estratégico. Las nuevas instalaciones, situadas en Weisweiler, Gersteinwerk y Voerde, tendrán una capacidad de unos 800-850 megavatios cada una y estarán preparadas para funcionar con hidrógeno en el futuro.</p><p>¿Por qué es importante para la constructora española? La empresa llevaba tiempo esperando la luz verde definitiva del Gobierno alemán, tras haber sido seleccionadas inicialmente en licitaciones previas. Al confirmar ahora estos contratos, Técnicas Reunidas no solo refuerza su presencia en un mercado clave como Europa, sino que también impulsa su filial TR Power, creada a principios de 2026 para capitalizar el auge en la construcción de infraestructuras energéticas.</p><p>Financieramente, este tipo de adjudicaciones ayuda a dar estabilidad a largo plazo. La eléctrica alemana RWE, responsable de los proyectos, asegura que estas plantas son vitales para garantizar el suministro eléctrico en Alemania cuando la energía solar y eólica no son suficientes. El éxito de la española radica en su capacidad para diseñar y construir estas infraestructuras críticas, donde la seguridad de suministro es una prioridad política y económica innegociable, protegiendo así a la compañía frente a la ciclicidad de otros sectores.</p>
+        <h2>3. Pensiones: el rescate silencioso que ningún político quiere abordar</h2>
+        <p>Hablar de pensiones suele ser territorio prohibido en campaña electoral, pero los datos financieros son tozudos. Aunque el sistema sigue pagando las prestaciones, la realidad es que el Estado lleva años realizando un &#x27;rescate&#x27; constante: ha transferido más de 350.000 millones de euros desde los presupuestos generales a la Seguridad Social en la última década. El motivo es una demografía que no perdona.</p><p>España vive una paradoja: la población total crece, pero la que está en edad de trabajar disminuye. Para 2080, se estima que habremos perdido cerca de 4 millones de personas en edad de trabajar, mientras que el grupo de mayores de 65 años será mucho más numeroso. Esto significa que habrá menos trabajadores para pagar las pensiones de más jubilados que, además, vivirán más años. Es un problema de pura aritmética.</p><p>La solución actual de revalorizar las pensiones con el IPC suena bien, pero sin reformas que aumenten la productividad o ajusten el sistema, es una palanca que aumenta el gasto cada año sin que crezcan los ingresos de forma pareja. Los partidos políticos saben que la AIReF (la autoridad fiscal) advierte que este camino no es sostenible, pero prefieren centrarse en la revalorización. Financieramente, esto significa que el Estado deberá seguir detrayendo recursos de otras áreas (como sanidad o inversión) para cubrir el agujero. Es un reto demográfico que, tarde o temprano, exigirá decisiones más profundas que una simple transferencia de dinero público.</p>
         <p class="fuente">
-            <a href="https://www.bolsamania.com/noticias/empresas/tecnicas-reunidas-tres-centrales-alemania-mas-de-1500-millones--24256976.html" target="_blank"
+            <a href="https://www.expansion.com/economia/2026/11/23/bomba-demografica-reto-pensiones-esquivan-partidos-politicos.html" target="_blank"
                rel="noopener noreferrer">
-                Leer noticia original en Bolsamanía
+                Leer noticia original en Expansión
             </a>
         </p>
-        <ul><li><a href="https://www.bolsamania.com/noticias/empresas/tecnicas-reunidas-tres-centrales-alemania-mas-de-1500-millones--24256976.html" target="_blank" rel="noopener noreferrer">Bolsamanía</a></li></ul>
+        <ul><li><a href="https://www.expansion.com/economia/2026/11/23/bomba-demografica-reto-pensiones-esquivan-partidos-politicos.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
     </article>
     <hr>
     
+    <article>
+        <h2>4. Acciona: la ofensiva multisectorial para plantar cara a los gigantes en EE.UU.</h2>
+        <p>En el terreno de las infraestructuras, Acciona ha dejado claro que no quiere ser un actor secundario. La compañía de la familia Entrecanales ha pisado el acelerador en Estados Unidos, que ya es su segundo mayor mercado tras Australia, y está desafiando el liderazgo histórico de ACS y Ferrovial. Lo hace con una estrategia poco convencional: no solo construye autopistas, sino que despliega un modelo integral que abarca agua y energías renovables.</p><p>La adquisición del 80% de Vertical Earth, una constructora en Atlanta, es el último movimiento para consolidar su capacidad de ejecución y reducir riesgos en los grandes proyectos que ya tiene en marcha, como los carriles de peaje dinámico. Pero donde realmente marca la diferencia es en sectores como el agua y la energía. Con una cartera de 8.000 millones de dólares solo en proyectos hídricos, Acciona está liderando plantas de desalación cruciales en estados con problemas de sequía como Florida, California o Arizona.</p><p>¿Por qué importa esto? Porque Acciona se está posicionando como proveedor de servicios para los grandes centros de datos e inteligencia artificial, que necesitan cantidades ingentes de energía limpia. Mientras sus rivales se centran principalmente en el asfalto y las concesiones de peaje, Acciona intenta cubrir todo el ciclo: desde la energía hasta el suministro de agua. Es una apuesta ambiciosa en un mercado, el estadounidense, donde la competencia es feroz y los riesgos políticos siempre están a la vuelta de la esquina.</p>
+        <p class="fuente">
+            <a href="https://www.expansion.com/empresas/construccion-servicios/2026/11/22/acciona-desafia-liderazgo-ferrovial-acs-eeuu.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Expansión
+            </a>
+        </p>
+        <ul><li><a href="https://www.expansion.com/empresas/construccion-servicios/2026/11/22/acciona-desafia-liderazgo-ferrovial-acs-eeuu.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
+    </article>
+    <hr>
+    
+    <article>
+        <h2>5. Miedo en las bolsas: ¿ajuste pasajero o una caída más profunda?</h2>
+        <p>Si has mirado tu cartera últimamente, habrás notado que el ambiente está cargado. Las bolsas mundiales, desde Wall Street hasta los parqués asiáticos, encadenan días de ventas que han asustado incluso a los inversores más veteranos. El detonante ha sido el sector tecnológico, pero el problema es que el nerviosismo se ha contagiado a casi todo el mercado.</p><p>¿Por qué ocurre esto? El mercado ha vivido un año de optimismo casi irracional, especialmente con la inteligencia artificial. Ahora, los inversores empiezan a dudar: ¿realmente van a ser rentables todas estas inversiones multimillonarias? Financiar este crecimiento se ha vuelto mucho más caro, ya que se está recurriendo a más deuda y ampliaciones de capital que diluyen el valor para los accionistas actuales. Es, en esencia, un choque entre el entusiasmo tecnológico y una realidad macroeconómica que muestra signos de fatiga, con inflación persistente y tipos de interés altos.</p><p>Algunos expertos creen que estamos solo al principio de la corrección. Aunque en bolsa siempre puede haber rebotes técnicos (subidas rápidas después de caídas fuertes), hay analistas que advierten que la estructura del mercado ha cambiado: si se pierden ciertos niveles de soporte técnicos, podríamos ver una liquidación mayor. La lección aquí es sencilla: el optimismo tiene un límite y cuando el dinero para financiar la innovación se vuelve escaso, el mercado empieza a separar a los ganadores de los que simplemente soñaban despiertos.</p>
+        <p class="fuente">
+            <a href="https://www.finanzas.com/mercados/miedo-apodera-bolsas-inicio-gran-correccion.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Finanzas.com
+            </a>
+        </p>
+        <ul><li><a href="https://www.finanzas.com/mercados/miedo-apodera-bolsas-inicio-gran-correccion.html" target="_blank" rel="noopener noreferrer">Finanzas.com</a></li></ul>
+    </article>
+    <hr>
+    
+    <article>
+        <h2>6. Latinoamérica: Santander y BBVA ganan la partida a los gigantes de Wall Street</h2>
+        <p>Si pensabas que la banca de inversión en Latinoamérica era dominio exclusivo de los gigantes estadounidenses como JPMorgan o Citi, los datos de este año te van a sorprender. Santander y BBVA están dominando la financiación en la región, superando a sus rivales de Wall Street tanto en bonos como en préstamos sindicados.</p><p>¿Cuál es el secreto? La combinación de escala y cercanía. Santander es el líder indiscutible en el mercado de bonos, con un volumen de colocaciones que deja atrás a JPMorgan por miles de millones de euros. BBVA, por su parte, es muy fuerte en préstamos. Juntos, han captado a una base de clientes mucho más amplia, que va desde grandes corporaciones hasta multinacionales, lo que les permite diversificar sus ingresos mejor que sus competidores estadounidenses, que tienden a centrarse solo en los clientes más grandes.</p><p>Esta victoria no es fruto de la casualidad, sino de una estrategia de fichajes internacionales y de una inversión constante en sus equipos en Nueva York y Londres, que actúan como puentes financieros. Para el inversor, esto es relevante porque muestra que la banca española tiene una pata muy sólida en Latinoamérica, un mercado que sigue demandando capital para crecer. A pesar de la volatilidad política o económica que a veces azota la región, los bancos españoles han demostrado que, en volumen y número de operaciones, juegan en las grandes ligas globales, ganando terreno allí donde antes imperaba Wall Street.</p>
+        <p class="fuente">
+            <a href="https://www.expansion.com/empresas/banca/2026/11/23/santander-bbva-ganan-batalla-latinoamerica-jpmorgan-citi.html" target="_blank"
+               rel="noopener noreferrer">
+                Leer noticia original en Expansión
+            </a>
+        </p>
+        <ul><li><a href="https://www.expansion.com/empresas/banca/2026/11/23/santander-bbva-ganan-batalla-latinoamerica-jpmorgan-citi.html" target="_blank" rel="noopener noreferrer">Expansión</a></li></ul>
+    </article>
+    <hr>
 
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <p>Un proyecto de CosasDeDineros.</p>
+  <p><strong>Cosas de Dineros</strong></p>
+
+  <p>
+    Escrito por Alonso Orellana ·
+    <a href="https://instagram.com/cosasdedineros" target="_blank" rel="noopener">
+      @cosasdedineros
+    </a>
+  </p>
+
+  <div class="legal">
+    <a href="legal.html">Aviso legal</a>
+    <a href="cookies.html">Política de cookies</a>
+    <a href="privacidad.html">Política de privacidad</a>
+  </div>
 </footer>
 
 <!-- FIREBASE: INICIO DE SESIÓN -->
