@@ -768,222 +768,272 @@ documento = f"""<!DOCTYPE html>
 <!-- TIPOGRAFÍAS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#F6F4EE">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <title>CosasDeDineros - Noticias {fecha_texto}</title>
 
 <style>
+/* ═════════ BASE ═════════ */
 :root{{
-  --verde:#1a3a2a;
-  --dorado:#c9a84c;
-  --crema:#f8f5ee;
-  --texto:#1a1a1a;
+  --verde:#0B6B55;       /* color de marca (acento) */
+  --verde-osc:#0F2A23;   /* hero y bloques oscuros */
+  --dorado:#F2B84B;      /* ámbar de acento */
+  --crema:#F6F4EE;
+  --texto:#14211D;
+  --tinta:#14211D;
+  --suave:#3F4F49;
+  --linea:#DAD6C9;
+  --pad:max(32px,calc((100% - 1200px)/2 + 32px));
 }}
-
-*{{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}}
-
+*{{margin:0;padding:0;box-sizing:border-box;}}
+html{{scroll-behavior:smooth;}}
 body{{
-  font-family:"DM Sans",sans-serif;
-  background:var(--crema);
-  color:var(--texto);
-  line-height:1.7;
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;line-height:1.6;
+  background:var(--crema);color:var(--tinta);
+  -webkit-font-smoothing:antialiased;
 }}
+h1,h2,h3{{font-family:"Space Grotesk",system-ui,sans-serif;}}
+:focus-visible{{outline:3px solid var(--dorado);outline-offset:2px;}}
 
+/* ═════════ CABECERA ═════════ */
+.cabecera{{
+  position:sticky;top:0;z-index:1000;
+  background:var(--crema);border-bottom:1px solid var(--linea);
+}}
 .topbar{{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:var(--verde);
-  color:white;
-  display:flex;
-  align-items:center;
-  padding:10px 20px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;
+  padding:14px var(--pad) 0;color:var(--tinta);
 }}
-
+.marca{{
+  display:flex;align-items:center;gap:12px;
+  color:var(--tinta);text-decoration:none;
+  font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;
+  font-size:22px;letter-spacing:-.01em;
+}}
+.marca svg{{width:40px;height:40px;flex-shrink:0;}}
 .usuario-email{{
-  font-size:13px;
-  color:var(--dorado);
-  font-weight:500;
-  display:none;
-  align-items:center;
-  gap:6px;
+  font-size:13px;color:var(--verde);font-weight:500;
+  display:none;align-items:center;gap:6px;
 }}
-
-.usuario-email::before{{
-  content:"●";
-  color:#4caf50;
-  font-size:10px;
+.usuario-email::before{{content:"●";color:#2e9e57;font-size:10px;}}
+.topbar-acciones{{
+  display:flex;align-items:center;justify-content:flex-end;
+  flex-wrap:wrap;gap:10px 12px;margin-left:auto;
 }}
+.usuario-box{{align-items:center;gap:10px;}}
+.usuario-nombre{{font-size:14px;font-weight:500;color:var(--tinta);}}
+.btn-principal,.btn-contorno{{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 20px;border-radius:999px;
+  font:600 15px/1 "Inter",system-ui,sans-serif;
+  cursor:pointer;text-decoration:none;
+  transition:background .15s,color .15s;
+}}
+.btn-principal{{background:var(--verde);color:#fff;border:1.5px solid var(--verde);}}
+.btn-principal:hover{{background:#09594A;}}
+.btn-contorno{{background:transparent;color:var(--tinta);border:1.5px solid var(--tinta);}}
+.btn-contorno:hover{{background:var(--tinta);color:var(--crema);}}
+.btn-contorno svg{{width:18px;height:18px;flex-shrink:0;}}
 
 nav{{
-  position:sticky;
-  top:45px;
-  z-index:999;
-  background:#122a1f;
-  display:flex;
-  gap:20px;
-  padding:12px 20px;
-  overflow-x:auto;
-  scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
-  white-space:nowrap;
+  display:flex;gap:0 28px;padding:6px var(--pad) 0;
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
 }}
-
-nav::-webkit-scrollbar{{
-  display:none;
-}}
-
-@media(min-width:700px){{
-  nav{{
-    justify-content:center;
-  }}
-}}
-
+nav::-webkit-scrollbar{{display:none;}}
 nav a{{
-  color:white;
-  text-decoration:none;
-  font-size:14px;
-  flex-shrink:0;
+  color:var(--tinta);text-decoration:none;
+  font-size:16px;font-weight:500;flex-shrink:0;
+  padding:12px 0;border-bottom:3px solid transparent;
+  transition:color .15s;
+}}
+nav a:hover{{color:var(--verde);}}
+nav a[aria-current="page"]{{font-weight:600;border-bottom-color:var(--verde);}}
+
+/* ═════════ HERO ═════════ */
+.hero{{
+  position:relative;overflow:hidden;text-align:left;
+  background:var(--verde-osc);color:var(--crema);
+  padding:104px var(--pad) 120px;
+}}
+.hero::after{{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:58%;
+  pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' preserveAspectRatio='none'%3E%3Cpath d='M0 280 C200 270 380 230 560 180 C760 125 980 70 1200 20 L1200 300 L0 300 Z' fill='%2314473A' fill-opacity='.55'/%3E%3Cpath d='M0 280 C200 270 380 230 560 180 C760 125 980 70 1200 20' fill='none' stroke='%23F2B84B' stroke-width='3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") bottom/100% 100% no-repeat;
+}}
+.hero h1,.hero h2{{position:relative;z-index:1;}}
+.hero h1{{
+  font-weight:700;font-size:clamp(40px,6.4vw,76px);
+  line-height:1.04;letter-spacing:-.035em;max-width:1000px;
+}}
+.hero h2{{
+  font-family:"Inter",system-ui,sans-serif;font-weight:500;
+  font-size:clamp(18px,2.4vw,26px);line-height:1.35;
+  margin-top:20px;color:var(--dorado);opacity:1;max-width:640px;
 }}
 
-nav a:hover{{
-  color:var(--dorado);
-}}
-
-.contenido{{
-  max-width:760px;
-  margin:40px auto;
-  padding:0 20px;
-}}
-
-header{{
-  margin-bottom:35px;
-}}
-
-h1{{
-  font-family:"Playfair Display",serif;
-  color:var(--verde);
-  font-size:32px;
-  line-height:1.3;
-  margin-bottom:10px;
-}}
-
-h2{{
-  font-family:"Playfair Display",serif;
-  color:var(--verde);
-  font-size:23px;
-  line-height:1.3;
-  margin-bottom:15px;
-}}
-
-header p{{
-  margin-bottom:8px;
-}}
-
-article{{
-  margin:35px 0;
-}}
-
-article p{{
-  margin-bottom:14px;
-}}
-
-.fuente{{
-  font-size:14px;
-}}
-
-a{{
-  color:#876c27;
-}}
-
-nav a{{
-  color:white;
-}}
-
-hr{{
-  border:0;
-  border-top:1px solid #d8d2c4;
-  margin:35px 0;
-}}
-
+/* ═════════ FOOTER ═════════ */
 footer{{
-  max-width:760px;
-  margin:40px auto;
-  padding:20px;
-  text-align:center;
-  font-size:14px;
-  color:#666;
+  background:#14211D;color:#D5DDD8;
+  margin-top:96px;padding:56px var(--pad);
+  display:grid;grid-template-columns:1fr auto;gap:8px 32px;
+  text-align:left;font-size:15px;
 }}
+footer p{{margin:0;}}
+footer strong{{
+  font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;
+  font-size:22px;color:var(--crema);
+}}
+footer p a{{color:#D5DDD8;text-decoration:underline;}}
+footer .legal{{
+  grid-column:2;grid-row:1/span 2;align-self:start;
+  display:flex;flex-wrap:wrap;gap:4px 28px;
+}}
+footer .legal a{{color:#D5DDD8;text-decoration:none;padding:8px 0;}}
+footer a:hover{{color:#fff;}}
 
+/* ═════════ NOTICIAS ═════════ */
+.hero{{padding:72px var(--pad) 104px;}}
+.hero h1{{font-size:clamp(36px,5.4vw,60px);}}
+.hero p{{position:relative;z-index:1;}}
+.hero h1 + p{{
+  margin-top:20px;max-width:640px;
+  font-size:clamp(18px,2.4vw,26px);font-weight:500;line-height:1.35;color:var(--dorado);
+}}
+.hero p + p{{margin-top:12px;font-size:15px;color:#D5DDD8;}}
+.contenido{{
+  max-width:1200px;margin:0 auto;padding:72px 32px 0;
+  display:flex;flex-direction:column;gap:24px;
+}}
+.contenido hr{{display:none;}}
+article{{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);
+  column-gap:56px;align-items:start;
+  background:#fff;border:1px solid var(--linea);border-radius:28px;
+  padding:48px 56px;
+}}
+article > h2{{
+  grid-column:1;grid-row:1 / span 8;
+  font-size:clamp(24px,2.4vw,30px);font-weight:700;line-height:1.2;
+  letter-spacing:-.015em;color:var(--tinta);
+}}
+article > *:not(h2){{grid-column:2;}}
+article p{{margin-bottom:16px;font-size:18px;line-height:1.75;color:var(--suave);}}
+article p.fuente{{margin:8px 0 0;}}
+.fuente a{{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:44px;padding:0 20px;
+  border:1.5px solid var(--verde);border-radius:999px;
+  color:var(--verde);font-size:15px;font-weight:600;text-decoration:none;
+  transition:background .15s,color .15s;
+}}
+.fuente a::after{{content:"→";}}
+.fuente a:hover{{background:var(--verde);color:#fff;}}
+article ul{{list-style:none;margin-top:14px;font-size:14px;color:var(--suave);}}
+article li::before{{content:"Fuente: ";}}
+article li a{{color:var(--suave);}}
+article li a:hover{{color:var(--verde);}}
+
+/* ═════════ RESPONSIVE / ACCESIBILIDAD ═════════ */
+@media(max-width:900px){{
+  footer{{grid-template-columns:1fr;}}
+  footer .legal{{grid-column:1;grid-row:auto;margin-top:16px;}}
+  article{{grid-template-columns:1fr;padding:36px 28px;}}
+  article > h2{{grid-column:1;grid-row:auto;margin-bottom:18px;}}
+  article > *:not(h2){{grid-column:1;}}
+}}
 @media(max-width:700px){{
-  .contenido{{
-    margin:25px auto;
-  }}
-
-  h1{{
-    font-size:28px;
-  }}
+  :root{{--pad:20px;}}
+  .hero{{padding:56px var(--pad) 112px;}}
+  .hero::after{{height:40%;}}
+  .contenido{{padding:48px 20px 0;}}
+  article{{padding:28px 22px;border-radius:24px;}}
+  article p{{font-size:17px;}}
+  .topbar{{gap:10px 16px;padding-top:12px;}}
+  .marca{{font-size:19px;gap:10px;}}
+  .marca svg{{width:34px;height:34px;}}
+  .topbar-acciones{{gap:8px;}}
+  .btn-principal,.btn-contorno{{min-height:40px;padding:0 16px;font-size:14px;}}
+}}
+@media (prefers-reduced-motion:reduce){{
+  *{{transition:none!important;scroll-behavior:auto!important;}}
 }}
 </style>
 </head>
 
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <span id="usuarioEmail" class="usuario-email"></span>
+<!-- CABECERA: TOPBAR + NAV -->
+<header class="cabecera">
 
-  <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
-    <button id="btnLogin" style="background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:14px;">
-      Iniciar sesión
-    </button>
-
-    <div id="usuarioBox" style="display:none;align-items:center;gap:8px;">
-      <span id="usuarioNombre" style="font-size:13px;color:white;"></span>
-
-      <button id="btnLogout" style="background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:14px;">
-        Salir
-      </button>
-    </div>
-
-    <a href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
-       target="_blank"
-       style="text-decoration:none;background:var(--dorado);color:var(--verde);font-weight:600;padding:8px 16px;border-radius:6px;">
-      📩 Mensaje directo
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <a class="marca" href="index.html" aria-label="Cosas de Dineros, inicio">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" style="fill:var(--verde)"/><path d="M9 28 L16 20 L22 24 L31 12" fill="none" stroke="#F6F4EE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="12" r="3" fill="#F2B84B"/></svg>
+      Cosas de Dineros
     </a>
+    <span id="usuarioEmail" class="usuario-email"></span>
+    <div class="topbar-acciones">
+      <button id="btnLogin" class="btn-principal" type="button">Iniciar sesión</button>
+      <div id="usuarioBox" class="usuario-box" style="display:none;">
+        <span id="usuarioNombre" class="usuario-nombre"></span>
+        <button id="btnLogout" class="btn-contorno" type="button">Salir</button>
+      </div>
+      <a class="btn-contorno"
+         href="https://mail.google.com/mail/?view=cm&to=cosasdedinerosresponde@gmail.com&su=Mensaje%20desde%20la%20web&body=Hola%2C%20te%20escribo%20desde%20Cosas%20de%20Dineros"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Mensaje directo
+      </a>
+    </div>
   </div>
-</div>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html">Inicio</a>
-  <a href="instagram.html">Posts</a>
-  <a href="Substack.html">Artículos</a>
-  <a href="Calculadoras.html">Calculadoras</a>
-  <a href="comparador-fondos.html">Comparador fondos</a>
-  <a href="datos.html">Datos</a>
-  <a href="Libros.html">Libros</a>
-  <a href="noticias.html">Noticias</a>
-</nav>
+  <!-- NAV -->
+  <nav aria-label="Principal">
+    <a href="index.html">Inicio</a>
+    <a href="instagram.html">Posts</a>
+    <a href="Substack.html">Artículos</a>
+    <a href="Calculadoras.html">Calculadoras</a>
+    <a href="comparador-fondos.html">Comparador fondos</a>
+    <a href="datos.html">Datos</a>
+    <a href="Libros.html">Libros</a>
+    <a href="noticias.html" aria-current="page">Noticias</a>
+  </nav>
 
-<div class="contenido">
+</header>
 
-<header>
+<!-- CABECERA DE LA EDICIÓN -->
+<div class="hero">
   <h1>CosasDeDineros</h1>
   <p>Las noticias financieras explicadas sin complicaciones.</p>
   <p>{fecha_texto} · Lectura aproximada: 5 minutos</p>
-</header>
+</div>
+
+<!-- NOTICIAS -->
+<div class="contenido">
 
 {contenido_html}
 
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <p>Un proyecto de CosasDeDineros.</p>
+  <p><strong>Cosas de Dineros</strong></p>
+
+  <p>
+    Escrito por Alonso Orellana ·
+    <a href="https://instagram.com/cosasdedineros" target="_blank" rel="noopener">
+      @cosasdedineros
+    </a>
+  </p>
+
+  <div class="legal">
+    <a href="legal.html">Aviso legal</a>
+    <a href="cookies.html">Política de cookies</a>
+    <a href="privacidad.html">Política de privacidad</a>
+  </div>
 </footer>
 
 <!-- FIREBASE: INICIO DE SESIÓN -->
